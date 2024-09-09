@@ -18,6 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::resource('/login', AuthController::class);
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::resource('/admin', DashboardAdminController::class);
+
+// Route Group Admin
+Route::group(['middleware' => 'admin'], function () {
+    Route::resource('/admin', DashboardAdminController::class);
+});
+// End Route Group Admin
+
+
+// Route Group Siswa
+// Route::group(['middleware' => 'admin'], function () {
+//     Route::resource('/admin', DashboardAdminController::class);
+// });
+// End Route Group Siswa

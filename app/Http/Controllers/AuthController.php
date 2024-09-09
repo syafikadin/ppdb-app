@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -15,6 +17,22 @@ class AuthController extends Controller
     {
         $title = 'Login';
         return view('pages.auth.login', compact('title'));
+    }
+
+    public function authenticate(Request $request)
+    {
+        if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            return back()->with('loginError', 'Username / Password Salah!');
+        } else {
+            if (auth()->user()->role == '1') {
+                $request->session()->regenerate();
+                return redirect()->intended('/admin');
+            } elseif (auth()->user()->role == '2') {
+                $request->session()->regenerate();
+                return redirect()->intended('/siswa');
+            }
+        }
+        return back()->with('loginError', 'Login Failed!');
     }
 
     /**
@@ -81,5 +99,16 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return redirect("/");
     }
 }
