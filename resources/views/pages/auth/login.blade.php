@@ -47,7 +47,7 @@
                                 <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                     class="btn btn-primary btn-lg"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
                                         class="link-danger">Register</a></p>
                             </div>
 
@@ -58,7 +58,7 @@
         @elseif(Auth::guard('web')->user()->role == 1)
             <h1>Wes login cok</h1>
             <a href="/admin">Mbaliko rene</a>
-        @elseif(Auth::guard('web')->user()->role == 1)
+        @elseif(Auth::guard('web')->user()->role == 2)
             <h1>Wes login cok</h1>
             <a href="/siswa">Mbaliko rene</a>
         @endif
