@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
@@ -14,8 +16,8 @@ class ProfilController extends Controller
     public function index()
     {
         $title = 'Profil';
-
-        return view('pages.siswa.profil.index', compact('title'));
+        $data_siswa = Siswa::where('user_id', Auth::user()->id)->first();
+        return view('pages.siswa.profil.index', compact('title', 'data_siswa'));
     }
 
     /**
