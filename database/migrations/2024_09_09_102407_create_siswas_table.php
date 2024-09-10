@@ -25,6 +25,21 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('nomor_wa')->nullable();
             $table->string('sosmed')->nullable();
+            $table->string('nama_ayah')->nullable();
+            $table->string('pekerjaan_ayah')->nullable();
+            $table->string('penghasilan_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('pekerjaan_ibu')->nullable();
+            $table->string('penghasilan_ibu')->nullable();
+            $table->string('nomor_wali')->nullable();
+            $table->string('alamat_wali')->nullable();
+            $table->string('piagam')->nullable();
+            $table->string('ukuran_seragam')->nullable();
+            $table->string('foto_pas')->nullable();
+            $table->string('akta')->nullable();
+            $table->string('kk')->nullable();
+            $table->string('ktp')->nullable();
+            $table->string('rapor')->nullable();
             $table->timestamps();
         });
     }
