@@ -3,10 +3,11 @@
     <div class="main-content">
         <div class="app-content">
             <div class="app-content-header shadow-sm">
-                <h1 class="app-content-headerText raleway fw-bold">Dashboard Admin</h1>
+                <h1 class="app-content-headerText fw-bold">Dashboard Admin</h1>
             </div>
 
             <div class="content-body">
+                <h3 class="">Selamat Datang Admin</h3>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nemo, iusto ab magnam quod rem inventore,
                     tempora numquam beatae deserunt adipisci veritatis! Eum, voluptatum laboriosam iste similique culpa

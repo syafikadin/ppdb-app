@@ -14,7 +14,9 @@ class DashboardAdminController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('pages.admin.index', compact('title'));
+        $user = auth()->user();
+        // dd($user);
+        return view('pages.admin.index', compact('title', 'user'));
     }
 
     /**

@@ -5,34 +5,35 @@
         </div>
     </div>
     <ul class="sidebar-list">
-        <li class="sidebar-list-item active">
+        <li class="sidebar-list-item {{ $title === 'Dashboard' ? 'active' : '' }}">
             <a href="/admin">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
-        </li>
-        <li class="sidebar-list-item ">
-            <a href="/admin">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="sidebar-list-item ">
-            <a href="/admin">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="sidebar-list-item ">
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="btn btn-danger mt-4 w-100">
-                    <span>Logout</span>
-                </button>
-            </form>
         </li>
 
+        {{-- For Admin --}}
+        @if (Auth::check() && Auth::user()->role == 1)
+            <li class="sidebar-list-item {{ $title === 'Data Siswa' ? 'active' : '' }}">
+                <a href="/admin/data-siswa">
+                    <i class="bi bi-grid"></i>
+                    <span>Data Siswa</span>
+                </a>
+            </li>
+        @endif
+
+        {{-- For Siswa --}}
 
     </ul>
+
+    {{-- Logout button --}}
+    <div class="account-logout">
+        <form action="/logout" method="post" class="w-100">
+            @csrf
+            <button type="submit" class="btn btn-danger w-100">
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 
 </div>

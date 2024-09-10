@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
-use App\Http\Requests\StoreSiswaRequest;
-use App\Http\Requests\UpdateSiswaRequest;
+use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class DataSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,29 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Data Siswa';
+        // $dataSiswa = Siswa::all();
+
+        // Mock-up data menggunakan stdClass
+        $dataSiswa = [];
+
+        $siswa1 = new \stdClass();
+        $siswa1->name = 'Yudha';
+        $siswa1->nis = '11111';
+
+        $siswa2 = new \stdClass();
+        $siswa2->name = 'Budi';
+        $siswa2->nis = '11112';
+
+        $siswa3 = new \stdClass();
+        $siswa3->name = 'Sari';
+        $siswa3->nis = '11113';
+
+        $dataSiswa[] = $siswa1;
+        $dataSiswa[] = $siswa2;
+        $dataSiswa[] = $siswa3;
+
+        return view('pages.admin.data-siswa.index', compact('title', 'dataSiswa'));
     }
 
     /**
@@ -31,10 +52,10 @@ class SiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSiswaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSiswaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +85,11 @@ class SiswaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSiswaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSiswaRequest $request, Siswa $siswa)
+    public function update(Request $request, Siswa $siswa)
     {
         //
     }
