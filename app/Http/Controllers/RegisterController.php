@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,15 +17,22 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Validasi input
         $validator = Validator::make($request->all(), [
-            // 'nama_siswa' => 'required|string|max:255',
+            'nama_siswa' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
         // Jika validasi gagal, return dengan pesan error
         if ($validator->fails()) {
+            // Cek apakah error terjadi karena username sudah ada
+            if ($validator->errors()->has('username')) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput()
+                    ->with('error', 'Username sudah terdaftar. Silakan pilih username yang lain.');
+            }
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput()
@@ -32,11 +40,15 @@ class RegisterController extends Controller
         }
 
         // Simpan user baru
-        User::create([
-            // 'nama_siswa' => $request->nama_siswa,
+        $user = User::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'role' => 2,
+        ]);
+
+        Siswa::create([
+            'nama_siswa' => $request->nama_siswa,
+            'user_id' => $user->id
         ]);
 
         // Redirect ke halaman login setelah sukses registrasi

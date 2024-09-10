@@ -15,6 +15,11 @@ class Siswa extends Authenticatable
         'id',
     ];
 
+    protected $fillable = [
+        'user_id',
+        'nama_siswa',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',

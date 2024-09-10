@@ -21,7 +21,7 @@
             <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
 
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <label for="nama_siswa" class="form-label">Nama Siswa</label>
                     <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror"
                         placeholder="Masukkan Nama Siswa" id="nama_siswa" name="nama_siswa" required autofocus
@@ -31,14 +31,14 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <div class="input-group">
                         <input type="text" name="username" class="form-control" placeholder="Masukkan username" required
                             value="{{ old('username') }}">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2">Cek Ketersediaan</button>
+                        {{-- <button class="btn btn-outline-success" type="button" id="button-addon2">Cek Ketersediaan</button> --}}
                     </div>
                     @error('username')
                         <div class="invalid-feedback">
@@ -55,6 +55,11 @@
                         <button type="button" class="btn toggle-password" onclick="togglePassword()"><i
                                 class="bi bi-eye-fill"></i></button>
                     </div>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 {{-- <input name="role" type="hidden" value=2> --}}
