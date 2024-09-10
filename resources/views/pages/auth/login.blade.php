@@ -10,6 +10,11 @@
                             class="img-fluid" alt="Sample image">
                     </div>
                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <h3 class="fw-bold text-primary">
+                            Halaman Login
+                        </h3>
+                        <hr>
+
                         <form action="/login" method="post">
                             @csrf
 
@@ -48,7 +53,7 @@
                                     class="btn btn-primary btn-lg"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
-                                        class="link-danger">Register</a></p>
+                                        class="link-primary">Register</a></p>
                             </div>
 
                         </form>
