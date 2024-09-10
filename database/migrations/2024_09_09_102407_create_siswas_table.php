@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('kelas_id')->nullable();
-            $table->string('nis')->unique();
             $table->string('nama_siswa');
-            $table->boolean('jenis_kelamin');
-            $table->date('tanggal_lahir');
-            $table->string('alamat');
-            $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->boolean('jenis_kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('email')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('nomor_wa')->nullable();
+            $table->string('sosmed')->nullable();
             $table->timestamps();
         });
     }
