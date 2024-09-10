@@ -5,15 +5,15 @@
         </div>
     </div>
     <ul class="sidebar-list">
-        <li class="sidebar-list-item {{ $title === 'Dashboard' ? 'active' : '' }}">
-            <a href="/admin">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
 
         {{-- For Admin --}}
         @if (Auth::check() && Auth::user()->role == 1)
+            <li class="sidebar-list-item {{ $title === 'Dashboard' ? 'active' : '' }}">
+                <a href="/admin">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
             <li class="sidebar-list-item {{ $title === 'Data Siswa' ? 'active' : '' }}">
                 <a href="/admin/data-siswa">
                     <i class="bi bi-grid"></i>
@@ -23,6 +23,27 @@
         @endif
 
         {{-- For Siswa --}}
+        @if (Auth::check() && Auth::user()->role == 2)
+            <li class="sidebar-list-item {{ $title === 'Dashboard' ? 'active' : '' }}">
+                <a href="/siswa">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item {{ $title === 'Pendaftaran' ? 'active' : '' }}">
+                <a href="/siswa/pendaftaran">
+                    <i class="bi bi-grid"></i>
+                    <span>Pendaftaran</span>
+                </a>
+            </li>
+
+            <li class="sidebar-list-item {{ $title === 'Profil' ? 'active' : '' }}">
+                <a href="/siswa/profil">
+                    <i class="bi bi-grid"></i>
+                    <span>Profil</span>
+                </a>
+            </li>
+        @endif
 
     </ul>
 
