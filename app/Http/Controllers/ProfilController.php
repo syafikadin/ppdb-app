@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfilController extends Controller
 {
@@ -60,7 +61,9 @@ class ProfilController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Edit Profil';
+        $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
+        return view('pages.siswa.profil.edit', compact('title', 'data_siswa'));
     }
 
     /**
@@ -72,8 +75,42 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_siswa' => 'required|string|max:255',
+            'jenis_kelamin' => 'nullable',
+            'tempat_lahir' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
+            'alamat' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nomor_wa' => 'nullable|string|max:15',
+            'sosmed' => 'nullable|string|max:255',
+        ]);
+
+        $data_siswa = Siswa::findOrFail($id);
+
+        // Jika ada gambar yang diunggah
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/img'), $filename);
+
+            // Hapus gambar lama jika ada
+            if ($data_siswa->foto) {
+                File::delete(public_path('uploads/img/' . $data_siswa->foto));
+            }
+
+            // Simpan nama file gambar baru di database
+            $data_siswa->foto = $filename;
+        }
+
+        // Update semua data siswa
+        $data_siswa->update($request->except('foto'));
+
+        return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
