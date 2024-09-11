@@ -7,6 +7,21 @@
             </div>
 
             <div class="content-body">
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card shadow-sm" style="border-radius: 0; border: none">
                     <div class="row g-3">
                         <div class="col-lg-4 p-4" style="background-color: #DCEBF0">
@@ -60,7 +75,8 @@
 
                             <div class="mb-3">
                                 <label class="form-label small">Tempat Lahir</label>
-                                <input type="text" class="form-control" disabled value="{{ $data_siswa->tempat_lahir }}">
+                                <input type="text" class="form-control" disabled
+                                    value="{{ $data_siswa->tempat_lahir }}">
                             </div>
 
                             <div class="mb-3">
