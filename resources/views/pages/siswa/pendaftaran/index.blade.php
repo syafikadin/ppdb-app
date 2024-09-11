@@ -11,6 +11,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card shadow-sm" style="min-height: 100%">
                             <div class="card-body">
+                                <h6 class="fw-bold">Note</h6>
                                 <div class="text-danger">
                                     "Untuk melakukan pendaftaran sebagai peserta didik baru, harap melengkapi berkas-berkas
                                     berikut!"

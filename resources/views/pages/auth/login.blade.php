@@ -61,11 +61,31 @@
                 </div>
             </div>
         @elseif(Auth::guard('web')->user()->role == 1)
-            <h1>Wes login cok</h1>
-            <a href="/admin">Mbaliko rene</a>
+            <div class="container-fluid h-custom logged-in">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="card shadow" style="min-height: 150px;">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h4 class="fw-bold">Anda Telah Login</h4>
+                                <a href="/admin">Kembali ke dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @elseif(Auth::guard('web')->user()->role == 2)
-            <h1>Wes login cok</h1>
-            <a href="/siswa">Mbaliko rene</a>
+            <div class="container-fluid h-custom logged-in">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="card shadow" style="min-height: 150px;">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h4 class="fw-bold">Anda Telah Login</h4>
+                                <a href="/siswa">Kembali ke dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
     </section>
 @endsection
