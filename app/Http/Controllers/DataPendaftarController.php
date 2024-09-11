@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
-class DataSiswaController extends Controller
+class DataPendaftarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DataSiswaController extends Controller
      */
     public function index()
     {
-        $title = 'Data Siswa';
+        $title = 'Data Pendaftar';
         // $dataSiswa = Siswa::all();
 
         // Mock-up data menggunakan stdClass
@@ -36,7 +36,7 @@ class DataSiswaController extends Controller
         $dataSiswa[] = $siswa2;
         $dataSiswa[] = $siswa3;
 
-        return view('pages.admin.data-siswa.index', compact('title', 'dataSiswa'));
+        return view('pages.admin.data-pendaftar.index', compact('title', 'dataSiswa'));
     }
 
     /**

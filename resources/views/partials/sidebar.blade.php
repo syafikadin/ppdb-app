@@ -14,10 +14,16 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-list-item {{ $title === 'Data Siswa' ? 'active' : '' }}">
-                <a href="/admin/data-siswa">
+            <li class="sidebar-list-item {{ $title === 'Data Pendaftar' ? 'active' : '' }}">
+                <a href="/admin/data-pendaftar">
                     <i class="bi bi-grid"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Pendaftar</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item {{ $title === 'Data Ujian' ? 'active' : '' }}">
+                <a href="/admin/data-ujian">
+                    <i class="bi bi-grid"></i>
+                    <span>Data Ujian</span>
                 </a>
             </li>
         @endif

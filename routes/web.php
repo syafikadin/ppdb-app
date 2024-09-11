@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardSiswaController;
-use App\Http\Controllers\DataSiswaController;
+use App\Http\Controllers\DataPendaftarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfilController;
@@ -37,7 +37,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::resource('/', DashboardAdminController::class);
-        Route::resource('/data-siswa', DataSiswaController::class);
+        Route::resource('/data-pendaftar', DataPendaftarController::class);
     });
 });
 // End Route Group Admin
