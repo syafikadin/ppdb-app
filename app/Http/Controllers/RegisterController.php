@@ -17,29 +17,35 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        // Aturan validasi
         $validator = Validator::make($request->all(), [
             'nama_siswa' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'nama_siswa.required' => 'Nama siswa wajib diisi.',
+            'nama_siswa.string' => 'Nama siswa harus berupa teks.',
+            'nama_siswa.max' => 'Nama siswa maksimal 255 karakter.',
+
+            'username.required' => 'Username wajib diisi.',
+            'username.string' => 'Username harus berupa teks.',
+            'username.max' => 'Username maksimal 255 karakter.',
+            'username.unique' => 'Username ini sudah terdaftar. Silakan pilih username lain.',
+
+            'password.required' => 'Password wajib diisi.',
+            'password.string' => 'Password harus berupa teks.',
+            'password.min' => 'Password minimal harus 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
-        // Jika validasi gagal, return dengan pesan error
+        // Jika validasi gagal, kembalikan pesan error sesuai field
         if ($validator->fails()) {
-            // Cek apakah error terjadi karena username sudah ada
-            if ($validator->errors()->has('username')) {
-                return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with('error', 'Username sudah terdaftar. Silakan pilih username yang lain.');
-            }
-
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('error', 'Registrasi gagal! Silakan cek kembali data yang diisi.');
+                ->withErrors($validator)  // Menampilkan pesan error per field
+                ->withInput();  // Menyimpan input agar tidak hilang saat reload
         }
 
-        // Simpan user baru
+        // Simpan user baru jika validasi sukses
         $user = User::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),

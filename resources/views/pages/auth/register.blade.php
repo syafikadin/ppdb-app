@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                        <div data-mdb-input-init class="form-outline mb-4">
+                        <div class="form-outline mb-4">
                             <label for="nama_siswa" class="form-label">Nama Siswa</label>
                             <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror"
                                 placeholder="Masukkan Nama Siswa" id="nama_siswa" name="nama_siswa" required autofocus
@@ -46,13 +46,11 @@
                             @enderror
                         </div>
 
-                        <div data-mdb-input-init class="form-outline mb-4">
+                        <div class="form-outline mb-4">
                             <label for="username" class="form-label">Username</label>
-                            <div class="input-group">
-                                <input type="text" name="username" class="form-control" placeholder="Masukkan username"
-                                    required value="{{ old('username') }}">
-                                {{-- <button class="btn btn-outline-success" type="button" id="button-addon2">Cek Ketersediaan</button> --}}
-                            </div>
+                            <input type="text" name="username"
+                                class="form-control @error('username') is-invalid @enderror" placeholder="Masukkan username"
+                                required value="{{ old('username') }}">
                             @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -60,15 +58,36 @@
                             @enderror
                         </div>
 
-                        <div data-mdb-input-init class="form-outline mb-4">
+                        <div class="form-outline mb-4">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" name="password" id="password" class="form-control"
-                                    placeholder="Masukkan password" required value="{{ old('password') }}">
-                                <button type="button" class="btn toggle-password" onclick="togglePassword()"><i
-                                        class="bi bi-eye-fill"></i></button>
+                                <input type="password" name="password" id="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    placeholder="Masukkan password" required>
+                                <button type="button" class="btn toggle-password" onclick="togglePassword()">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
                             </div>
                             @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-outline mb-4">
+                            <label for="password_confirmation" class="form-label">Ulangi Password</label>
+                            <div class="input-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    placeholder="Ulangi password" required>
+                                {{-- <button type="button" class="btn toggle-password-confirmation"
+                                    onclick="togglePasswordConfirmation()">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button> --}}
+                            </div>
+                            @error('password_confirmation')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -82,7 +101,6 @@
                             <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/login"
                                     class="link-primary">Login</a></p>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -93,6 +111,21 @@
         function togglePassword() {
             const passwordField = document.getElementById("password");
             const toggleButton = document.querySelector(".toggle-password i");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.classList.remove('bi-eye-fill');
+                toggleButton.classList.add('bi-eye-slash-fill');
+            } else {
+                passwordField.type = "password";
+                toggleButton.classList.remove('bi-eye-slash-fill');
+                toggleButton.classList.add('bi-eye-fill');
+            }
+        }
+
+        function togglePasswordConfirmation() {
+            const passwordField = document.getElementById("password_confirmation");
+            const toggleButton = document.querySelector(".toggle-password-confirmation i");
 
             if (passwordField.type === "password") {
                 passwordField.type = "text";
