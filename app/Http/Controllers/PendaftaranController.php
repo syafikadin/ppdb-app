@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PendaftaranController extends Controller
 {
@@ -15,7 +16,8 @@ class PendaftaranController extends Controller
     public function index()
     {
         $title = 'Pendaftaran';
-        return view('pages.siswa.pendaftaran.index', compact('title'));
+        $data_siswa = Siswa::where('user_id', Auth::user()->id)->first();
+        return view('pages.siswa.pendaftaran.index', compact('title', 'data_siswa'));
     }
 
     /**
@@ -56,9 +58,18 @@ class PendaftaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editDataOrangtua($id)
     {
-        // 
+        $title = 'Edit Data Orangtua';
+        $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
+        return view('pages.siswa.pendaftaran.data-orangtua', compact('title', 'data_siswa'));
+    }
+
+    public function editDataBerkas($id)
+    {
+        $title = 'Edit Data Berkas';
+        $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
+        return view('pages.siswa.pendaftaran.data-berkas', compact('title', 'data_siswa'));
     }
 
     /**
@@ -74,19 +85,20 @@ class PendaftaranController extends Controller
         $request->validate([
             'nama_ayah' => 'nullable|string|max:255',
             'pekerjaan_ayah' => 'nullable|string',
-            'penghasilan_ayah' => 'nullable|integer',
+            'penghasilan_ayah' => 'nullable|string',
             'nama_ibu' => 'nullable|string|max:255',
             'pekerjaan_ibu' => 'nullable|string',
-            'penghasilan_ibu' => 'nullable|integer',
+            'penghasilan_ibu' => 'nullable|string',
             'nomor_wali' => 'nullable|string',
             'alamat_wali' => 'nullable|string',
-            'piagam' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'ukuran_seragam' => 'nullable|string',
+
+            // Validasi berkas (file) yang akan diunggah
+            'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'foto_pas' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
-            'akta' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'kk' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'ktp' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'rapor' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'rapor' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
         // Temukan siswa yang ada
@@ -102,7 +114,6 @@ class PendaftaranController extends Controller
             'penghasilan_ibu' => $request->penghasilan_ibu,
             'nomor_wali' => $request->nomor_wali,
             'alamat_wali' => $request->alamat_wali,
-            'ukuran_seragam' => $request->ukuran_seragam,
         ]);
 
         // Proses unggahan file jika ada
@@ -123,10 +134,12 @@ class PendaftaranController extends Controller
                 $siswa->{$file} = 'uploads/files/' . $filename;
             }
         }
+
         $siswa->save();
 
-        return redirect()->back()->with('success', 'Data siswa berhasil diperbarui!');
+        return redirect()->route('pendaftaran.index')->with('success', 'Data berhasil diperbarui.');
     }
+
 
 
     /**
