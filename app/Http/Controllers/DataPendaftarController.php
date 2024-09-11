@@ -22,15 +22,15 @@ class DataPendaftarController extends Controller
 
         $siswa1 = new \stdClass();
         $siswa1->name = 'Yudha';
-        $siswa1->nis = '11111';
+        $siswa1->jenis_kelamin = 0;
 
         $siswa2 = new \stdClass();
         $siswa2->name = 'Budi';
-        $siswa2->nis = '11112';
+        $siswa2->jenis_kelamin = 0;
 
         $siswa3 = new \stdClass();
         $siswa3->name = 'Sari';
-        $siswa3->nis = '11113';
+        $siswa3->jenis_kelamin = 1;
 
         $dataSiswa[] = $siswa1;
         $dataSiswa[] = $siswa2;
@@ -66,9 +66,11 @@ class DataPendaftarController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($siswa)
     {
-        //
+        $title = "Data Pendaftar";
+
+        return view('pages.admin.data-pendaftar.show', compact('title'));
     }
 
     /**

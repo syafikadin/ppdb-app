@@ -15,21 +15,25 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="align-middle">No</th>
-                                    <th scope="col" class="align-middle" style="width: 15%">NIS</th>
                                     <th scope="col" class="align-middle" style="width: 40%">Nama</th>
-                                    <th scope="col" style="width: 40%" class="text-center align-middle">Actions</th>
+                                    <th scope="col" class="align-middle" style="width: 20%">Jenis Kelamin</th>
+                                    <th scope="col" style="width: 35%" class="text-center align-middle">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($dataSiswa as $item)
                                     <tr>
                                         <td scope="row" class="text-center align-middle">{{ $loop->iteration }}</td>
-                                        <td class="align-middle">{{ $item->nis }}</td>
                                         <td class="align-middle">{{ $item->name }}</td>
+                                        <td class="align-middle">
+                                            {{ $item->jenis_kelamin === 0 ? 'Laki-laki' : 'Perempuan' }}</td>
                                         <td class="align-middle text-center">
                                             <button class="btn btn-outline-danger btn-sm">Tolak</button>
                                             <button class="btn btn-outline-primary btn-sm">Verifikasi</button>
-                                            <button class="btn btn-primary btn-sm">Lihat Berkas</button>
+
+                                            {{-- PERBAIKI LINK (href) --}}
+                                            <a href="/admin/data-pendaftar/1" class="btn btn-primary btn-sm">Lihat
+                                                Berkas</a>
                                         </td>
                                     </tr>
                                 @endforeach
