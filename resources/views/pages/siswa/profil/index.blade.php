@@ -42,14 +42,14 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="jenis_kelamin_laki"
                                             name="jenis_kelamin" value="0" disabled
-                                            {{ $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="jenis_kelamin">Laki-laki</label>
+                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="jenis_kelamin_laki">Laki-laki</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="jenis_kelamin_perempuan"
                                             name="jenis_kelamin" value="1" disabled
-                                            {{ $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="jenis_kelamin">Perempuan</label>
+                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="jenis_kelamin_perempuan">Perempuan</label>
                                     </div>
                                 </div>
                             </div>

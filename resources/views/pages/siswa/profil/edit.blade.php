@@ -30,17 +30,18 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="jenis_kelamin_l"
                                             name="jenis_kelamin" value="0"
-                                            {{ $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
+                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" id="jenis_kelamin_p"
                                             name="jenis_kelamin" value="1"
-                                            {{ $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
+                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- Input untuk Foto -->
                             <div class="mb-3">
