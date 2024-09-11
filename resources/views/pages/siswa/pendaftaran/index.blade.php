@@ -7,6 +7,21 @@
             </div>
 
             <div class="content-body">
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="row g-3">
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card shadow-sm" style="min-height: 100%">
@@ -45,7 +60,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <a href="/siswa/pendaftaran/data-orang-tua" style="text-decoration: none">
+                        <a href="{{ route('pendaftaran.editDataOrangtua', $data_siswa->id) }}"
+                            style="text-decoration: none">
                             <div class="card shadow card-pendaftaran card-data-orang-tua">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">
@@ -57,7 +73,7 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <a href="/siswa/pendaftaran/data-berkas" style="text-decoration: none">
+                        <a href="{{ route('pendaftaran.editDataBerkas', $data_siswa->id) }}" style="text-decoration: none">
                             <div class="card shadow card-pendaftaran card-data-berkas">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">

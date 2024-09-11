@@ -48,6 +48,8 @@ Route::prefix('siswa')->group(function () {
     Route::group(['middleware' => 'siswa'], function () {
         Route::resource('/', DashboardSiswaController::class);
         Route::resource('/pendaftaran', PendaftaranController::class);
+        Route::get('/pendaftaran/{id}/edit-orangtua', [PendaftaranController::class, 'editDataOrangtua'])->name('pendaftaran.editDataOrangtua');
+        Route::get('/pendaftaran/{id}/edit-berkas', [PendaftaranController::class, 'editDataBerkas'])->name('pendaftaran.editDataBerkas');
         Route::resource('/profil', ProfilController::class);
     });
 });
