@@ -60,14 +60,14 @@ class PendaftaranController extends Controller
      */
     public function editDataOrangtua($id)
     {
-        $title = 'Edit Data Orangtua';
+        $title = 'Pendaftaran';
         $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
         return view('pages.siswa.pendaftaran.data-orangtua', compact('title', 'data_siswa'));
     }
 
     public function editDataBerkas($id)
     {
-        $title = 'Edit Data Berkas';
+        $title = 'Pendaftaran';
         $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
         return view('pages.siswa.pendaftaran.data-berkas', compact('title', 'data_siswa'));
     }

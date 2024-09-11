@@ -23,11 +23,14 @@
                                         <a href="/siswa/profil" class=" btn-link">Lengkapi Data Profil</a>
                                     </li>
                                     <li>
-                                        <a href="/siswa/pendaftaran/data-orang-tua" class=" btn-link">Lengkapi Data Orang
+                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-orangtua"
+                                            class=" btn-link">Lengkapi Data Orang
                                             Tua</a>
                                     </li>
                                     <li>
-                                        <a href="/siswa/pendaftaran/berkas" class=" btn-link">Lengkapi Berkas-berkas</a>
+                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-berkas"
+                                            class=" btn-link">Lengkapi
+                                            Berkas-berkas</a>
                                     </li>
                                     <li>
                                         <a href="/siswa/pendaftaran" class=" btn-link">Submit Pendaftaran</a>

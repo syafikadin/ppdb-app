@@ -17,49 +17,76 @@
                             </div>
                             <hr>
 
-                            <div class="mb-3">
-                                <label for="nama_siswa" class="form-label">Nama Siswa</label>
-                                <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
-                                    value="{{ old('nama_siswa', $data_siswa->nama_siswa) }}">
+                            {{-- View untuk foto --}}
+                            <div class="text-center">
+                                @if ($data_siswa->foto)
+                                    <img id="img-preview" src="{{ asset('uploads/img/' . $data_siswa->foto) }}"
+                                        class="img-fluid d-block mb-3 mx-auto" alt="Foto Profil"
+                                        style="height: 200px; width: 200px; object-fit: cover;">
+                                @else
+                                    <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                        src="{{ asset('assets/images/person.jpg') }}" alt="Default Photo"
+                                        style="height: 200px; width: 200px; object-fit: cover;">
+                                @endif
                             </div>
 
-                            <!-- Input untuk Jenis Kelamin -->
-                            <div class="mb-3">
-                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jenis_kelamin_l"
-                                            name="jenis_kelamin" value="0"
-                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
+                            <div class="row g-3">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                    {{-- Input untuk foto --}}
+                                    <div class="mb-3">
+                                        <label for="foto" class="form-label">Foto</label>
+                                        <input class="form-control d-block mx-auto" type="file" id="foto"
+                                            name="foto" onchange="previewImage()">
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jenis_kelamin_p"
-                                            name="jenis_kelamin" value="1"
-                                            {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
+
+
+                                    <div class="mb-3">
+                                        <label for="nama_siswa" class="form-label">Nama Siswa</label>
+                                        <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
+                                            value="{{ old('nama_siswa', $data_siswa->nama_siswa) }}">
+                                    </div>
+
+                                    <!-- Input untuk Jenis Kelamin -->
+                                    <div class="mb-3">
+                                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="jenis_kelamin_l"
+                                                    name="jenis_kelamin" value="0"
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="jenis_kelamin_p"
+                                                    name="jenis_kelamin" value="1"
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- Input untuk Tempat Lahir -->
+                                    <div class="mb-3">
+                                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
+                                            value="{{ old('tempat_lahir', $data_siswa->tempat_lahir) }}">
+                                    </div>
 
-                            <!-- Input untuk Tempat Lahir -->
-                            <div class="mb-3">
-                                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                    value="{{ old('tempat_lahir', $data_siswa->tempat_lahir) }}">
-                            </div>
+                                    <!-- Input untuk Tanggal Lahir -->
+                                    <div class="mb-3">
+                                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
+                                            value="{{ old('tanggal_lahir', $data_siswa->tanggal_lahir) }}">
+                                    </div>
 
-                            <!-- Input untuk Tanggal Lahir -->
-                            <div class="mb-3">
-                                <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                    value="{{ old('tanggal_lahir', $data_siswa->tanggal_lahir) }}">
-                            </div>
-
-                            <!-- Input untuk Alamat -->
-                            <div class="mb-3">
-                                <label for="alamat" class="form-label">Alamat</label>
-                                <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat', $data_siswa->alamat) }}</textarea>
+                                    <!-- Input untuk Alamat -->
+                                    <div class="mb-3">
+                                        <label for="alamat" class="form-label">Alamat</label>
+                                        <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat', $data_siswa->alamat) }}</textarea>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Input untuk Email -->
@@ -69,19 +96,7 @@
                                     value="{{ old('email', $data_siswa->email) }}">
                             </div>
 
-                            <!-- Input untuk Foto -->
-                            <div class="mb-3">
-                                <label for="foto" class="form-label">Foto</label>
-                                <input class="form-control" type="file" id="foto" name="foto"
-                                    onchange="previewImage()">
-                                @if ($data_siswa->foto)
-                                    <img id="img-preview" src="{{ asset('uploads/img/' . $data_siswa->foto) }}"
-                                        class="img-fluid col-sm-5 d-block mt-3" alt="Foto Profil">
-                                @else
-                                    <img id="img-preview" class="img-fluid col-sm-5 d-block mt-3"
-                                        src="{{ asset('default-avatar.png') }}" alt="Default Photo">
-                                @endif
-                            </div>
+
 
                             <div class="mb-3">
                                 <label for="nomor_wa" class="form-label">No WA</label>

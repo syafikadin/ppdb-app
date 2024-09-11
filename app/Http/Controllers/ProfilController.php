@@ -61,7 +61,7 @@ class ProfilController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Edit Profil';
+        $title = 'Profil';
         $data_siswa = Siswa::findOrFail($id); // Mengambil data siswa berdasarkan ID
         return view('pages.siswa.profil.edit', compact('title', 'data_siswa'));
     }
