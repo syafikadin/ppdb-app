@@ -7,8 +7,10 @@
             </div>
 
             <div class="content-body">
-                <form action="">
+                <form action="{{ route('pendaftaran.update', auth()->user()->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card shadow">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Informasi Orang Tua</h5>
@@ -212,7 +214,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-2">
                                 <label for="rapor" class="form-label">SCAN RAPORT SEMESTER AKHIR</label>
                                 <img class="img-preview img-fluid col-sm-5 d-block">
                                 <input class="form-control @error('rapor') is-invalid @enderror" type="file"
@@ -224,9 +226,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Daftar</button>
                     </div>
-
-                    <button type="button" class="btn btn-primary btn-lg mt-2">Daftar</button>
                 </form>
             </div>
         </div>
