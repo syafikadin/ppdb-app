@@ -105,9 +105,10 @@
                                         class="img-fluid col-sm-5 d-block" alt="Foto Profil">
                                 @else
                                     <img class="img-fluid col-sm-5 d-block" src="{{ asset('default-avatar.png') }}"
-                                        alt="Default Avatar">
+                                        alt="Gambar default untuk profil">
                                 @endif
                             </div>
+
 
                             <div class="mb-3">
                                 <label for="nomor_wa" class="form-label">No WA</label>

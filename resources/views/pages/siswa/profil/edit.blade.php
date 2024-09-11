@@ -42,6 +42,32 @@
                                 </div>
                             </div>
 
+                            <!-- Input untuk Tempat Lahir -->
+                            <div class="mb-3">
+                                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
+                                    value="{{ old('tempat_lahir', $data_siswa->tempat_lahir) }}">
+                            </div>
+
+                            <!-- Input untuk Tanggal Lahir -->
+                            <div class="mb-3">
+                                <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
+                                    value="{{ old('tanggal_lahir', $data_siswa->tanggal_lahir) }}">
+                            </div>
+
+                            <!-- Input untuk Alamat -->
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat', $data_siswa->alamat) }}</textarea>
+                            </div>
+
+                            <!-- Input untuk Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ old('email', $data_siswa->email) }}">
+                            </div>
 
                             <!-- Input untuk Foto -->
                             <div class="mb-3">
@@ -53,7 +79,7 @@
                                         class="img-fluid col-sm-5 d-block mt-3" alt="Foto Profil">
                                 @else
                                     <img id="img-preview" class="img-fluid col-sm-5 d-block mt-3"
-                                        src="{{ asset('default-avatar.png') }}" alt="Default Avatar">
+                                        src="{{ asset('default-avatar.png') }}" alt="Default Photo">
                                 @endif
                             </div>
 
