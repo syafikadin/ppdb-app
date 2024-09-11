@@ -95,7 +95,8 @@
                                     value="{{ old('sosmed', $data_siswa->sosmed) }}">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <hr class="mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Simpan</button>
                         </div>
                     </div>
                 </form>
