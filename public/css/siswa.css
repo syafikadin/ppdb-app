@@ -68,3 +68,38 @@ body {
    border: none;
    border-radius: .5rem;
 }
+
+.card-pendaftaran {
+   min-height: 150px;
+   border-radius: 0 !important;
+}
+
+.card-data-profil {
+   background-color: #3dcca6 !important;
+   color: #fff !important;
+}
+
+.card-data-profil:hover {
+   min-height: 150px;
+   background-color: #1CB78D !important;
+}
+
+.card-data-orang-tua {
+   background-color: #1ea1be !important;
+   color: #fff !important;
+}
+
+.card-data-orang-tua:hover {
+   min-height: 150px;
+   background-color: #0691B0 !important;
+}
+
+.card-data-berkas {
+   background-color: #FFBC09 !important;
+   color: #fff !important;
+}
+
+.card-data-berkas:hover {
+   min-height: 150px;
+   background-color: #dda200 !important;
+}

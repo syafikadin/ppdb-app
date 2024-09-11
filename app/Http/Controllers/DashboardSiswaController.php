@@ -16,7 +16,10 @@ class DashboardSiswaController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('pages.siswa.index', compact('title'));
+
+        $siswa = Siswa::where('user_id', 2)->first();
+        // dd($siswa);
+        return view('pages.siswa.index', compact('title', 'siswa'));
     }
 
     /**
