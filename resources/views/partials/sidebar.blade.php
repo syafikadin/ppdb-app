@@ -1,7 +1,8 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="app-icon">
-            <h5>SMP LUBABUL FATTAH</h5>
+            <h2 class="fw-bold  m-0 p-0" style="letter-spacing: 8px">SMPTM</h2>
+            <h6 class="  m-0 p-0" style="letter-spacing: 1px">LUBABUL FATTAH</h6>
         </div>
     </div>
     <ul class="sidebar-list">

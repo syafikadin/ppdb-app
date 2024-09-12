@@ -26,9 +26,11 @@
 .sidebar-header {
    display: flex;
    align-items: center;
-   justify-content: space-between;
+   justify-content: center;
    padding: 24px;
    color: #fff;
+   background-color: #1CB78D;
+   margin-bottom: 10px;
 }
 
 .sidebar-list {
