@@ -49,6 +49,8 @@
                                     <td class="align-middle">Gelombang 3</td>
                                     <td class="align-middle text-center">0</td>
                                     <td class="align-middle text-center">14 Maret 2025</td>
+
+                                    {{-- TAMBAH LINK --}}
                                     <td class="align-middle text-center">
                                         <a href="" class="btn btn-primary btn-sm">Lihat</a>
                                     </td>

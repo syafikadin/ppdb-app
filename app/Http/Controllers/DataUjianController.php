@@ -47,7 +47,9 @@ class DataUjianController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'Data Ujian';
+
+        return view('pages.admin.data-ujian.show', compact('title'));
     }
 
     /**
