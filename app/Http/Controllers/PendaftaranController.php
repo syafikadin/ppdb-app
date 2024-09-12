@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendaftar;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,16 @@ class PendaftaranController extends Controller
 
         $canSubmit = $isProfilComplete && $isOrangtuaComplete && $isBerkasComplete;
 
-        return view('pages.siswa.pendaftaran.index', compact('title', 'data_siswa', 'canSubmit', 'isProfilComplete', 'isOrangtuaComplete', 'isBerkasComplete'));
+        // Cek status pendaftaran
+        $pendaftar = Pendaftar::where('id_siswa', $data_siswa->id)->first();
+        $isRegistered = $pendaftar && $pendaftar->status_pendaftaran !== 'Belum Mendaftar';
+
+        // Tentukan apakah tombol bisa diklik
+        $canSubmit = $canSubmit && !$isRegistered;
+
+        return view('pages.siswa.pendaftaran.index', compact('title', 'data_siswa', 'canSubmit', 'isProfilComplete', 'isOrangtuaComplete', 'isBerkasComplete', 'isRegistered'));
     }
+
 
     /**
      * Show the form for creating a new resource.

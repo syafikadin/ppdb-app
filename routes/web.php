@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardSiswaController;
 use App\Http\Controllers\DataPendaftarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,7 @@ Route::prefix('siswa')->group(function () {
     Route::group(['middleware' => 'siswa'], function () {
         Route::resource('/', DashboardSiswaController::class);
         Route::resource('/pendaftaran', PendaftaranController::class);
+
         Route::resource('/profil', ProfilController::class);
 
         // Edit & Update Data Orangtua
@@ -57,6 +59,9 @@ Route::prefix('siswa')->group(function () {
         // Edit & Update Data Berkas
         Route::get('/pendaftaran/{id}/edit-data-berkas', [PendaftaranController::class, 'editDataBerkas'])->name('pendaftaran.editDataBerkas');
         Route::put('/pendaftaran/{id}/update-data-berkas', [PendaftaranController::class, 'updateDataBerkas'])->name('pendaftaran.updateDataBerkas');
+
+        // Submit Berkas
+        Route::post('/pendaftaran/submit', [PendaftarController::class, 'store'])->name('pendaftaran.submit');
     });
 });
 // End Route Group Siswa

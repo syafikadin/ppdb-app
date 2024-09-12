@@ -41,7 +41,11 @@
                                 <h6 class="fw-bold">Status Pendaftaran</h6>
                                 <hr class="mb-4">
 
-                                <p>Belum mendaftar </p>
+                                @if ($data_siswa->pendaftar)
+                                    <p>{{ $data_siswa->pendaftar->status_pendaftaran }}</p>
+                                @else
+                                    <p>Belum mendaftar</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -88,11 +92,15 @@
                 </div>
 
                 <hr>
-                <div class="row g-3 ">
+                <div class="row g-3">
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <button class="btn btn-lg btn-primary w-100" {{ $canSubmit ? '' : 'disabled' }}>
-                            Submit Pendaftaran
-                        </button>
+                        <form action="{{ route('pendaftaran.submit') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="siswa_id" value="{{ $data_siswa->id }}">
+                            <button type="submit" class="btn btn-lg btn-primary w-100" {{ $canSubmit ? '' : 'disabled' }}>
+                                Submit Pendaftaran
+                            </button>
+                        </form>
                     </div>
                 </div>
 

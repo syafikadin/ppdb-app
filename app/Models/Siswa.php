@@ -52,4 +52,9 @@ class Siswa extends Authenticatable
     {
         return $this->belongsTo(User::class);
     }
+
+    public function pendaftar()
+    {
+        return $this->hasOne(Pendaftar::class, 'id_siswa');
+    }
 }
