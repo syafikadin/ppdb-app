@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendaftar;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -15,28 +16,9 @@ class DataPendaftarController extends Controller
     public function index()
     {
         $title = 'Data Pendaftar';
-        // $dataSiswa = Siswa::all();
+        $data_pendaftar = Pendaftar::all();
 
-        // Mock-up data menggunakan stdClass
-        $dataSiswa = [];
-
-        $siswa1 = new \stdClass();
-        $siswa1->name = 'Yudha';
-        $siswa1->jenis_kelamin = 0;
-
-        $siswa2 = new \stdClass();
-        $siswa2->name = 'Budi';
-        $siswa2->jenis_kelamin = 0;
-
-        $siswa3 = new \stdClass();
-        $siswa3->name = 'Sari';
-        $siswa3->jenis_kelamin = 1;
-
-        $dataSiswa[] = $siswa1;
-        $dataSiswa[] = $siswa2;
-        $dataSiswa[] = $siswa3;
-
-        return view('pages.admin.data-pendaftar.index', compact('title', 'dataSiswa'));
+        return view('pages.admin.data-pendaftar.index', compact('title', 'data_pendaftar'));
     }
 
     /**
@@ -66,12 +48,14 @@ class DataPendaftarController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show($siswa)
+    public function show($id)
     {
-        $title = "Data Pendaftar";
+        $title = "Detail Berkas";
+        $data_pendaftar = Pendaftar::findOrFail($id); // Mengambil data pendaftar berdasarkan ID
 
-        return view('pages.admin.data-pendaftar.show', compact('title'));
+        return view('pages.admin.data-pendaftar.show', compact('title', 'data_pendaftar'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -21,19 +21,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataSiswa as $item)
+                                @foreach ($data_pendaftar as $item)
                                     <tr>
                                         <td scope="row" class="text-center align-middle">{{ $loop->iteration }}</td>
-                                        <td class="align-middle">{{ $item->name }}</td>
+                                        <td class="align-middle">{{ $item->siswa->nama_siswa }}</td>
                                         <td class="align-middle">
-                                            {{ $item->jenis_kelamin === 0 ? 'Laki-laki' : 'Perempuan' }}</td>
+                                            {{ $item->siswa->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                         <td class="align-middle text-center">
                                             <button class="btn btn-outline-danger btn-sm">Tolak</button>
                                             <button class="btn btn-outline-primary btn-sm">Verifikasi</button>
 
-                                            {{-- PERBAIKI LINK (href) --}}
-                                            <a href="/admin/data-pendaftar/1" class="btn btn-primary btn-sm">Lihat
-                                                Berkas</a>
+                                            <a href="{{ route('data-pendaftar.show', $item->id) }}"
+                                                class="btn btn-primary btn-sm">Lihat Berkas</a>
                                         </td>
                                     </tr>
                                 @endforeach

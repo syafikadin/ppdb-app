@@ -39,6 +39,8 @@ Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::resource('/', DashboardAdminController::class);
         Route::resource('/data-pendaftar', DataPendaftarController::class);
+
+        Route::get('/admin/data-pendaftar/{id}/show', [DataPendaftarController::class, 'show'])->name('data-pendaftar.show');
     });
 });
 // End Route Group Admin

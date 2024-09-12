@@ -20,38 +20,45 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label small">Nama</label>
-                                    <input type="text" class="form-control" disabled value="Mohammad Yudha Pamungkas">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->nama_siswa }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Jenis Kelamin</label>
-                                    <input type="text" class="form-control" disabled value="Laki-laki">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Tempat Lahir</label>
-                                    <input type="text" class="form-control" disabled value="Jombang">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->tempat_lahir }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Tanggal Lahir</label>
-                                    <input type="text" class="form-control" disabled value="31 Maret 2017">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->tanggal_lahir }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Whatsapp</label>
-                                    <input type="text" class="form-control" disabled value="0812123123">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->nomor_wa }}">
                                 </div>
 
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label small">Email</label>
-                                    <input type="text" class="form-control" disabled value="ydasduahsuda@gmail.com">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->email }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Sosial Media</label>
-                                    <input type="text" class="form-control" disabled value="yudha.pamungkas_">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->sosmed }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Alamat</label>
-                                    <textarea class="form-control" disabled rows="8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quam dolore ullam tempora culpa exercitationem?</textarea>
+                                    <textarea class="form-control" disabled rows="8">{{ $data_pendaftar->siswa->alamat }}</textarea>
                                 </div>
 
                             </div>
@@ -70,15 +77,18 @@
                                 <h6 class="fw-bold ">DATA AYAH</h6>
                                 <div class="mb-3">
                                     <label class="form-label small ">Nama ayah</label>
-                                    <input type="text" class="form-control" disabled value="Alberto Simanjuntak">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->nama_ayah }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small ">Pekerjaan ayah</label>
-                                    <input type="text" class="form-control" disabled value="Tukang Pukul">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->pekerjaan_ayah }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small ">Rata-rata penghasilan ayah</label>
-                                    <input type="text" class="form-control" disabled value="Sekali pukul 10 juta">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->penghasilan_ayah }}">
                                 </div>
 
                             </div>
@@ -86,15 +96,18 @@
                                 <h6 class="fw-bold ">DATA IBU</h6>
                                 <div class="mb-3">
                                     <label class="form-label small ">Nama ibu</label>
-                                    <input type="text" class="form-control" disabled value="Simanjuntak Wati">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->nama_ibu }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small ">Pekerjaan ibu</label>
-                                    <input type="text" class="form-control" disabled value="Tukang Tangkis">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->pekerjaan_ibu }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small ">Rata-rata penghasilan ibu</label>
-                                    <input type="text" class="form-control" disabled value="Sekali tangkis 5 juta">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->penghasilan_ibu }}">
                                 </div>
                             </div>
                         </div>
@@ -103,11 +116,12 @@
                         <h6 class="fw-bold mt-3">DATA WALI</h6>
                         <div class="mb-3">
                             <label class="form-label small ">Nomor Whatsapp Wali</label>
-                            <input type="text" class="form-control" disabled value="0812XXXXXXXX">
+                            <input type="text" class="form-control" disabled
+                                value="{{ $data_pendaftar->siswa->nomor_wali }}">
                         </div>
 
                         <label class="form-label small">Alamat</label>
-                        <textarea class="form-control" disabled rows="3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quam dolore ullam tempora culpa exercitationem?</textarea>
+                        <textarea class="form-control" disabled rows="3">{{ $data_pendaftar->siswa->alamat_wali }}</textarea>
 
 
                     </div>
