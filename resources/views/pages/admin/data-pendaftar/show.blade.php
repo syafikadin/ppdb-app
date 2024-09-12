@@ -13,7 +13,7 @@
                         <hr>
 
                         <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
-                            src="{{ asset('assets/images/person.jpg') }}" alt="Default Photo"
+                            src="{{ asset('uploads/img/' . $data_pendaftar->siswa->foto) }}" alt="Pass Foto"
                             style="height: 200px; width: 200px; object-fit: cover;">
 
                         <div class="row ">
@@ -124,6 +124,52 @@
                         <textarea class="form-control" disabled rows="3">{{ $data_pendaftar->siswa->alamat_wali }}</textarea>
 
 
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold mb-0">Informasi Berkas</h5>
+                        <hr>
+
+                        <div class="mb-3">
+                            <label class="form-label">Piagam</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->piagam) }}" alt="Piagam"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Akta</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->akta) }}" alt="Akta"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">KK</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->kk) }}" alt="KK"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">KTP Orang Tua</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->ktp) }}" alt="KTP Orang Tua"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rapor Semester Akhir</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->rapor) }}" alt="Rapor Semester Akhir"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card sahdow-sm mt-4">
+                    <div class="card-body text-end">
+                        <button class="btn btn-outline-danger btn-lg me-2">Tidak Valid</button>
+                        <button class="btn btn-primary btn-lg">Verifikasi</button>
                     </div>
                 </div>
             </div>
