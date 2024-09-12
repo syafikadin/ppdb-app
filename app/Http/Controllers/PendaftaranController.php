@@ -17,7 +17,32 @@ class PendaftaranController extends Controller
     {
         $title = 'Pendaftaran';
         $data_siswa = Siswa::where('user_id', Auth::user()->id)->first();
-        return view('pages.siswa.pendaftaran.index', compact('title', 'data_siswa'));
+
+        $isProfilComplete = !empty($data_siswa->nama_siswa) &&
+            !empty($data_siswa->jenis_kelamin) &&
+            !empty($data_siswa->tempat_lahir) &&
+            !empty($data_siswa->tanggal_lahir) &&
+            !empty($data_siswa->alamat) &&
+            !empty($data_siswa->ukuran_seragam);
+
+        // Cek kelengkapan data orang tua
+        $isOrangtuaComplete = !empty($data_siswa->nama_ayah) &&
+            !empty($data_siswa->pekerjaan_ayah) &&
+            !empty($data_siswa->nama_ibu) &&
+            !empty($data_siswa->pekerjaan_ibu) &&
+            !empty($data_siswa->nomor_wali);
+
+        // Cek kelengkapan data berkas
+        $isBerkasComplete = !empty($data_siswa->piagam) &&
+            !empty($data_siswa->foto_pas) &&
+            !empty($data_siswa->akta) &&
+            !empty($data_siswa->kk) &&
+            !empty($data_siswa->ktp) &&
+            !empty($data_siswa->rapor);
+
+        $canSubmit = $isProfilComplete && $isOrangtuaComplete && $isBerkasComplete;
+
+        return view('pages.siswa.pendaftaran.index', compact('title', 'data_siswa', 'canSubmit', 'isProfilComplete', 'isOrangtuaComplete', 'isBerkasComplete'));
     }
 
     /**
@@ -79,7 +104,7 @@ class PendaftaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateDataOrangtua(Request $request, $id)
     {
         // Validasi input
         $request->validate([
@@ -116,6 +141,25 @@ class PendaftaranController extends Controller
             'alamat_wali' => $request->alamat_wali,
         ]);
 
+        $siswa->save();
+
+        return redirect()->route('pendaftaran.index')->with('success', 'Data Orangtua Berhasil Diperbarui.');
+    }
+    public function updateDataBerkas(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'foto_pas' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'rapor' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        // Temukan siswa yang ada
+        $siswa = Siswa::findOrFail($id);
+
         // Proses unggahan file jika ada
         $files = ['piagam', 'foto_pas', 'akta', 'kk', 'ktp', 'rapor'];
         foreach ($files as $file) {
@@ -137,7 +181,7 @@ class PendaftaranController extends Controller
 
         $siswa->save();
 
-        return redirect()->route('pendaftaran.index')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('pendaftaran.index')->with('success', 'Data Berkas Berhasil Diperbarui.');
     }
 
 

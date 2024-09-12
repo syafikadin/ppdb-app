@@ -7,7 +7,8 @@
             </div>
 
             <div class="content-body">
-                <form action="{{ route('pendaftaran.update', $data_siswa->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('pendaftaran.updateDataBerkas', $data_siswa->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -34,19 +35,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="ukuran_seragam" class="form-label small">Ukuran seragam</label>
-                                <select name="ukuran_seragam" class="form-select" aria-label="Ukuran Seragam" required>
-                                    <option value="" disabled>-- Pilih Ukuran Seragam --</option>
-                                    <option value="0" {{ $data_siswa->ukuran_seragam == '0' ? 'selected' : '' }}>S
-                                    </option>
-                                    <option value="1" {{ $data_siswa->ukuran_seragam == '1' ? 'selected' : '' }}>M
-                                    </option>
-                                    <option value="2" {{ $data_siswa->ukuran_seragam == '2' ? 'selected' : '' }}>L
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="foto_pas" class="form-label small">Foto 3 x 4 (Background Warna Merah)</label>
                                 <input class="form-control @error('foto_pas') is-invalid @enderror" type="file"
                                     id="foto_pas" name="foto_pas" onchange="previewImage(this, '#foto_pas-preview')">
@@ -60,7 +48,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="akta" class="form-label small">Scan akta kelahiran</label>
+                                <label for="akta" class="form-label small">Scan Akta Kelahiran</label>
                                 <input class="form-control @error('akta') is-invalid @enderror" type="file"
                                     id="akta" name="akta" onchange="previewImage(this, '#akta-preview')">
                                 @error('akta')
@@ -111,7 +99,7 @@
                                     src="{{ $data_siswa->rapor ? asset($data_siswa->rapor) : '' }}">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Daftar</button>
+                        <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Simpan</button>
                     </div>
                 </form>
             </div>

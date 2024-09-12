@@ -90,11 +90,17 @@
                 <hr>
                 <div class="row g-3 ">
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <button class="btn btn-lg btn-primary w-100">
+                        <button class="btn btn-lg btn-primary w-100" {{ $canSubmit ? '' : 'disabled' }}>
                             Submit Pendaftaran
                         </button>
                     </div>
                 </div>
+
+                {{-- <p>Profil: {{ $isProfilComplete }}</p>
+                <p>Orangtua: {{ $isOrangtuaComplete }}</p>
+                <p>Berkas: {{ $isBerkasComplete }}</p>
+                <p>Cansubmit: {{ $canSubmit }}</p> --}}
+
             </div>
         </div>
     </div>

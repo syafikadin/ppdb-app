@@ -70,7 +70,7 @@
                             <div class="mb-3">
                                 <label class="form-label small">Jenis Kelamin</label>
                                 <input type="text" class="form-control" disabled
-                                    value="{{ $data_siswa->jenis_kelamin === 0 ? 'Laki-laki' : 'Perempuan' }}">
+                                    value="{{ $data_siswa->jenis_kelamin === 'L' ? 'Laki-laki' : ($data_siswa->jenis_kelamin === 'P' ? 'Perempuan' : '') }}">
                             </div>
 
                             <div class="mb-3">
@@ -89,8 +89,18 @@
                                 <textarea class="form-control" disabled rows="3">{{ $data_siswa->alamat }}</textarea>
                             </div>
 
-
-
+                            <div class="mb-3">
+                                <label for="ukuran_seragam" class="form-label small">Ukuran seragam</label>
+                                <select name="ukuran_seragam" class="form-select" aria-label="Ukuran Seragam" disabled>
+                                    <option value="" selected disabled>-- Pilih Ukuran Seragam --</option>
+                                    <option value="S" {{ $data_siswa->ukuran_seragam == 'S' ? 'selected' : '' }}>S
+                                    </option>
+                                    <option value="M" {{ $data_siswa->ukuran_seragam == 'M' ? 'selected' : '' }}>M
+                                    </option>
+                                    <option value="L" {{ $data_siswa->ukuran_seragam == 'L' ? 'selected' : '' }}>L
+                                    </option>
+                                </select>
+                            </div>
 
                         </div>
                     </div>

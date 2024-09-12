@@ -77,7 +77,7 @@ class ProfilController extends Controller
     {
         $request->validate([
             'nama_siswa' => 'required|string|max:255',
-            'jenis_kelamin' => 'nullable',
+            'jenis_kelamin' => 'nullable|string',
             'tempat_lahir' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
             'alamat' => 'nullable|string|max:255',
@@ -85,6 +85,7 @@ class ProfilController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nomor_wa' => 'nullable|string|max:15',
             'sosmed' => 'nullable|string|max:255',
+            'ukuran_seragam' => 'nullable|string',
         ]);
 
         $data_siswa = Siswa::findOrFail($id);

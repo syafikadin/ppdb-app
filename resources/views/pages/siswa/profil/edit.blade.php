@@ -53,14 +53,14 @@
                                         <div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="jenis_kelamin_l"
-                                                    name="jenis_kelamin" value="0"
-                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 0 ? 'checked' : '' }}>
+                                                    name="jenis_kelamin" value="L"
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == L ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="jenis_kelamin_p"
-                                                    name="jenis_kelamin" value="1"
-                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == 1 ? 'checked' : '' }}>
+                                                    name="jenis_kelamin" value="P"
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == P ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
                                             </div>
                                         </div>
@@ -108,6 +108,19 @@
                                 <label for="sosmed" class="form-label">Sosial Media</label>
                                 <input type="text" class="form-control" id="sosmed" name="sosmed"
                                     value="{{ old('sosmed', $data_siswa->sosmed) }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="ukuran_seragam" class="form-label small">Ukuran seragam</label>
+                                <select name="ukuran_seragam" class="form-select" aria-label="Ukuran Seragam" required>
+                                    <option value="" selected disabled>-- Pilih Ukuran Seragam --</option>
+                                    <option value="S" {{ $data_siswa->ukuran_seragam == 'S' ? 'selected' : '' }}>S
+                                    </option>
+                                    <option value="M" {{ $data_siswa->ukuran_seragam == 'M' ? 'selected' : '' }}>M
+                                    </option>
+                                    <option value="L" {{ $data_siswa->ukuran_seragam == 'L' ? 'selected' : '' }}>L
+                                    </option>
+                                </select>
                             </div>
 
                             <hr class="mt-4">

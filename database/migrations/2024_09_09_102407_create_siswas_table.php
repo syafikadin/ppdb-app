@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_siswa');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->boolean('jenis_kelamin')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();

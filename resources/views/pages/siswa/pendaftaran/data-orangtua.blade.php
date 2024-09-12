@@ -7,7 +7,8 @@
             </div>
 
             <div class="content-body">
-                <form action="{{ route('pendaftaran.update', $data_siswa->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('pendaftaran.updateDataOrangtua', $data_siswa->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
