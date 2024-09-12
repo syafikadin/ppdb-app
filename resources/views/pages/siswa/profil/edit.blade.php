@@ -54,13 +54,13 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="jenis_kelamin_l"
                                                     name="jenis_kelamin" value="L"
-                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == L ? 'checked' : '' }}>
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin === 'L' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="jenis_kelamin_p"
                                                     name="jenis_kelamin" value="P"
-                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin == P ? 'checked' : '' }}>
+                                                    {{ isset($data_siswa->jenis_kelamin) && $data_siswa->jenis_kelamin === 'P' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
                                             </div>
                                         </div>
