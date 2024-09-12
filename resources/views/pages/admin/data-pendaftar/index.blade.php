@@ -28,13 +28,45 @@
                                         <td class="align-middle">
                                             {{ $item->siswa->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                         <td class="align-middle text-center">
-                                            <button class="btn btn-outline-danger btn-sm">Tolak</button>
+
+                                            <!-- Button trigger modal -->
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Tidak Valid</button>
+
                                             <button class="btn btn-outline-primary btn-sm">Verifikasi</button>
 
                                             <a href="{{ route('data-pendaftar.show', $item->id) }}"
                                                 class="btn btn-primary btn-sm">Lihat Berkas</a>
                                         </td>
                                     </tr>
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Catatan</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    {{-- Input Catatan --}}
+                                                    <div class="mb-3">
+                                                        <label for="exampleFormControlTextarea1" class="form-label">Masukan
+                                                            catatan</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="button" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                 @endforeach
                             </tbody>
                         </table>
