@@ -59,8 +59,21 @@
                                     <h3 class="fw-bold">
                                         Data Profil
                                     </h3>
-                                    <p class="mb-0">Lihat</p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-0">Edit</p>
+                                        <p
+                                            class="mb-0 tag {{ $isProfilComplete === true ? 'text-primary' : 'text-danger' }} ">
+                                            <i
+                                                class="bi {{ $isProfilComplete === true ? 'bi-check-circle' : 'bi-exclamation-circle' }} me-1"></i>
+                                            <span>
+                                                {{ $isProfilComplete === true ? 'Sudah Lengkap' : 'Belum Lengkap' }}
+                                            </span>
+
+                                        </p>
+                                    </div>
                                 </div>
+
                             </div>
                         </a>
                     </div>
@@ -72,7 +85,19 @@
                                     <h3 class="fw-bold">
                                         Data Orang Tua
                                     </h3>
-                                    <p class="mb-0">Lihat</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-0">Edit</p>
+                                        <p
+                                            class="mb-0 tag {{ $isOrangtuaComplete === true ? 'text-primary' : 'text-danger' }} ">
+                                            <i
+                                                class="bi {{ $isOrangtuaComplete === true ? 'bi-check-circle' : 'bi-exclamation-circle' }} me-1"></i>
+                                            <span>
+                                                {{ $isOrangtuaComplete === true ? 'Sudah Lengkap' : 'Belum Lengkap' }}
+                                            </span>
+
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </a>
@@ -84,7 +109,18 @@
                                     <h3 class="fw-bold">
                                         Data Berkas
                                     </h3>
-                                    <p class="mb-0">Lihat</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-0">Edit</p>
+                                        <p
+                                            class="mb-0 tag {{ $isBerkasComplete === true ? 'text-primary' : 'text-danger' }} ">
+                                            <i
+                                                class="bi {{ $isBerkasComplete === true ? 'bi-check-circle' : 'bi-exclamation-circle' }} me-1"></i>
+                                            <span>
+                                                {{ $isBerkasComplete === true ? 'Sudah Lengkap' : 'Belum Lengkap' }}
+                                            </span>
+
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </a>
