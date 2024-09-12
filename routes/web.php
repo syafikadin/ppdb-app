@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardSiswaController;
 use App\Http\Controllers\DataPendaftarController;
+use App\Http\Controllers\DataUjianController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftarController;
@@ -38,9 +39,11 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::resource('/', DashboardAdminController::class);
-        Route::resource('/data-pendaftar', DataPendaftarController::class);
 
+        Route::resource('/data-pendaftar', DataPendaftarController::class);
         Route::get('/admin/data-pendaftar/{id}/show', [DataPendaftarController::class, 'show'])->name('data-pendaftar.show');
+
+        Route::resource('/data-ujian', DataUjianController::class);
     });
 });
 // End Route Group Admin

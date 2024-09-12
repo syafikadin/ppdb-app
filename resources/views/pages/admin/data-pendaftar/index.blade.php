@@ -11,6 +11,7 @@
                 <div class="card shadow mt-3">
                     <div class="card-body">
                         <h5 class="mb-4 fw-bold">Tabel data pendaftar</h5>
+                        <hr>
                         <table class="table table-bordered table-hover">
                             <thead class="table-dark">
                                 <tr>
