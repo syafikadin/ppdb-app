@@ -40,7 +40,15 @@ return new class extends Migration
             $table->string('kk')->nullable();
             $table->string('ktp')->nullable();
             $table->string('rapor')->nullable();
+            $table->string('catatan')->nullable();
+            $table->string('status')->default('Belum Mendaftar');
             $table->timestamps();
+
+            // Status Pendaftaran
+            // 1. Belum mendaftar
+            // 2. Sudah daftar, belum diverifikasi
+            // 3. Sudah diverifikasi, menunggu ujian
+            // 4. Diterima / Tidak diterima`
         });
     }
 

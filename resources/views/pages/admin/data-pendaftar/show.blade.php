@@ -168,9 +168,72 @@
 
                 <div class="card sahdow-sm mt-4">
                     <div class="card-body text-end">
-                        <button class="btn btn-outline-danger btn-lg me-2">Tidak Valid</button>
-                        <button class="btn btn-primary btn-lg">Verifikasi</button>
+                        <button class="btn btn-outline-danger btn-lg me-2" data-bs-toggle="modal"
+                            data-bs-target="#modalInvalid">
+                            Tidak Valid
+                        </button>
+                        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalVerifikasi">
+                            Verifikasi
+                        </button>
                     </div>
+
+                    {{-- Modal Verifikasi --}}
+                    <div class="modal fade" id="modalVerifikasi" tabindex="-1" aria-labelledby="modalVerifikasiLabel"
+                        aria-hidden="true">
+                        <form action="{{ route('data-pendaftar.verifikasi') }}" method="POST">
+                            @csrf
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalVerifikasiLabel">Konfirmasi Verifikasi</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah Anda yakin ingin memverifikasi pendaftar ini?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <input type="hidden" name="siswa_id" value="{{ $data_pendaftar->siswa->id }}">
+                                        <button type="submit" class="btn btn-primary">Ya, Verifikasi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- End Modal Verifikasi --}}
+
+                    {{-- Modal Tidak Valid --}}
+                    <div class="modal fade" id="modalInvalid" tabindex="-1" aria-labelledby="modalInvalidLabel"
+                        aria-hidden="true">
+                        <form action="{{ route('data-pendaftar.invalid') }}" method="POST">
+                            @csrf
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalInvalidLabel">Catatan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="catatan" class="form-label">Masukan Catatan</label>
+                                            <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <input type="hidden" name="siswa_id" value="{{ $data_pendaftar->siswa->id }}">
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- End Modal Tidak Valid --}}
+
                 </div>
             </div>
         </div>

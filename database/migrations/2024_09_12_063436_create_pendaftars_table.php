@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('pendaftars', function (Blueprint $table) {
             $table->id(); // ID Pendaftar
             $table->unsignedBigInteger('id_siswa'); // Referensi ke tabel siswas
-            $table->string('status_pendaftaran')->default('Belum Mendaftar'); // Status pendaftaran lengkap
+            $table->string('catatan')->nullable();
+            $table->string('nilai')->nullable();
             $table->timestamps(); // Created at dan Updated at
 
             // Foreign key constraint
