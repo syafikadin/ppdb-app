@@ -65,7 +65,7 @@
                         <hr>
                         <div class="mt-3">
                             <button class="btn btn-outline-primary">
-                                Tambah
+                                Tambah Gelombang
                             </button>
                         </div>
                     </div>
