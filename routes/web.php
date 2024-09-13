@@ -44,6 +44,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/admin/data-pendaftar/{id}/show', [DataPendaftarController::class, 'show'])->name('data-pendaftar.show');
 
         Route::resource('/data-ujian', DataUjianController::class);
+
+        // Verifikasi Data
+        Route::post('/data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');
+        Route::post('/data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');
     });
 });
 // End Route Group Admin

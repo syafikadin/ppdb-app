@@ -27,10 +27,14 @@
                         <div class="card shadow-sm" style="min-height: 100%">
                             <div class="card-body">
                                 <h6 class="fw-bold">Note</h6>
-                                <div class="text-danger">
-                                    "Untuk melakukan pendaftaran sebagai peserta didik baru, harap melengkapi berkas-berkas
-                                    berikut!"
-                                </div>
+                                <p class="text-danger"><b>Catatan dari admin :
+                                        {{ $data_siswa->catatan
+                                            ? $data_siswa->catatan
+                                            : '<div class="text-danger mb-2">
+                                                                                                                    "Untuk melakukan pendaftaran sebagai peserta didik baru, harap melengkapi berkas-berkas
+                                                                                                                    berikut!"
+                                                                                                                </div>' }}</b>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -40,12 +44,7 @@
                             <div class="card-body">
                                 <h6 class="fw-bold">Status Pendaftaran</h6>
                                 <hr class="mb-4">
-
-                                @if ($data_siswa->pendaftar)
-                                    <p>{{ $data_siswa->pendaftar->status_pendaftaran }}</p>
-                                @else
-                                    <p>Belum mendaftar</p>
-                                @endif
+                                <p>{{ $data_siswa->status }}</p>
                             </div>
                         </div>
                     </div>

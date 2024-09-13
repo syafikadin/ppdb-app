@@ -55,7 +55,7 @@
                                 <h6 class="fw-bold">Status Pendaftaran</h6>
                                 <hr class="mb-4">
 
-                                <p>Belum mendaftar </p>
+                                <p>{{ $siswa->status }}</p>
                             </div>
                         </div>
                     </div>
