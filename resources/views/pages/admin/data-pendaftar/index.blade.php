@@ -33,7 +33,7 @@
                                     <th scope="col" class="align-middle" style="width: 30%">Nama</th>
                                     <th scope="col" class="align-middle" style="width: 15%">Jenis Kelamin</th>
                                     <th scope="col" class="align-middle" style="width: 15%">Status</th>
-                                    <th scope="col" style="width: 25%" class="text-center align-middle">Actions</th>
+                                    <th scope="col" style="width: 35%" class="text-center align-middle">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,15 +48,21 @@
                                         </td>
                                         <td class="align-middle text-center">
 
-                                            <!-- Button trigger modal Tidak Valid -->
-                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#modalInvalid">Tidak Valid</button>
+                                            <div>
 
-                                            <!-- Button trigger modal Verifikasi -->
-                                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#modalVerifikasi{{ $item->id }}">
-                                                Verifikasi
-                                            </button>
+                                            </div>
+
+                                            @if ($item->siswa->status === 'Sudah daftar, belum diverifikasi')
+                                                <!-- Button trigger modal Tidak Valid -->
+                                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#modalInvalid">Tidak Valid</button>
+
+                                                <!-- Button trigger modal Verifikasi -->
+                                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#modalVerifikasi{{ $item->id }}">
+                                                    Verifikasi
+                                                </button>
+                                            @endif
 
                                             <a href="{{ route('data-pendaftar.show', $item->id) }}"
                                                 class="btn btn-primary btn-sm">Lihat Berkas</a>

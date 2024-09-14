@@ -50,9 +50,9 @@ class PendaftarController extends Controller
                 $pendaftar->delete();
             }
 
-            return redirect()->back()->with('success', 'Status pendaftaran diubah menjadi tidak valid.');
+            return redirect('/admin/data-pendaftar')->with('success', 'Status pendaftaran diubah menjadi tidak valid.');
         } else {
-            return redirect()->back()->with('error', 'Siswa tidak ditemukan.');
+            return redirect('/admin/data-pendaftar')->with('error', 'Siswa tidak ditemukan.');
         }
     }
 
@@ -60,6 +60,7 @@ class PendaftarController extends Controller
     {
         $siswa = Siswa::find($request->siswa_id);
         $siswa->status = 'Sudah diverifikasi, menunggu ujian';
+        $siswa->catatan = 'Silahkan menunggu ujian';
         $siswa->save();
 
         return redirect()->back()->with('success', 'Pendaftar berhasil diverifikasi.');

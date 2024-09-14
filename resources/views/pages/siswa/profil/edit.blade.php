@@ -124,7 +124,10 @@
                             </div>
 
                             <hr class="mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">Simpan</button>
+
+                            @if ($data_siswa->status === 'Belum Mendaftar')
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Simpan</button>
+                            @endif
                         </div>
                     </div>
                 </form>

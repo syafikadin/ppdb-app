@@ -58,6 +58,15 @@
                                 <p>{{ $siswa->status }}</p>
                             </div>
                         </div>
+
+                        <div class="card shadow-sm mt-2">
+                            <div class="card-body">
+                                <h6 class="fw-bold">Catatan Terkait Pendaftaran</h6>
+                                <hr class="mb-4">
+
+                                <p>{{ $siswa->catatan ? $siswa->catatan : 'Belum ada catatan' }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

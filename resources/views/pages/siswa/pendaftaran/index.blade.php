@@ -26,15 +26,11 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card shadow-sm" style="min-height: 100%">
                             <div class="card-body">
-                                <h6 class="fw-bold">Note</h6>
-                                <p class="text-danger"><b>Catatan dari admin :
-                                        {{ $data_siswa->catatan
-                                            ? $data_siswa->catatan
-                                            : '<div class="text-danger mb-2">
-                                                                                                                    "Untuk melakukan pendaftaran sebagai peserta didik baru, harap melengkapi berkas-berkas
-                                                                                                                    berikut!"
-                                                                                                                </div>' }}</b>
+                                <h6 class="fw-bold">Catatan dari admin: </h6>
+                                <p class="text-danger">
+                                    {{ $data_siswa->catatan ? $data_siswa->catatan : '"Untuk melakukan pendaftaran sebagai peserta didik baru, harap melengkapi berkas-berkas berikut!' }}
                                 </p>
+
                             </div>
                         </div>
                     </div>
@@ -52,7 +48,9 @@
 
                 <div class="row g-3 my-1">
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <a href="/siswa/profil" style="text-decoration: none">
+                        <a href="/siswa/profil"
+                            class="{{ $data_siswa->status === 'Belum Mendaftar' ? '' : 'disabled-link' }}"
+                            style="text-decoration: none">
                             <div class="card shadow card-pendaftaran card-data-profil">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">
@@ -78,6 +76,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <a href="{{ route('pendaftaran.editDataOrangtua', $data_siswa->id) }}"
+                            class="{{ $data_siswa->status === 'Belum Mendaftar' ? '' : 'disabled-link' }}"
                             style="text-decoration: none">
                             <div class="card shadow card-pendaftaran card-data-orang-tua">
                                 <div class="card-body d-flex flex-column justify-content-between">
@@ -102,7 +101,9 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <a href="{{ route('pendaftaran.editDataBerkas', $data_siswa->id) }}" style="text-decoration: none">
+                        <a href="{{ route('pendaftaran.editDataBerkas', $data_siswa->id) }}"
+                            class="{{ $data_siswa->status === 'Belum Mendaftar' ? '' : 'disabled-link' }}"
+                            style="text-decoration: none">
                             <div class="card shadow card-pendaftaran card-data-berkas">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">

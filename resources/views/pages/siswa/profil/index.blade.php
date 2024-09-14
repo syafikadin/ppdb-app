@@ -57,7 +57,10 @@
                         <div class="col-lg-8 p-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4 class="card-title fw-bold mb-0">Informasi Pribadi</h4>
-                                <a href="{{ route('profil.edit', $data_siswa->id) }}" class="btn btn-success">Edit Data</a>
+                                @if ($data_siswa->status === 'Belum Mendaftar')
+                                    <a href="{{ route('profil.edit', $data_siswa->id) }}" class="btn btn-success">Edit
+                                        Data</a>
+                                @endif
                             </div>
                             <hr>
 

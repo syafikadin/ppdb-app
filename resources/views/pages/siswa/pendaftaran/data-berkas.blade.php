@@ -99,7 +99,10 @@
                                     src="{{ $data_siswa->rapor ? asset($data_siswa->rapor) : '' }}">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Simpan</button>
+
+                        @if ($data_siswa->status === 'Belum Mendaftar')
+                            <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Simpan</button>
+                        @endif
                     </div>
                 </form>
             </div>

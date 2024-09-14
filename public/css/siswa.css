@@ -109,3 +109,9 @@ body {
    background-color: #f2f2f2;
    border-radius: 10px;
 }
+
+.disabled-link {
+   pointer-events: none;
+   opacity: 0.6;
+   cursor: not-allowed;
+}
