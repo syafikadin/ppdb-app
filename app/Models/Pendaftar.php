@@ -17,4 +17,9 @@ class Pendaftar extends Model
     {
         return $this->belongsTo(Siswa::class, 'id_siswa');
     }
+
+    public function gelombang()
+    {
+        return $this->belongsTo(Gelombang::class);
+    }
 }

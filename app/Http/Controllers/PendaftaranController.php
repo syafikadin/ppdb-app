@@ -35,7 +35,6 @@ class PendaftaranController extends Controller
 
         // Cek kelengkapan data berkas
         $isBerkasComplete = !empty($data_siswa->piagam) &&
-            !empty($data_siswa->foto_pas) &&
             !empty($data_siswa->akta) &&
             !empty($data_siswa->kk) &&
             !empty($data_siswa->ktp) &&
@@ -128,7 +127,6 @@ class PendaftaranController extends Controller
 
             // Validasi berkas (file) yang akan diunggah
             'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-            'foto_pas' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -159,7 +157,6 @@ class PendaftaranController extends Controller
         // Validasi input
         $request->validate([
             'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-            'foto_pas' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -170,7 +167,7 @@ class PendaftaranController extends Controller
         $siswa = Siswa::findOrFail($id);
 
         // Proses unggahan file jika ada
-        $files = ['piagam', 'foto_pas', 'akta', 'kk', 'ktp', 'rapor'];
+        $files = ['piagam', 'akta', 'kk', 'ktp', 'rapor'];
         foreach ($files as $file) {
             if ($request->hasFile($file)) {
                 // Hapus file lama jika ada

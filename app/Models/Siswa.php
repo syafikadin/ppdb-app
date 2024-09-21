@@ -36,7 +36,6 @@ class Siswa extends Authenticatable
         'alamat_wali',
         'piagam',
         'ukuran_seragam',
-        'foto_pas',
         'akta',
         'kk',
         'ktp',

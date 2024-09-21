@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('alamat_wali')->nullable();
             $table->string('piagam')->nullable();
             $table->string('ukuran_seragam')->nullable();
-            $table->string('foto_pas')->nullable();
             $table->string('akta')->nullable();
             $table->string('kk')->nullable();
             $table->string('ktp')->nullable();

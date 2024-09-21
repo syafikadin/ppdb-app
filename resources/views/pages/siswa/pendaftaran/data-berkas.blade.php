@@ -35,19 +35,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="foto_pas" class="form-label small">Foto 3 x 4 (Background Warna Merah)</label>
-                                <input class="form-control @error('foto_pas') is-invalid @enderror" type="file"
-                                    id="foto_pas" name="foto_pas" onchange="previewImage(this, '#foto_pas-preview')">
-                                @error('foto_pas')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="foto_pas-preview"
-                                    src="{{ $data_siswa->foto_pas ? asset($data_siswa->foto_pas) : '' }}">
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="akta" class="form-label small">Scan Akta Kelahiran</label>
                                 <input class="form-control @error('akta') is-invalid @enderror" type="file"
                                     id="akta" name="akta" onchange="previewImage(this, '#akta-preview')">

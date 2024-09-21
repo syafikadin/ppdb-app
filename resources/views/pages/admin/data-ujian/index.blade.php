@@ -35,29 +35,6 @@
                                         <a href="" class="btn btn-primary btn-sm">Lihat</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">2</td>
-                                    <td class="align-middle">Gelombang 2</td>
-                                    <td class="align-middle text-center">25</td>
-                                    <td class="align-middle text-center">12 Maret 2025</td>
-                                    <td class="align-middle text-center">
-                                        <a href="" class="btn btn-primary btn-sm">Lihat</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">3</td>
-                                    <td class="align-middle">Gelombang 3</td>
-                                    <td class="align-middle text-center">0</td>
-                                    <td class="align-middle text-center">14 Maret 2025</td>
-
-                                    {{-- TAMBAH LINK --}}
-                                    <td class="align-middle text-center">
-                                        <a href="" class="btn btn-primary btn-sm">Lihat</a>
-                                    </td>
-                                </tr>
-
-
-
 
                             </tbody>
                         </table>
