@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mpdf\Mpdf;
 
 class DashboardSiswaController extends Controller
 {
@@ -84,5 +85,31 @@ class DashboardSiswaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function downloadKartuUjian($id)
+    {
+        // Ambil data siswa berdasarkan ID
+        $siswa = Siswa::find($id);
+
+        // Validasi apakah siswa ditemukan
+        if (!$siswa) {
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan');
+        }
+
+        // Membuat instance mPDF
+        $mpdf = new Mpdf();
+
+        // HTML untuk konten PDF
+        $html = view('pages.siswa.kartu-ujian', compact('siswa'))->render();
+
+        // Set konten HTML ke mPDF
+        $mpdf->WriteHTML($html);
+
+        // Nama file PDF
+        $filename = 'kartu-ujian-' . $siswa->nama_siswa . '.pdf';
+
+        // Untuk langsung men-download file
+        return $mpdf->Output($filename, 'D'); // 'D' for download, 'I' for inline view (print)
     }
 }

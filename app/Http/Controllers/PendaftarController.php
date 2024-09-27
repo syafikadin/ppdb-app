@@ -60,7 +60,7 @@ class PendaftarController extends Controller
     {
         $siswa = Siswa::find($request->siswa_id);
         $siswa->status = 'Sudah diverifikasi, menunggu ujian';
-        $siswa->catatan = 'Silahkan menunggu ujian';
+        $siswa->catatan = 'Silahkan menunggu ujian, Jangan lupa untuk mencetak kartu ujian yang dapat didownload pada status pendaftaran!';
         $siswa->save();
 
         return redirect()->back()->with('success', 'Pendaftar berhasil diverifikasi.');

@@ -56,6 +56,10 @@
                                 <hr class="mb-4">
 
                                 <p>{{ $siswa->status }}</p>
+                                @if ($siswa->status === 'Sudah diverifikasi, menunggu ujian')
+                                    <a href="{{ route('download.kartu', $siswa->id) }}" class="btn btn-primary">Download
+                                        Kartu Ujian</a>
+                                @endif
                             </div>
                         </div>
 
