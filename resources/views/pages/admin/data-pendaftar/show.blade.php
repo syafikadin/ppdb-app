@@ -3,7 +3,12 @@
     <div class="main-content">
         <div class="app-content">
             <div class="app-content-header shadow-sm">
-                <h1 class="app-content-headerText fw-bold">Data Pendaftar</h1>
+                <h1 class="app-content-headerText fw-bold">
+                    <button class="btn-sidebar" id="btn-sidebar">
+                        <i class="bi bi-layout-sidebar-inset"></i>
+                    </button>
+                    Data Pendaftar
+                </h1>
             </div>
 
             <div class="content-body">

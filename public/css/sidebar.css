@@ -9,10 +9,15 @@
 }
 
 
-/* .sidebar-active {
+.sidebar-active {
    display: flex !important;
-} */
+}
 
+.btn-sidebar {
+   border: none !important;
+   background-color: transparent !important;
+   color: var(--action-color) !important;
+}
 
 .sidebar {
    flex-basis: 250px;
@@ -77,6 +82,12 @@
 
 @media screen and (max-width: 1024px) {
    .sidebar {
+      display: none;
+   }
+}
+
+@media screen and (min-width: 1025px) {
+   .btn-sidebar {
       display: none;
    }
 }
