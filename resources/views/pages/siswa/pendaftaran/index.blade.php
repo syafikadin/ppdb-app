@@ -41,6 +41,11 @@
                                 <h6 class="fw-bold">Status Pendaftaran</h6>
                                 <hr class="mb-4">
                                 <p>{{ $data_siswa->status }}</p>
+                                @if ($data_siswa->status === 'Sudah diverifikasi, menunggu ujian')
+                                    <a href="{{ route('download.kartu', $data_siswa->id) }}"
+                                        class="btn btn-primary">Download
+                                        Kartu Ujian</a>
+                                @endif
                             </div>
                         </div>
                     </div>

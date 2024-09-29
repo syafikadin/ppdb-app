@@ -57,6 +57,9 @@ Route::prefix('admin')->group(function () {
 Route::prefix('siswa')->group(function () {
     Route::group(['middleware' => 'siswa'], function () {
         Route::resource('/', DashboardSiswaController::class);
+        Route::get('/download-kartu-ujian/{id}', [DashboardSiswaController::class, 'downloadKartuUjian'])->name('download.kartu');
+
+
         Route::resource('/pendaftaran', PendaftaranController::class);
 
         Route::resource('/profil', ProfilController::class);
