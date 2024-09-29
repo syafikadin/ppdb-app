@@ -31,8 +31,7 @@
                     <div class="row g-3">
                         <div class="col-lg-4 p-4" style="background-color: #DCEBF0">
                             @if ($data_siswa->foto)
-                                <img src="{{ asset('uploads/img/' . $data_siswa->foto) }}" class="img-fluid"
-                                    alt="Foto Profil">
+                                <img src="{{ asset($data_siswa->foto) }}" class="img-fluid" alt="Foto Profil">
                             @else
                                 <img class="img-fluid" src="{{ asset('/assets/images/person.jpg') }}"
                                     alt="Gambar default untuk profil">

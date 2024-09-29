@@ -25,7 +25,7 @@
                             {{-- View untuk foto --}}
                             <div class="text-center">
                                 @if ($data_siswa->foto)
-                                    <img id="img-preview" src="{{ asset('uploads/img/' . $data_siswa->foto) }}"
+                                    <img id="img-preview" src="{{ asset($data_siswa->foto) }}"
                                         class="img-fluid d-block mb-3 mx-auto" alt="Foto Profil"
                                         style="height: 200px; width: 200px; object-fit: cover;">
                                 @else

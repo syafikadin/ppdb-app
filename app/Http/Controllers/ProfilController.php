@@ -102,7 +102,7 @@ class ProfilController extends Controller
             }
 
             // Simpan nama file gambar baru di database
-            $data_siswa->foto = $filename;
+            $data_siswa->foto = 'uploads/img/' . $filename;
         }
 
         // Update semua data siswa

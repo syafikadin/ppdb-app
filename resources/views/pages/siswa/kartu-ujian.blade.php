@@ -31,10 +31,20 @@
 
             <table>
                 <tr>
-                    <td>Nama</td>
-                    <td>:</td>
-                    <td>{{ $siswa->nama_siswa }}</td>
+                    <td rowspan="6">
+                        <img src="{{ $siswa->foto }}" style="height: 150px" alt="">
+                    </td>
+                    <td>
+                        Nama
+                    </td>
+                    <td>
+                        :
+                    </td>
+                    <td>
+                        {{ $siswa->nama_siswa }}
+                    </td>
                 </tr>
+
                 <tr>
                     <td>Jenis Kelamin</td>
                     <td>:</td>
@@ -48,10 +58,23 @@
                 <tr>
                     <td>Tanggal Lahir</td>
                     <td>:</td>
-                    <td>{{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>:</td>
+                    <td>{{ $siswa->alamat }}</td>
+                </tr>
+                <tr>
+                    <td>Nomor WA</td>
+                    <td>:</td>
+                    <td>{{ $siswa->nomor_wa }}</td>
                 </tr>
             </table>
         </div>
+
+
 
     </div>
 
