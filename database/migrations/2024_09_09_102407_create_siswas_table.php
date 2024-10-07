@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_siswa');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('gelombang_id')->nullable()->onDelete('cascade');
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
@@ -42,14 +43,9 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->string('status')->default('Belum Mendaftar');
             $table->timestamps();
-
-            // Status Pendaftaran
-            // 1. Belum mendaftar
-            // 2. Sudah daftar, belum diverifikasi
-            // 3. Sudah diverifikasi, menunggu ujian
-            // 4. Diterima / Tidak diterima`
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use Illuminate\Http\Request;
 
 class DataUjianController extends Controller
@@ -14,8 +15,9 @@ class DataUjianController extends Controller
     public function index()
     {
         $title = 'Data Ujian';
+        $data_gelombang = Gelombang::all();
 
-        return view('pages.admin.data-ujian.index', compact('title'));
+        return view('pages.admin.data-ujian.index', compact('title', 'data_gelombang'));
     }
 
     /**
@@ -47,9 +49,9 @@ class DataUjianController extends Controller
      */
     public function show($id)
     {
-        $title = 'Data Ujian';
+        // $title = 'Data Ujian';
 
-        return view('pages.admin.data-ujian.show', compact('title'));
+        // return view('pages.admin.data-ujian.show', compact('title'));
     }
 
     /**

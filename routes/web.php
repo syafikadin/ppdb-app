@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardSiswaController;
 use App\Http\Controllers\DataPendaftarController;
 use App\Http\Controllers\DataUjianController;
+use App\Http\Controllers\GelombangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftarController;
@@ -48,6 +49,11 @@ Route::prefix('admin')->group(function () {
         // Verifikasi Data
         Route::post('/data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');
         Route::post('/data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');
+
+        // Gelombang
+        Route::put('/gelombang/{id}', [GelombangController::class, 'update'])->name('gelombang.update');
+        Route::get('/gelombang/{id}', [GelombangController::class, 'show'])->name('gelombang.show');
+        Route::put('/gelombang/{id}/close', [GelombangController::class, 'close'])->name('gelombang.close');
     });
 });
 // End Route Group Admin

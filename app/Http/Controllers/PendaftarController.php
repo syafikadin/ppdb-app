@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use App\Models\Siswa;
 use App\Models\Pendaftar;
 use Illuminate\Http\Request;
@@ -59,10 +60,20 @@ class PendaftarController extends Controller
     public function verifikasi(Request $request)
     {
         $siswa = Siswa::find($request->siswa_id);
+
+        // Menentukan gelombang yang aktif atau gelombang tertentu
+        $gelombangOpen = Gelombang::where('status', 'Open')->first(); // Anda bisa menyesuaikan aturan gelombang ini
+
+        if (!$gelombangOpen) {
+            return redirect()->back()->with('error', 'Tidak ada gelombang aktif saat ini.');
+        }
+
+        // Mengupdate status dan mengaitkan siswa dengan gelombang yang aktif
         $siswa->status = 'Sudah diverifikasi, menunggu ujian';
         $siswa->catatan = 'Silahkan menunggu ujian, Jangan lupa untuk mencetak kartu ujian yang dapat didownload pada status pendaftaran!';
+        $siswa->gelombang_id = $gelombangOpen->id; // Mengaitkan siswa dengan gelombang
         $siswa->save();
 
-        return redirect()->back()->with('success', 'Pendaftar berhasil diverifikasi.');
+        return redirect()->back()->with('success', 'Pendaftar berhasil diverifikasi dan masuk ke gelombang.');
     }
 }
