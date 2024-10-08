@@ -71,10 +71,12 @@
                                                         No</th>
                                                     <th scope="col" class="align-middle">Nama</th>
                                                     <th scope="col" class="align-middle text-center" style="width: 15%">
-                                                        Nilai 1
+                                                        Wawancara
                                                     </th>
                                                     <th scope="col" class="text-center align-middle" style="width: 15%">
-                                                        Nilai 2</th>
+                                                        Baca Al-Qur'an</th>
+                                                    <th scope="col" class="text-center align-middle" style="width: 15%">
+                                                        Tulis Al-Qur'an</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -82,24 +84,32 @@
                                                     <td scope="row" class="text-center align-middle">1</td>
                                                     <td class="align-middle">Alberto Simanjuntak</td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai1"
-                                                            name="nilai1" required value="">
+                                                        <input type="number" class="form-control" id="wawancara"
+                                                            name="wawancara" required value="">
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai2"
-                                                            name="nilai2" required value="">
+                                                        <input type="number" class="form-control" id="baca"
+                                                            name="baca" required value="">
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <input type="number" class="form-control" id="tulis"
+                                                            name="tulis" required value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td scope="row" class="text-center align-middle">2</td>
                                                     <td class="align-middle">Saipul OmeTV</td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai1"
-                                                            name="nilai1" required value="">
+                                                        <input type="number" class="form-control" id="wawancara"
+                                                            name="wawancara" required value="">
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai2"
-                                                            name="nilai2" required value="">
+                                                        <input type="number" class="form-control" id="baca"
+                                                            name="baca" required value="">
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <input type="number" class="form-control" id="tulis"
+                                                            name="tulis" required value="">
                                                     </td>
                                                 </tr>
 
@@ -112,17 +122,24 @@
                                                     <td class="align-middle text-center">
                                                         ...
                                                     </td>
+                                                    <td class="align-middle text-center">
+                                                        ...
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td scope="row" class="text-center align-middle">30</td>
                                                     <td class="align-middle">Aliando Bakrie</td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai1"
-                                                            name="nilai1" required value="">
+                                                        <input type="number" class="form-control" id="wawancara"
+                                                            name="wawancara" required value="">
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="nilai2"
-                                                            name="nilai2" required value="">
+                                                        <input type="number" class="form-control" id="baca"
+                                                            name="baca" required value="">
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <input type="number" class="form-control" id="tulis"
+                                                            name="tulis" required value="">
                                                     </td>
                                                 </tr>
                                             </tbody>
