@@ -49,35 +49,38 @@
                             <tbody>
                                 @foreach ($data_gelombang as $gelombang)
                                     <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $gelombang->nama_gelombang }}</td>
-                                        <td class="text-center">{{ $gelombang->jumlah_pendaftar }}</td>
-                                        <td class="text-center">{{ $gelombang->tanggal_ujian }}</td>
-                                        <td class="text-center">{{ $gelombang->status }}</td>
-                                        <td class="text-center">
+                                        <td class="text-center align-middle">{{ $loop->iteration }}</td>
+                                        <td class="align-middle">{{ $gelombang->nama_gelombang }}</td>
+                                        <td class="text-center align-middle">{{ $gelombang->jumlah_pendaftar }}</td>
+                                        <td class="text-center align-middle">
+                                            {{ \Carbon\Carbon::parse($gelombang->tanggal_ujian)->translatedFormat('d M Y') }}
+                                        </td>
+                                        <td class="text-center align-middle">{{ $gelombang->status }}</td>
+                                        <td class="text-center align-middle">
+
+
+                                            <!-- Tombol Lihat Gelombang -->
+                                            <a href="{{ route('gelombang.show', $gelombang->id) }}"
+                                                class="btn btn-primary btn-sm w-100">
+                                                Show
+                                            </a>
 
                                             <!-- Tombol Edit -->
-                                            <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                            <button class="btn btn-outline-primary btn-sm w-100 my-1" data-bs-toggle="modal"
                                                 data-bs-target="#editModal{{ $gelombang->id }}"
                                                 @if ($gelombang->status === 'Closed') disabled @endif>
                                                 Edit
                                             </button>
-
-                                            <!-- Tombol Lihat Gelombang -->
-                                            <a href="{{ route('gelombang.show', $gelombang->id) }}"
-                                                class="btn btn-outline-info">
-                                                Lihat Gelombang
-                                            </a>
 
                                             <!-- Tombol Tutup Gelombang -->
                                             <form action="{{ route('gelombang.close', $gelombang->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-outline-danger"
+                                                <button type="submit" class="btn btn-outline-danger btn-sm w-100"
                                                     @if ($gelombang->status === 'Closed') disabled @endif
                                                     onclick="return confirm('Apakah Anda yakin ingin menutup gelombang ini?')">
-                                                    Tutup Gelombang
+                                                    Close
                                                 </button>
                                             </form>
                                         </td>
