@@ -30,38 +30,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">1</td>
-                                    <td class="align-middle">Alberto Simanjuntak</td>
-                                    <td class="align-middle text-center">Laki-laki</td>
-                                    <td class="align-middle text-center text-success">
-                                        Telah dinilai
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">2</td>
-                                    <td class="align-middle">Saipul OmeTV</td>
-                                    <td class="align-middle text-center">Laki-laki</td>
-                                    <td class="align-middle text-center text-danger">
-                                        Belum dinilai
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">...</td>
-                                    <td class="align-middle">...</td>
-                                    <td class="align-middle text-center">...</td>
-                                    <td class="align-middle text-center">
-                                        ...
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row" class="text-center align-middle">30</td>
-                                    <td class="align-middle">Aliando Bakrie</td>
-                                    <td class="align-middle text-center">Laki-laki</td>
-                                    <td class="align-middle text-center text-success">
-                                        Telah dinilai
-                                    </td>
-                                </tr>
+                                @foreach ($gelombang->siswa as $index => $siswa)
+                                    <tr>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td>{{ $siswa->nama_siswa }}</td>
+                                        <td class="text-center">{{ $siswa->jenis_kelamin }}</td>
+                                        <td class="text-center">
+                                            {{ $siswa->status == 'Telah dinilai' ? 'Telah dinilai' : 'Belum dinilai' }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

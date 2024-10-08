@@ -56,4 +56,9 @@ class Siswa extends Authenticatable
     {
         return $this->hasOne(Pendaftar::class, 'id_siswa');
     }
+
+    public function gelombang()
+    {
+        return $this->belongsTo(Gelombang::class);
+    }
 }

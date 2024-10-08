@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Gelombang;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         User::create([
             'username' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
@@ -95,6 +97,12 @@ class DatabaseSeeder extends Seeder
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
             'status' => 'Belum Mendaftar',
+        ]);
+
+        Gelombang::create([
+            'nama_gelombang' => 'Gelombang 1',
+            'tanggal_ujian' => '2024-10-20',
+            'status' => 'Open'
         ]);
     }
 }

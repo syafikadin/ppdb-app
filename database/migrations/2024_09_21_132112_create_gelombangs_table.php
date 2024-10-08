@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('nama_gelombang');
             $table->integer('jumlah_pendaftar')->default(0);
             $table->date('tanggal_ujian');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
