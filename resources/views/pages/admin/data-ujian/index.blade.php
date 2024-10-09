@@ -123,10 +123,15 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                         <hr>
+
+                        @php
+                            $gelombangOpen = $data_gelombang->where('status', 'Open')->count();
+                        @endphp
+
                         <div class="mt-3">
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                @if ($gelombangOpen > 0) disabled @endif>
                                 Tambah Gelombang
                             </button>
                         </div>
@@ -142,23 +147,28 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label for="namaGelombang" class="form-label small">Nama Gelombang</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Masukan nama gelombang" name="nama" required
-                                                value="">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-primary">Simpan</button>
-                                        </div>
+                                        <form action="{{ route('gelombang.store') }}" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="namaGelombang" class="form-label small">Nama Gelombang</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Masukan nama gelombang" name="nama_gelombang" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="tanggalUjian" class="form-label small">Tanggal Ujian</label>
+                                                <input type="date" class="form-control" name="tanggal_ujian" required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 </div>

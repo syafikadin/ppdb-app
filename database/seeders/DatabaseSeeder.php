@@ -19,15 +19,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        // Role
+        // 1 = Admin
+        // 2 = Siswa
+
         User::create([
             'username' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'role' => '1'
         ]);
-
-        // Role
-        // 1 = Admin
-        // 2 = Siswa
 
         User::create([
             'username' => 'ucok123',
@@ -37,6 +37,12 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => 'vindo123',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'role' => '2'
+        ]);
+
+        User::create([
+            'username' => 'baba123',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'role' => '2'
         ]);
@@ -81,6 +87,35 @@ class DatabaseSeeder extends Seeder
             'foto' => 'uploads/img/1726132730.png',
             'nomor_wa' => '089698289699',
             'sosmed' => 'ucok_baba',
+            'nama_ayah' => 'Paijo',
+            'pekerjaan_ayah' => 'Politikus',
+            'penghasilan_ayah' => 'Rp.1.000.000 - Rp.2.000.000',
+            'nama_ibu' => 'Painem',
+            'pekerjaan_ibu' => 'Politikus',
+            'penghasilan_ibu' => 'Tidak Berpenghasilan',
+            'nomor_wali' => '089698289699',
+            'alamat_wali' => 'Malang',
+            'piagam' => 'uploads/files/1726125004_Piagam.jpeg',
+            'ukuran_seragam' => 'L',
+            'akta' => 'uploads/files/1726125004_Akta Kelahiran.jpg',
+            'kk' => 'uploads/files/1726125004_KK.jpeg',
+            'ktp' => 'uploads/files/1726125004_KTP.png',
+            'rapor' => 'uploads/files/1726125004_Rport.jpeg',
+            'catatan' => '',
+            'status' => 'Belum Mendaftar',
+        ]);
+
+        Siswa::create([
+            'nama_siswa' => 'Baba',
+            'user_id' => '4',
+            'jenis_kelamin' => 'L',
+            'tempat_lahir' => 'Malang',
+            'tanggal_lahir' => '2024-09-20',
+            'alamat' => 'Malang',
+            'email' => 'baba@gmail.com',
+            'foto' => 'uploads/img/1726132730.png',
+            'nomor_wa' => '089698289699',
+            'sosmed' => 'baba_baba',
             'nama_ayah' => 'Paijo',
             'pekerjaan_ayah' => 'Politikus',
             'penghasilan_ayah' => 'Rp.1.000.000 - Rp.2.000.000',

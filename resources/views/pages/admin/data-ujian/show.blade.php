@@ -23,10 +23,12 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No</th>
-                                    <th scope="col" class="align-middle" style="width: 40%">Nama</th>
-                                    <th scope="col" class="align-middle text-center" style="width: 20%">Jenis Kelamin
+                                    <th scope="col" class="align-middle text-center" style="width: 40%">Nama</th>
+                                    <th scope="col" class="align-middle text-center" style="width: 15%">Jenis Kelamin
                                     </th>
-                                    <th scope="col" class="text-center align-middle">Keterangan</th>
+                                    <th scope="col" class="text-center align-middle" style="width: 20%">Keterangan</th>
+                                    <th scope="col" class="text-center align-middle" style="width: 20%">Status Kelulusan
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,9 +40,28 @@
                                         <td class="text-center">
                                             {{ $siswa->nilai ? 'Telah dinilai' : 'Belum dinilai' }}
                                         </td>
+                                        <td class="text-center">
+                                            @if ($siswa->nilai)
+                                                @php
+                                                    $rataRataNilai =
+                                                        ($siswa->nilai->wawancara +
+                                                            $siswa->nilai->baca_alquran +
+                                                            $siswa->nilai->tulis_alquran) /
+                                                        3;
+                                                @endphp
+                                                @if ($rataRataNilai >= 70)
+                                                    <span class="badge bg-success">Lulus</span>
+                                                @else
+                                                    <span class="badge bg-danger">Tidak Lulus</span>
+                                                @endif
+                                            @else
+                                                <span class="badge bg-warning">Belum Dinilai</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
 
                         <hr>

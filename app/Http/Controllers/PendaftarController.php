@@ -65,7 +65,8 @@ class PendaftarController extends Controller
         $gelombangOpen = Gelombang::where('status', 'Open')->first(); // Anda bisa menyesuaikan aturan gelombang ini
 
         if (!$gelombangOpen) {
-            return redirect()->back()->with('error', 'Tidak ada gelombang aktif saat ini.');
+            // Jika tidak ada gelombang yang terbuka, alihkan ke halaman Data Ujian
+            return redirect('/admin/data-ujian')->with('error', 'Tidak ada gelombang yang terbuka. Silakan tambahkan gelombang baru!');
         }
 
         // Mengupdate status dan mengaitkan siswa dengan gelombang yang aktif

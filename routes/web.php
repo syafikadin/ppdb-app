@@ -39,6 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');
 
         // Gelombang
+        Route::resource('gelombang', GelombangController::class);
         Route::put('/gelombang/{id}', [GelombangController::class, 'update'])->name('gelombang.update');
         Route::get('/gelombang/{id}', [GelombangController::class, 'show'])->name('gelombang.show');
         Route::put('/gelombang/{id}/close', [GelombangController::class, 'close'])->name('gelombang.close');

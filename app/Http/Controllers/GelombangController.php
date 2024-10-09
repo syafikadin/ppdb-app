@@ -35,9 +35,19 @@ class GelombangController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'nama_gelombang' => 'required|string|max:255',
+            'tanggal_ujian' => 'required|date',
+        ]);
 
+        Gelombang::create([
+            'nama_gelombang' => $request->nama_gelombang,
+            'tanggal_ujian' => $request->tanggal_ujian,
+            'status' => 'Open', // Set default status menjadi 'Open'
+        ]);
+
+        return redirect('/admin/data-ujian')->with('success', 'Gelombang berhasil ditambahkan.');
+    }
     /**
      * Display the specified resource.
      *
