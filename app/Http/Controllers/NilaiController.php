@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gelombang;
-use App\Models\Siswa;
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 
-class DataUjianController extends Controller
+class NilaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class DataUjianController extends Controller
      */
     public function index()
     {
-        $title = 'Data Ujian';
-        $data_gelombang = Gelombang::with('siswa')->get();
-
-        return view('pages.admin.data-ujian.index', compact('title', 'data_gelombang'));
+        //
     }
 
     /**
@@ -45,23 +41,21 @@ class DataUjianController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nilai $nilai)
     {
-        // $title = 'Data Ujian';
-
-        // return view('pages.admin.data-ujian.show', compact('title'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Nilai $nilai)
     {
         //
     }
@@ -70,10 +64,10 @@ class DataUjianController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Nilai $nilai)
     {
         //
     }
@@ -81,11 +75,30 @@ class DataUjianController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nilai $nilai)
     {
         //
+    }
+
+    public function storeNilai(Request $request)
+    {
+        $nilaiData = $request->input('nilai');
+
+        foreach ($nilaiData as $siswaId => $nilai) {
+            // Cek jika siswa sudah memiliki nilai, lakukan update, jika belum, buat baru
+            Nilai::updateOrCreate(
+                ['siswa_id' => $siswaId], // Kunci unik berdasarkan siswa_id
+                [
+                    'wawancara' => $nilai['wawancara'],
+                    'baca_alquran' => $nilai['baca'],
+                    'tulis_alquran' => $nilai['tulis']
+                ]
+            );
+        }
+
+        return redirect()->route('data-ujian.index')->with('success', 'Nilai berhasil ditambahkan atau diperbarui.');
     }
 }

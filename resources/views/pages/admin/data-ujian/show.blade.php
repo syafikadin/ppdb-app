@@ -36,7 +36,8 @@
                                         <td>{{ $siswa->nama_siswa }}</td>
                                         <td class="text-center">{{ $siswa->jenis_kelamin }}</td>
                                         <td class="text-center">
-                                            {{ $siswa->status == 'Telah dinilai' ? 'Telah dinilai' : 'Belum dinilai' }}</td>
+                                            {{ $siswa->nilai ? 'Telah dinilai' : 'Belum dinilai' }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -54,7 +55,6 @@
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                 style="max-width: 1000px">
-                                <!-- Center the modal vertically -->
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Tambah Nilai</h1>
@@ -64,107 +64,63 @@
                                     <div class="modal-body">
 
                                         {{-- Tabel nilai --}}
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="table-dark">
-                                                <tr>
-                                                    <th scope="col" class="align-middle text-center" style="width: 10%">
-                                                        No</th>
-                                                    <th scope="col" class="align-middle">Nama</th>
-                                                    <th scope="col" class="align-middle text-center" style="width: 15%">
-                                                        Wawancara
-                                                    </th>
-                                                    <th scope="col" class="text-center align-middle" style="width: 15%">
-                                                        Baca Al-Qur'an</th>
-                                                    <th scope="col" class="text-center align-middle" style="width: 15%">
-                                                        Tulis Al-Qur'an</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td scope="row" class="text-center align-middle">1</td>
-                                                    <td class="align-middle">Alberto Simanjuntak</td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="wawancara"
-                                                            name="wawancara" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="baca"
-                                                            name="baca" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="tulis"
-                                                            name="tulis" required value="">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row" class="text-center align-middle">2</td>
-                                                    <td class="align-middle">Saipul OmeTV</td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="wawancara"
-                                                            name="wawancara" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="baca"
-                                                            name="baca" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="tulis"
-                                                            name="tulis" required value="">
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td scope="row" class="text-center align-middle">...</td>
-                                                    <td class="align-middle">...</td>
-                                                    <td class="align-middle text-center">
-                                                        ...
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        ...
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        ...
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row" class="text-center align-middle">30</td>
-                                                    <td class="align-middle">Aliando Bakrie</td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="wawancara"
-                                                            name="wawancara" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="baca"
-                                                            name="baca" required value="">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <input type="number" class="form-control" id="tulis"
-                                                            name="tulis" required value="">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <form action="{{ route('nilai.store-nilai') }}" method="POST">
+                                            @csrf
+                                            <table class="table table-bordered table-hover">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th scope="col" class="align-middle text-center"
+                                                            style="width: 10%">No</th>
+                                                        <th scope="col" class="align-middle">Nama</th>
+                                                        <th scope="col" class="align-middle text-center"
+                                                            style="width: 15%">Wawancara</th>
+                                                        <th scope="col" class="text-center align-middle"
+                                                            style="width: 15%">Baca Al-Qur'an</th>
+                                                        <th scope="col" class="text-center align-middle"
+                                                            style="width: 15%">Tulis Al-Qur'an</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($gelombang->siswa as $index => $siswa)
+                                                        <tr>
+                                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                                            <td class="align-middle">{{ $siswa->nama_siswa }}</td>
+                                                            <td class="align-middle text-center">
+                                                                <input type="number" class="form-control"
+                                                                    name="nilai[{{ $siswa->id }}][wawancara]"
+                                                                    value="{{ $siswa->nilai ? $siswa->nilai->wawancara : '' }}"
+                                                                    required>
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                <input type="number" class="form-control"
+                                                                    name="nilai[{{ $siswa->id }}][baca]"
+                                                                    value="{{ $siswa->nilai ? $siswa->nilai->baca_alquran : '' }}"
+                                                                    required>
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                <input type="number" class="form-control"
+                                                                    name="nilai[{{ $siswa->id }}][tulis]"
+                                                                    value="{{ $siswa->nilai ? $siswa->nilai->tulis_alquran : '' }}"
+                                                                    required>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <div class="modal-footer justify-content-between">
+                                                <div>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
 
                                     </div>
-                                    <div class="modal-footer justify-content-between">
-
-                                        <div>
-                                            <a href="" class="btn btn-outline-primary">
-                                                Import Nilai
-                                            </a>
-                                        </div>
-
-
-                                        <div>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-primary">Simpan</button>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 </div>

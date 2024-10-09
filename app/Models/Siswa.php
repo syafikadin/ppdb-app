@@ -61,4 +61,9 @@ class Siswa extends Authenticatable
     {
         return $this->belongsTo(Gelombang::class);
     }
+
+    public function nilai()
+    {
+        return $this->hasOne(Nilai::class);
+    }
 }

@@ -51,7 +51,7 @@
                                     <tr>
                                         <td class="text-center align-middle">{{ $loop->iteration }}</td>
                                         <td class="align-middle">{{ $gelombang->nama_gelombang }}</td>
-                                        <td class="text-center align-middle">{{ $gelombang->jumlah_pendaftar }}</td>
+                                        <td class="text-center align-middle">{{ $gelombang->siswa->count() }}</td>
                                         <td class="text-center align-middle">
                                             {{ \Carbon\Carbon::parse($gelombang->tanggal_ujian)->translatedFormat('d M Y') }}
                                         </td>
