@@ -99,6 +99,6 @@ class NilaiController extends Controller
             );
         }
 
-        return redirect()->route('data-ujian.index')->with('success', 'Nilai berhasil ditambahkan atau diperbarui.');
+        return redirect()->back()->with('success', 'Nilai berhasil ditambahkan atau diperbarui.');
     }
 }

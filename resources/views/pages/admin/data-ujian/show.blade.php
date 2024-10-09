@@ -13,11 +13,33 @@
 
             <div class="content-body">
 
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card shadow mt-3">
                     <div class="card-body">
                         <h5 class="fw-bold">Data pendaftar pada gelombang 1</h5>
                         <p>Ujian dilaksanakan pada tanggal 10 Maret 2025</p>
+
                         <hr>
+                        <div class="mb-3">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Tambah Nilai
+                            </button>
+                        </div>
+                        {{-- <hr> --}}
+
 
                         <table class="table table-bordered table-hover">
                             <thead class="table-dark">
@@ -64,12 +86,7 @@
 
                         </table>
 
-                        <hr>
-                        <div class="mt-3">
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Tambah Nilai
-                            </button>
-                        </div>
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
