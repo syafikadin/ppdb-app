@@ -18,7 +18,7 @@
                         <hr>
 
                         <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
-                            src="{{ asset('uploads/img/' . $data_pendaftar->siswa->foto) }}" alt="Pass Foto"
+                            src="{{ asset($data_pendaftar->siswa->foto) }}" alt="Pass Foto"
                             style="height: 200px; width: 200px; object-fit: cover;">
 
                         <div class="row ">
@@ -44,13 +44,17 @@
                                         value="{{ $data_pendaftar->siswa->tanggal_lahir }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label small">Whatsapp</label>
-                                    <input type="text" class="form-control" disabled
-                                        value="{{ $data_pendaftar->siswa->nomor_wa }}">
+                                    <label class="form-label small">Asal Sekolah</label>
+                                    <input type="text" class="form-control" disabled value="SD Negeri Lorem Ipsum">
                                 </div>
 
                             </div>
                             <div class="col-lg-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label small">Whatsapp</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->nomor_wa }}">
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Email</label>
                                     <input type="text" class="form-control" disabled
@@ -63,7 +67,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Alamat</label>
-                                    <textarea class="form-control" disabled rows="8">{{ $data_pendaftar->siswa->alamat }}</textarea>
+                                    <textarea class="form-control" disabled rows="4">{{ $data_pendaftar->siswa->alamat }}</textarea>
                                 </div>
 
                             </div>

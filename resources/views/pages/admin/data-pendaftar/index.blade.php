@@ -35,9 +35,9 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="align-middle">No</th>
-                                    <th scope="col" class="align-middle" style="width: 35%">Nama</th>
-                                    <th scope="col" class="align-middle" style="width: 15%">Jenis Kelamin</th>
-                                    <th scope="col" class="align-middle" style="width: 25%">Status</th>
+                                    <th scope="col" class="align-middle" style="width: 30%">Nama</th>
+                                    <th scope="col" class="align-middle" style="width: 25%">Asal Sekolah</th>
+                                    <th scope="col" class="align-middle" style="width: 20%">Status</th>
                                     <th scope="col" style="width: 20%" class="text-center align-middle">Actions</th>
                                 </tr>
                             </thead>
@@ -47,7 +47,7 @@
                                         <td scope="row" class="text-center align-middle">{{ $loop->iteration }}</td>
                                         <td class="align-middle">{{ $item->siswa->nama_siswa }}</td>
                                         <td class="align-middle">
-                                            {{ $item->siswa->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                                            SD Negeri Lorem Ipsum
                                         <td class="align-middle">
                                             {{ $item->siswa->status }}
                                         </td>

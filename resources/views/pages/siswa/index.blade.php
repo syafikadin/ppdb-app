@@ -12,7 +12,7 @@
             </div>
 
             <div class="content-body">
-                {{-- <h3 class="">Selamat Datang, {{ $siswa->nama_siswa }}!</h3> --}}
+
 
                 <div class="row g-3">
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -50,8 +50,49 @@
                             <div class="card-body">
                                 <h6 class="fw-bold">Pengumuman</h6>
                                 <hr class="mb-4">
+                                @if ($siswa->status === 'Lulus' || $siswa->status === 'Tidak Lulus')
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#modalHasilSeleksi">Lihat Hasil Seleksi</button>
+                                @else
+                                    <p>Belum ada pengumuman yang masuk</p>
+                                @endif
 
-                                <p>Belum ada pengumuman yang masuk</p>
+
+                                <div class="modal fade" id="modalHasilSeleksi" tabindex="-1"
+                                    aria-labelledby="modalHasilSeleksiLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalHasilSeleksiLabel">
+                                                    Hasil Seleksi</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    @if ($siswa->status === 'Lulus')
+                                                        <h6>Selamat! Anda telah berhasil melewati semua tahapan seleksi
+                                                            dengan baik dan dinyatakan <span
+                                                                class="text-primary fw-bold">LULUS</span>. Kami berharap
+                                                            Anda terus bersemangat dalam menjalani langkah berikutnya
+                                                            bersama kami.</h6>
+                                                    @else
+                                                        <h6>Terima kasih atas partisipasi Anda dalam proses seleksi ini.
+                                                            Meskipun Anda dinyatakan <span class="text-danger fw-bold">TIDAK
+                                                                LULUS</span> untuk saat
+                                                            ini, kami mengapresiasi usaha yang telah Anda lakukan. Tetap
+                                                            semangat dan jangan ragu untuk mencoba lagi di kesempatan
+                                                            berikutnya.</h6>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
                             </div>
                         </div>
 
@@ -60,10 +101,16 @@
                                 <h6 class="fw-bold">Status Pendaftaran</h6>
                                 <hr class="mb-4">
 
-                                <p>{{ $siswa->status }}</p>
+                                @if ($siswa->status !== 'Lulus' && $siswa->status !== 'Tidak Lulus')
+                                    <p>{{ $siswa->status }}</p>
+                                @endif
+
                                 @if ($siswa->status === 'Sudah diverifikasi, menunggu ujian')
                                     <a href="{{ route('download.kartu', $siswa->id) }}" class="btn btn-primary">Download
                                         Kartu Ujian</a>
+                                @endif
+                                @if ($siswa->status === 'Lulus' || $siswa->status === 'Tidak Lulus')
+                                    <p>Telah menyelesaikan seleksi pendaftaran, silahkan melihat pengumuman!</p>
                                 @endif
                             </div>
                         </div>

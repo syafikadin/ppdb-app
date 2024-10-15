@@ -35,7 +35,11 @@
                         <hr>
                         <div class="mb-3">
                             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Tambah Nilai
+                                Edit Nilai
+                            </button>
+
+                            <button class="btn btn-outline-primary">
+                                Umumkan
                             </button>
                         </div>
                         {{-- <hr> --}}
@@ -45,10 +49,10 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No</th>
-                                    <th scope="col" class="align-middle text-center" style="width: 40%">Nama</th>
-                                    <th scope="col" class="align-middle text-center" style="width: 15%">Jenis Kelamin
+                                    <th scope="col" class="align-middle text-center" style="width: 30%">Nama</th>
+                                    <th scope="col" class="align-middle text-center" style="width: 30%">Asal Sekolah
                                     </th>
-                                    <th scope="col" class="text-center align-middle" style="width: 20%">Keterangan</th>
+                                    <th scope="col" class="text-center align-middle" style="width: 15%">Keterangan</th>
                                     <th scope="col" class="text-center align-middle" style="width: 20%">Status Kelulusan
                                     </th>
                                 </tr>
@@ -58,7 +62,7 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $siswa->nama_siswa }}</td>
-                                        <td class="text-center">{{ $siswa->jenis_kelamin }}</td>
+                                        <td class="">SD Negeri Lorem Ipsum</td>
                                         <td class="text-center">
                                             {{ $siswa->nilai ? 'Telah dinilai' : 'Belum dinilai' }}
                                         </td>
