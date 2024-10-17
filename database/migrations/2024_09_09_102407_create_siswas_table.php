@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('ktp')->nullable();
             $table->string('rapor')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('asal_sekolah')->nullable();
             $table->string('status')->default('Belum Mendaftar');
             $table->timestamps();
         });

@@ -73,6 +73,7 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
+            'asal_sekolah' => 'SD NU Kepanjen',
             'status' => 'Belum Mendaftar',
         ]);
 
@@ -102,6 +103,7 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
+            'asal_sekolah' => 'SD Jombang',
             'status' => 'Belum Mendaftar',
         ]);
 
@@ -131,6 +133,7 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
+            'asal_sekolah' => 'SD Tulungagung',
             'status' => 'Belum Mendaftar',
         ]);
 

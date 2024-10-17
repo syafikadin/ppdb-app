@@ -47,7 +47,7 @@
                                         <td scope="row" class="text-center align-middle">{{ $loop->iteration }}</td>
                                         <td class="align-middle">{{ $item->siswa->nama_siswa }}</td>
                                         <td class="align-middle">
-                                            SD Negeri Lorem Ipsum
+                                            {{ $item->siswa->asal_sekolah }}
                                         <td class="align-middle">
                                             {{ $item->siswa->status }}
                                         </td>

@@ -90,7 +90,7 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $siswa->nama_siswa }}</td>
-                                        <td class="">SD Negeri Lorem Ipsum</td>
+                                        <td class="">{{ $siswa->asal_sekolah }}</td>
                                         <td class="text-center">
                                             {{ $siswa->nilai ? 'Telah dinilai' : 'Belum dinilai' }}
                                         </td>

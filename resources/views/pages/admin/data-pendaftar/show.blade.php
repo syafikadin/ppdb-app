@@ -45,7 +45,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small">Asal Sekolah</label>
-                                    <input type="text" class="form-control" disabled value="SD Negeri Lorem Ipsum">
+                                    <input type="text" class="form-control" disabled
+                                        value="{{ $data_pendaftar->siswa->asal_sekolah }}">
                                 </div>
 
                             </div>

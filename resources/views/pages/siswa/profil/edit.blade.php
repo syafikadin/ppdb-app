@@ -70,6 +70,12 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <label for="asal_sekolah" class="form-label">Asal Sekolah</label>
+                                        <input type="text" class="form-control" id="asal_sekolah" name="asal_sekolah"
+                                            value="{{ old('asal_sekolah', $data_siswa->asal_sekolah) }}">
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <!-- Input untuk Tempat Lahir -->
