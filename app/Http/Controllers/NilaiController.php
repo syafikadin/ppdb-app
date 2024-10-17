@@ -97,6 +97,12 @@ class NilaiController extends Controller
                     'tulis_alquran' => $nilai['tulis']
                 ]
             );
+
+            $siswa = \App\Models\Siswa::find($siswaId);
+            if ($siswa) {
+                $siswa->status = 'Menunggu pengumuman';
+                $siswa->save();
+            }
         }
 
         return redirect()->back()->with('success', 'Nilai berhasil ditambahkan atau diperbarui.');

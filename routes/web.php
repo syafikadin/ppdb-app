@@ -32,7 +32,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/admin/data-pendaftar/{id}/show', [DataPendaftarController::class, 'show'])->name('data-pendaftar.show');
 
         Route::resource('/data-ujian', DataUjianController::class);
+        Route::post('/kelulusan/{gelombang}/umumkan', [DataUjianController::class, 'umumkan'])->name('kelulusan.umumkan');
         Route::post('/nilai/store-nilai', [NilaiController::class, 'storeNilai'])->name('nilai.store-nilai');
+
 
         // Verifikasi Data
         Route::post('/data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');

@@ -38,11 +38,39 @@
                                 Edit Nilai
                             </button>
 
-                            <button class="btn btn-outline-primary">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#confirmUmumkanModal">
                                 Umumkan
                             </button>
+
                         </div>
                         {{-- <hr> --}}
+
+                        <!-- Modal Konfirmasi -->
+                        <div class="modal fade" id="confirmUmumkanModal" tabindex="-1"
+                            aria-labelledby="confirmUmumkanModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmUmumkanModalLabel">Konfirmasi Pengumuman</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah Anda yakin ingin mengumumkan hasil ujian? Status kelulusan siswa akan
+                                        diperbarui sesuai dengan rata-rata nilai mereka.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <form action="{{ route('kelulusan.umumkan', $gelombang->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Umumkan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <table class="table table-bordered table-hover">

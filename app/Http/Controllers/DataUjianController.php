@@ -88,4 +88,30 @@ class DataUjianController extends Controller
     {
         //
     }
+
+    public function umumkan($gelombangId)
+    {
+        // Dapatkan data gelombang dan siswa terkait
+        $gelombang = Gelombang::with('siswa.nilai')->find($gelombangId);
+
+        if (!$gelombang) {
+            return back()->with('error', 'Gelombang tidak ditemukan');
+        }
+
+        // Perbarui status kelulusan siswa berdasarkan rata-rata nilai
+        foreach ($gelombang->siswa as $siswa) {
+            if ($siswa->nilai) {
+                $rataRataNilai = ($siswa->nilai->wawancara + $siswa->nilai->baca_alquran + $siswa->nilai->tulis_alquran) / 3;
+
+                if ($rataRataNilai >= 70) {
+                    $siswa->status = 'Lulus';
+                } else {
+                    $siswa->status = 'Tidak Lulus';
+                }
+                $siswa->save(); // Simpan perubahan status kelulusan
+            }
+        }
+
+        return back()->with('success', 'Pengumuman berhasil dilakukan.');
+    }
 }
