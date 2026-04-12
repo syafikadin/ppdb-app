@@ -1,18 +1,18 @@
-<footer class="luxury-footer mt-5">
+<footer class="site-footer mt-5">
     <div class="container py-5">
         <div class="footer-box">
-            <div class="row align-items-center g-4">
+            <div class="row g-4 align-items-center">
                 <div class="col-lg-5">
                     <div class="footer-brand">
-                        <div class="footer-logo-wrap">
-                            <div class="footer-logo">
-                                <i class="bi bi-mortarboard-fill"></i>
-                            </div>
+                        <div class="footer-logo">
+                            <i class="bi bi-mortarboard-fill"></i>
                         </div>
+
                         <div>
                             <h3 class="footer-title mb-2">SMPTM Lubabul Fattah</h3>
                             <p class="footer-subtitle mb-0">
-                                Pusat informasi dan layanan komunikasi sekolah
+                                Pusat informasi dan layanan komunikasi sekolah untuk mendukung proses PPDB yang mudah,
+                                rapi, dan profesional.
                             </p>
                         </div>
                     </div>
@@ -21,13 +21,14 @@
                 <div class="col-lg-7">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <div class="contact-card">
-                                <div class="contact-icon">
+                            <div class="footer-contact-card">
+                                <div class="footer-contact-icon">
                                     <i class="bi bi-person-badge-fill"></i>
                                 </div>
-                                <div class="contact-content">
-                                    <h5 class="contact-name">Ust. Bagas</h5>
-                                    <a href="https://wa.me/6285855013326" target="_blank" class="contact-number">
+                                <div>
+                                    <div class="footer-contact-label">Narahubung</div>
+                                    <h5 class="footer-contact-name mb-1">Ust. Bagas</h5>
+                                    <a href="https://wa.me/6285855013326" target="_blank" class="footer-contact-link">
                                         0858-5501-3326
                                     </a>
                                 </div>
@@ -35,13 +36,14 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="contact-card">
-                                <div class="contact-icon">
+                            <div class="footer-contact-card">
+                                <div class="footer-contact-icon">
                                     <i class="bi bi-person-badge-fill"></i>
                                 </div>
-                                <div class="contact-content">
-                                    <h5 class="contact-name">Ustzh. Zizi</h5>
-                                    <a href="https://wa.me/6285707934476" target="_blank" class="contact-number">
+                                <div>
+                                    <div class="footer-contact-label">Narahubung</div>
+                                    <h5 class="footer-contact-name mb-1">Ustzh. Zizi</h5>
+                                    <a href="https://wa.me/6285707934476" target="_blank" class="footer-contact-link">
                                         0857-0793-4476
                                     </a>
                                 </div>
@@ -51,13 +53,12 @@
 
                     <div class="footer-divider my-4"></div>
 
-                    <div
-                        class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-                        <p class="mb-0 footer-copy">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                        <p class="footer-copy mb-0">
                             © {{ date('Y') }} SMPTM Lubabul Fattah. Seluruh hak cipta dilindungi.
                         </p>
-                        <p class="mb-0 footer-made">
-                            {{-- Dibuat untuk tampilan yang elegan dan profesional --}}
+                        <p class="footer-copy mb-0">
+                            PPDB Online • Modern • Elegan • Terintegrasi
                         </p>
                     </div>
                 </div>
@@ -67,34 +68,34 @@
 </footer>
 
 <style>
-    .luxury-footer {
-        background:
-            radial-gradient(circle at top left, rgba(255, 215, 0, 0.10), transparent 30%),
-            radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 25%),
-            linear-gradient(135deg, #0f172a, #111827, #1e293b);
-        color: #fff;
+    .site-footer {
         position: relative;
         overflow: hidden;
+        background:
+            radial-gradient(circle at top left, rgba(153, 246, 228, 0.18), transparent 28%),
+            radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.16), transparent 30%),
+            linear-gradient(135deg, #0f172a 0%, #0f766e 45%, #14b8a6 100%);
+        color: #fff;
     }
 
-    .luxury-footer::before {
-        content: "";
+    .site-footer::before {
+        content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
         pointer-events: none;
     }
 
     .footer-box {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 215, 0, 0.18);
-        border-radius: 24px;
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.10);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 28px;
         padding: 32px;
-        box-shadow:
-            0 10px 40px rgba(0, 0, 0, 0.35),
-            inset 0 1px 0 rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
     }
 
     .footer-brand {
@@ -103,113 +104,124 @@
         gap: 18px;
     }
 
-    .footer-logo-wrap {
-        position: relative;
-    }
-
     .footer-logo {
-        width: 72px;
-        height: 72px;
-        border-radius: 20px;
-        background: linear-gradient(145deg, #facc15, #f59e0b);
-        color: #111827;
+        width: 74px;
+        height: 74px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 30px;
-        box-shadow:
-            0 8px 24px rgba(250, 204, 21, 0.35),
-            inset 0 2px 8px rgba(255, 255, 255, 0.35);
+        color: #99f6e4;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+        flex-shrink: 0;
     }
 
     .footer-title {
-        font-size: 1.6rem;
+        font-size: 1.55rem;
         font-weight: 800;
-        letter-spacing: 0.3px;
         color: #fff;
+        letter-spacing: 0.2px;
     }
 
     .footer-subtitle {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.96rem;
+        line-height: 1.75;
     }
 
-    .contact-card {
+    .footer-contact-card {
         display: flex;
         align-items: center;
         gap: 14px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
-        padding: 18px 20px;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         height: 100%;
+        background: rgba(255, 255, 255, 0.09);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 18px 20px;
+        transition: all 0.25s ease;
     }
 
-    .contact-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(250, 204, 21, 0.35);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    .footer-contact-card:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.13);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
     }
 
-    .contact-icon {
+    .footer-contact-icon {
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: linear-gradient(145deg, rgba(250, 204, 21, 0.22), rgba(245, 158, 11, 0.18));
-        color: #facc15;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         display: flex;
         align-items: center;
         justify-content: center;
+        color: #99f6e4;
         font-size: 22px;
         flex-shrink: 0;
-        border: 1px solid rgba(250, 204, 21, 0.22);
     }
 
-    .contact-name {
-        font-size: 1.05rem;
+    .footer-contact-label {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.70);
+        margin-bottom: 2px;
+    }
+
+    .footer-contact-name {
+        font-size: 1.04rem;
         font-weight: 700;
-        margin-bottom: 4px;
         color: #fff;
     }
 
-    .contact-number {
-        color: #fde68a;
+    .footer-contact-link {
+        color: #ccfbf1;
         text-decoration: none;
-        font-weight: 500;
-        transition: 0.3s ease;
+        font-weight: 600;
+        transition: all 0.25s ease;
     }
 
-    .contact-number:hover {
-        color: #fff3b0;
+    .footer-contact-link:hover {
+        color: #ffffff;
         text-decoration: underline;
     }
 
     .footer-divider {
         height: 1px;
         width: 100%;
-        background: linear-gradient(to right, transparent, rgba(250, 204, 21, 0.5), transparent);
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.28), transparent);
     }
 
-    .footer-copy,
-    .footer-made {
-        color: rgba(255, 255, 255, 0.72);
+    .footer-copy {
+        color: rgba(255, 255, 255, 0.78);
         font-size: 0.92rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 991.98px) {
         .footer-box {
             padding: 24px;
         }
 
         .footer-brand {
-            flex-direction: column;
             align-items: flex-start;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .footer-brand {
+            flex-direction: column;
         }
 
         .footer-title {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo {
+            width: 66px;
+            height: 66px;
+            font-size: 26px;
         }
     }
 </style>
