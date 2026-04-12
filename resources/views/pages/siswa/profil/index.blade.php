@@ -64,7 +64,7 @@
                                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                                     <div>
                                         <h4 class="fw-bold mb-1">Informasi Pribadi</h4>
-                                        <p class="text-muted small mb-0">Data identitas siswa yang telah diinput</p>
+                                        <p class="text-muted small mb-0">Data identitas santri yang telah diinput</p>
                                     </div>
 
                                     @if ($data_siswa->status === 'Belum Mendaftar')
