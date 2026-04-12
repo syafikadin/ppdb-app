@@ -238,7 +238,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('assets/images/hero.png') }}" alt="Hero SMP Tahfidz Modern Lubabul Fattah">
+                <img src="{{ asset('assets/images/hero-1.jpeg') }}" alt="Hero SMP Tahfidz Modern Lubabul Fattah">
                 <div class="carousel-overlay"></div>
 
                 <div class="carousel-caption">
@@ -281,7 +281,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('assets/images/hero.png') }}" alt="Lingkungan Belajar Islami">
+                <img src="{{ asset('assets/images/hero-1.jpeg') }}" alt="Lingkungan Belajar Islami">
                 <div class="carousel-overlay"></div>
 
                 <div class="carousel-caption">
@@ -311,7 +311,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('assets/images/hero.png') }}" alt="PPDB SMP Tahfidz Modern Lubabul Fattah">
+                <img src="{{ asset('assets/images/hero-1.jpeg') }}" alt="PPDB SMP Tahfidz Modern Lubabul Fattah">
                 <div class="carousel-overlay"></div>
 
                 <div class="carousel-caption">
