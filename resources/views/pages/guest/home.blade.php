@@ -3,6 +3,7 @@
 @section('content')
     {{-- Navbar --}}
     @include('partials.navbar')
+
     {{-- Carousel --}}
     @include('partials.carousel')
 
@@ -11,4 +12,6 @@
             Berisi tentang pengumuman
         </h3>
     </div>
+
+    <x-footer />
 @endsection

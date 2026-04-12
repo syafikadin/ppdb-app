@@ -8,6 +8,7 @@ use App\Models\Gelombang;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,39 +19,47 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         // Role
         // 1 = Admin
         // 2 = Siswa
 
-        User::create([
+        $admin = User::create([
             'username' => 'admin',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => Hash::make('password'),
             'role' => '1'
         ]);
 
-        User::create([
+        $userUcok = User::create([
             'username' => 'ucok123',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => Hash::make('password'),
             'role' => '2'
         ]);
 
-        User::create([
+        $userVindo = User::create([
             'username' => 'vindo123',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => Hash::make('password'),
             'role' => '2'
         ]);
 
-        User::create([
+        $userBaba = User::create([
             'username' => 'baba123',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => Hash::make('password'),
             'role' => '2'
+        ]);
+
+        $gelombang1 = Gelombang::create([
+            'nama_gelombang' => 'Gelombang 1',
+            'tanggal_ujian' => '2024-10-20',
+            'status' => 'Open'
         ]);
 
         Siswa::create([
+            'user_id' => $userUcok->id,
+            'gelombang_id' => $gelombang1->id,
             'nama_siswa' => 'Ucok',
-            'user_id' => '2',
+            'nisn' => '1234567890',
             'jenis_kelamin' => 'L',
+            'asal_sekolah' => 'SD NU Kepanjen',
             'tempat_lahir' => 'Nganjuk',
             'tanggal_lahir' => '2024-09-20',
             'alamat' => 'Nganjuk',
@@ -73,18 +82,20 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
-            'asal_sekolah' => 'SD NU Kepanjen',
             'status' => 'Belum Mendaftar',
         ]);
 
         Siswa::create([
+            'user_id' => $userVindo->id,
+            'gelombang_id' => $gelombang1->id,
             'nama_siswa' => 'Alvindo',
-            'user_id' => '3',
+            'nisn' => '1234567891',
             'jenis_kelamin' => 'L',
+            'asal_sekolah' => 'SD Jombang',
             'tempat_lahir' => 'Malang',
             'tanggal_lahir' => '2024-09-20',
             'alamat' => 'Malang',
-            'email' => 'ucok@gmail.com',
+            'email' => 'alvindo@gmail.com',
             'foto' => 'uploads/img/1726132730.png',
             'nomor_wa' => '089698289699',
             'sosmed' => 'ucok_baba',
@@ -103,14 +114,16 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
-            'asal_sekolah' => 'SD Jombang',
             'status' => 'Belum Mendaftar',
         ]);
 
         Siswa::create([
+            'user_id' => $userBaba->id,
+            'gelombang_id' => $gelombang1->id,
             'nama_siswa' => 'Baba',
-            'user_id' => '4',
+            'nisn' => '1234567892',
             'jenis_kelamin' => 'L',
+            'asal_sekolah' => 'SD Tulungagung',
             'tempat_lahir' => 'Malang',
             'tanggal_lahir' => '2024-09-20',
             'alamat' => 'Malang',
@@ -133,14 +146,7 @@ class DatabaseSeeder extends Seeder
             'ktp' => 'uploads/files/1726125004_KTP.png',
             'rapor' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
-            'asal_sekolah' => 'SD Tulungagung',
             'status' => 'Belum Mendaftar',
-        ]);
-
-        Gelombang::create([
-            'nama_gelombang' => 'Gelombang 1',
-            'tanggal_ujian' => '2024-10-20',
-            'status' => 'Open'
         ]);
     }
 }

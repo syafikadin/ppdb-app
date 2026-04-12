@@ -48,7 +48,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <h6 class="fw-bold">Pengumuman</h6>
+                                <h6 class="fw-bold">Rangkuman Data Siswa, Wali, Berkas</h6>
                                 <hr class="mb-4">
                                 @if ($siswa->status === 'Lulus' || $siswa->status === 'Tidak Lulus')
                                     <button class="btn btn-primary" data-bs-toggle="modal"

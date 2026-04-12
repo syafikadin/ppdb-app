@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_siswa');
+            $table->string('nisn')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('gelombang_id')->nullable()->onDelete('cascade');
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
@@ -46,7 +47,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

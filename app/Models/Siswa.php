@@ -3,21 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Authenticatable
+class Siswa extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    protected $guarded = [
-        'id',
-    ];
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
+        'gelombang_id',
         'nama_siswa',
+        'nisn',
         'jenis_kelamin',
         'asal_sekolah',
         'tempat_lahir',
@@ -41,11 +37,12 @@ class Siswa extends Authenticatable
         'kk',
         'ktp',
         'rapor',
+        'catatan',
+        'status',
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $casts = [
+        'tanggal_lahir' => 'date',
     ];
 
     public function user()
