@@ -70,7 +70,7 @@
                             <div class="card shadow card-pendaftaran card-data-profil">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">
-                                        Data Profil
+                                        Identitas Santri
                                     </h3>
 
                                     <div class="d-flex justify-content-between align-items-center">
@@ -97,7 +97,7 @@
                             <div class="card shadow card-pendaftaran card-data-orang-tua">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h3 class="fw-bold">
-                                        Data Orang Tua
+                                        Identitas Wali
                                     </h3>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="mb-0">Edit</p>
