@@ -28,12 +28,12 @@
                                         <a href="/siswa/profil" class=" btn-link">Lengkapi Data Profil</a>
                                     </li>
                                     <li>
-                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-orangtua"
+                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-data-orangtua"
                                             class=" btn-link">Lengkapi Data Orang
                                             Tua</a>
                                     </li>
                                     <li>
-                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-berkas"
+                                        <a href="/siswa/pendaftaran/{{ $siswa->id }}/edit-data-berkas"
                                             class=" btn-link">Lengkapi
                                             Berkas-berkas</a>
                                     </li>
