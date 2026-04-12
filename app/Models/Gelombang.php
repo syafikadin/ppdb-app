@@ -20,4 +20,9 @@ class Gelombang extends Model
     {
         return $this->hasMany(Siswa::class, 'gelombang_id', 'id');
     }
+
+    public function timelines()
+    {
+        return $this->hasMany(TimelinePpdb::class, 'gelombang_id')->orderBy('urutan');
+    }
 }

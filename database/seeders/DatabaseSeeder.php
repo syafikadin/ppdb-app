@@ -2,56 +2,95 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Gelombang;
 use App\Models\Siswa;
+use App\Models\TimelinePpdb;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // Role
-        // 1 = Admin
-        // 2 = Siswa
-
         $admin = User::create([
             'username' => 'admin',
             'password' => Hash::make('password'),
-            'role' => '1'
+            'role' => '1',
         ]);
 
         $userUcok = User::create([
             'username' => 'ucok123',
             'password' => Hash::make('password'),
-            'role' => '2'
+            'role' => '2',
         ]);
 
         $userVindo = User::create([
             'username' => 'vindo123',
             'password' => Hash::make('password'),
-            'role' => '2'
+            'role' => '2',
         ]);
 
         $userBaba = User::create([
             'username' => 'baba123',
             'password' => Hash::make('password'),
-            'role' => '2'
+            'role' => '2',
         ]);
 
         $gelombang1 = Gelombang::create([
             'nama_gelombang' => 'Gelombang 1',
             'tanggal_ujian' => '2024-10-20',
-            'status' => 'Open'
+            'status' => 'Open',
         ]);
+
+        $timelineGelombang1 = [
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 1,
+                'nama_tahap' => 'Pendaftaran Online PPDB',
+                'tanggal_mulai' => '2024-02-12',
+                'tanggal_selesai' => '2024-02-17',
+            ],
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 2,
+                'nama_tahap' => 'Verifikasi Berkas',
+                'tanggal_mulai' => '2024-02-13',
+                'tanggal_selesai' => '2024-02-19',
+            ],
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 3,
+                'nama_tahap' => 'Pengumuman Hasil Verifikasi Berkas',
+                'tanggal_mulai' => '2024-02-20',
+                'tanggal_selesai' => null,
+            ],
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 4,
+                'nama_tahap' => 'Seleksi Gelombang 1',
+                'tanggal_mulai' => '2024-02-24',
+                'tanggal_selesai' => '2024-02-25',
+            ],
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 5,
+                'nama_tahap' => 'Pengumuman Gelombang 1',
+                'tanggal_mulai' => '2024-03-01',
+                'tanggal_selesai' => null,
+            ],
+            [
+                'gelombang_id' => $gelombang1->id,
+                'urutan' => 6,
+                'nama_tahap' => 'Daftar Ulang',
+                'tanggal_mulai' => '2024-03-04',
+                'tanggal_selesai' => '2024-03-10',
+            ],
+        ];
+
+        foreach ($timelineGelombang1 as $timeline) {
+            TimelinePpdb::create($timeline);
+        }
 
         Siswa::create([
             'user_id' => $userUcok->id,

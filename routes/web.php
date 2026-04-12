@@ -24,28 +24,21 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
 // Route Group Admin
-Route::prefix('admin')->group(function () {
-    Route::group(['middleware' => 'admin'], function () {
-        Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
-        Route::resource('/data-pendaftar', DataPendaftarController::class);
-        Route::get('/admin/data-pendaftar/{id}/show', [DataPendaftarController::class, 'show'])->name('data-pendaftar.show');
+    Route::resource('data-pendaftar', DataPendaftarController::class);
+    Route::post('data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');
+    Route::post('data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');
 
-        Route::resource('/data-ujian', DataUjianController::class);
-        Route::post('/kelulusan/{gelombang}/umumkan', [DataUjianController::class, 'umumkan'])->name('kelulusan.umumkan');
-        Route::post('/nilai/store-nilai', [NilaiController::class, 'storeNilai'])->name('nilai.store-nilai');
+    Route::resource('data-ujian', DataUjianController::class);
+    Route::post('kelulusan/{gelombang}/umumkan', [DataUjianController::class, 'umumkan'])->name('kelulusan.umumkan');
+    Route::post('nilai/store-nilai', [NilaiController::class, 'storeNilai'])->name('nilai.store-nilai');
 
+    Route::resource('gelombang', GelombangController::class);
+    Route::put('gelombang/{id}/close', [GelombangController::class, 'close'])->name('gelombang.close');
 
-        // Verifikasi Data
-        Route::post('/data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');
-        Route::post('/data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');
-
-        // Gelombang
-        Route::resource('gelombang', GelombangController::class);
-        Route::put('/gelombang/{id}', [GelombangController::class, 'update'])->name('gelombang.update');
-        Route::get('/gelombang/{id}', [GelombangController::class, 'show'])->name('gelombang.show');
-        Route::put('/gelombang/{id}/close', [GelombangController::class, 'close'])->name('gelombang.close');
-    });
+    Route::put('timeline/{id}', [DashboardAdminController::class, 'update'])->name('admin.timeline.update');
 });
 // End Route Group Admin
 

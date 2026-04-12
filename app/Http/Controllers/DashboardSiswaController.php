@@ -2,86 +2,123 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Mpdf\Mpdf;
 
 class DashboardSiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = 'Dashboard';
-        $siswa = Siswa::where('user_id', auth()->user()->id)->first();
-        return view('pages.siswa.index', compact('title', 'siswa'));
+
+        $siswa = Siswa::with('gelombang')
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        $gelombangAktif = null;
+
+        if ($siswa->gelombang_id) {
+            $gelombangAktif = Gelombang::with([
+                'timelines' => function ($query) {
+                    $query->orderBy('urutan');
+                }
+            ])->find($siswa->gelombang_id);
+        }
+
+        if (!$gelombangAktif) {
+            $gelombangAktif = Gelombang::with([
+                'timelines' => function ($query) {
+                    $query->orderBy('urutan');
+                }
+            ])->where('status', 'Open')->latest()->first();
+        }
+
+        if (!$gelombangAktif) {
+            $gelombangAktif = Gelombang::with([
+                'timelines' => function ($query) {
+                    $query->orderBy('urutan');
+                }
+            ])->latest()->first();
+        }
+
+        $timelines = $gelombangAktif ? $gelombangAktif->timelines : collect();
+
+        $profilLengkap = collect([
+            $siswa->nama_siswa,
+            $siswa->nisn,
+            $siswa->jenis_kelamin,
+            $siswa->asal_sekolah,
+            $siswa->tempat_lahir,
+            $siswa->tanggal_lahir,
+            $siswa->alamat,
+            $siswa->email,
+            $siswa->nomor_wa,
+            $siswa->ukuran_seragam,
+        ])->every(fn($item) => filled($item));
+
+        $orangTuaLengkap = collect([
+            $siswa->nama_ayah,
+            $siswa->pekerjaan_ayah,
+            $siswa->penghasilan_ayah,
+            $siswa->nama_ibu,
+            $siswa->pekerjaan_ibu,
+            $siswa->penghasilan_ibu,
+            $siswa->nomor_wali,
+            $siswa->alamat_wali,
+        ])->every(fn($item) => filled($item));
+
+        $berkasLengkap = collect([
+            $siswa->akta,
+            $siswa->kk,
+            $siswa->ktp,
+            $siswa->rapor,
+        ])->every(fn($item) => filled($item));
+
+        $kelengkapan = [
+            'profil' => $profilLengkap,
+            'orang_tua' => $orangTuaLengkap,
+            'berkas' => $berkasLengkap,
+        ];
+
+        $jumlahLengkap = collect($kelengkapan)->filter()->count();
+
+        return view('pages.siswa.index', compact(
+            'title',
+            'siswa',
+            'gelombangAktif',
+            'timelines',
+            'kelengkapan',
+            'jumlahLengkap'
+        ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
@@ -89,27 +126,18 @@ class DashboardSiswaController extends Controller
 
     public function downloadKartuUjian($id)
     {
-        // Ambil data siswa berdasarkan ID
         $siswa = Siswa::find($id);
 
-        // Validasi apakah siswa ditemukan
         if (!$siswa) {
             return redirect()->back()->with('error', 'Siswa tidak ditemukan');
         }
 
-        // Membuat instance mPDF
         $mpdf = new Mpdf();
-
-        // HTML untuk konten PDF
         $html = view('pages.siswa.kartu-ujian', compact('siswa'))->render();
-
-        // Set konten HTML ke mPDF
         $mpdf->WriteHTML($html);
 
-        // Nama file PDF
         $filename = 'kartu-ujian-' . $siswa->nama_siswa . '.pdf';
 
-        // Untuk langsung men-download file
-        return $mpdf->Output($filename, 'D'); // 'D' for download, 'I' for inline view (print)
+        return $mpdf->Output($filename, 'D');
     }
 }
