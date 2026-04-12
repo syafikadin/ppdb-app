@@ -19,6 +19,7 @@ class Siswa extends Authenticatable
         'user_id',
         'nama_siswa',
         'jenis_kelamin',
+        'asal_sekolah',
         'tempat_lahir',
         'tanggal_lahir',
         'alamat',

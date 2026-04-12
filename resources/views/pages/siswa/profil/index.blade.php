@@ -49,12 +49,12 @@
                                     {{ $data_siswa->nomor_wa }}
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="form-label small fw-bold">Sosial Media</label>
                                 <div class="card-text">
                                     {{ $data_siswa->sosmed }}
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                         </div>
@@ -82,8 +82,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label small">Tempat Lahir</label>
-                                <input type="text" class="form-control" disabled
-                                    value="{{ $data_siswa->tempat_lahir }}">
+                                <input type="text" class="form-control" disabled value="{{ $data_siswa->tempat_lahir }}">
                             </div>
 
                             <div class="mb-3">
@@ -99,13 +98,14 @@
                             <div class="mb-3">
                                 <label for="ukuran_seragam" class="form-label small">Ukuran seragam</label>
                                 <select name="ukuran_seragam" class="form-select" aria-label="Ukuran Seragam" disabled>
-                                    <option value="" selected disabled>-- Pilih Ukuran Seragam --</option>
-                                    <option value="S" {{ $data_siswa->ukuran_seragam == 'S' ? 'selected' : '' }}>S
-                                    </option>
-                                    <option value="M" {{ $data_siswa->ukuran_seragam == 'M' ? 'selected' : '' }}>M
-                                    </option>
-                                    <option value="L" {{ $data_siswa->ukuran_seragam == 'L' ? 'selected' : '' }}>L
-                                    </option>
+                                    <option value="" disabled {{ $data_siswa->ukuran_seragam ? '' : 'selected' }}>--
+                                        Pilih Ukuran Seragam --</option>
+                                    @foreach (['S', 'M', 'L', 'XL', 'XXL'] as $ukuran)
+                                        <option value="{{ $ukuran }}"
+                                            {{ $data_siswa->ukuran_seragam == $ukuran ? 'selected' : '' }}>
+                                            {{ $ukuran }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 

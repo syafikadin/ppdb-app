@@ -115,22 +115,34 @@
                                     value="{{ old('nomor_wa', $data_siswa->nomor_wa) }}">
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="sosmed" class="form-label">Sosial Media</label>
                                 <input type="text" class="form-control" id="sosmed" name="sosmed"
                                     value="{{ old('sosmed', $data_siswa->sosmed) }}">
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <label for="ukuran_seragam" class="form-label small">Ukuran seragam</label>
                                 <select name="ukuran_seragam" class="form-select" aria-label="Ukuran Seragam" required>
-                                    <option value="" selected disabled>-- Pilih Ukuran Seragam --</option>
-                                    <option value="S" {{ $data_siswa->ukuran_seragam == 'S' ? 'selected' : '' }}>S
+                                    <option value="" disabled
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) ? '' : 'selected' }}>
+                                        -- Pilih Ukuran Seragam --
                                     </option>
-                                    <option value="M" {{ $data_siswa->ukuran_seragam == 'M' ? 'selected' : '' }}>M
+                                    <option value="S"
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) == 'S' ? 'selected' : '' }}>S
                                     </option>
-                                    <option value="L" {{ $data_siswa->ukuran_seragam == 'L' ? 'selected' : '' }}>L
+                                    <option value="M"
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) == 'M' ? 'selected' : '' }}>M
                                     </option>
+                                    <option value="L"
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) == 'L' ? 'selected' : '' }}>L
+                                    </option>
+                                    <option value="XL"
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) == 'XL' ? 'selected' : '' }}>
+                                        XL</option>
+                                    <option value="XXL"
+                                        {{ old('ukuran_seragam', $data_siswa->ukuran_seragam) == 'XXL' ? 'selected' : '' }}>
+                                        XXL</option>
                                 </select>
                             </div>
 
