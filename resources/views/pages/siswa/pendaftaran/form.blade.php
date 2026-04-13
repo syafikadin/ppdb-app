@@ -220,11 +220,24 @@
                             </div>
 
                             <div class="mb-2">
-                                <label for="rapor" class="form-label">SCAN RAPORT SEMESTER AKHIR</label>
+                                <label for="skl_ijazah" class="form-label">SCAN SURAT KETERANGAN LULUS / IJAZAH</label>
                                 <img class="img-preview img-fluid col-sm-5 d-block">
-                                <input class="form-control @error('rapor') is-invalid @enderror" type="file"
-                                    id="rapor" name="rapor" onchange="previewImage(this, '.img-preview')">
-                                @error('rapor')
+                                <input class="form-control @error('skl_ijazah') is-invalid @enderror" type="file"
+                                    id="skl_ijazah" name="skl_ijazah" onchange="previewImage(this, '.img-preview')">
+                                @error('skl_ijazah')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label for="surat_tidak_mampu" class="form-label">SCAN Surat Keterangan Tidak Mampu dari
+                                    desa/KIP/KIS/KKS</label>
+                                <img class="img-preview img-fluid col-sm-5 d-block">
+                                <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror"
+                                    type="file" id="surat_tidak_mampu" name="surat_tidak_mampu"
+                                    onchange="previewImage(this, '.img-preview')">
+                                @error('surat_tidak_mampu')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

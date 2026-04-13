@@ -79,16 +79,31 @@
                             </div>
 
                             <div class="mb-2">
-                                <label for="rapor" class="form-label small">Scan rapor semester akhir</label>
-                                <input class="form-control @error('rapor') is-invalid @enderror" type="file"
-                                    id="rapor" name="rapor" onchange="previewImage(this, '#rapor-preview')">
-                                @error('rapor')
+                                <label for="skl_ijazah" class="form-label small">Surat Keterangan Lulus/ ijazah yang sudah
+                                    legalisir</label>
+                                <input class="form-control @error('skl_ijazah') is-invalid @enderror" type="file"
+                                    id="skl_ijazah" name="skl_ijazah" onchange="previewImage(this, '#skl_ijazah-preview')">
+                                @error('skl_ijazah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="rapor-preview"
-                                    src="{{ $data_siswa->rapor ? asset($data_siswa->rapor) : '' }}">
+                                <img class="img-preview img-fluid col-sm-5 d-block" id="skl_ijazah-preview"
+                                    src="{{ $data_siswa->skl_ijazah ? asset($data_siswa->skl_ijazah) : '' }}">
+                            </div>
+                            <div class="mb-2">
+                                <label for="surat_tidak_mampu" class="form-label small">Surat Keterangan Tidak Mampu dari
+                                    desa/KIP/KIS/KKS</label>
+                                <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror" type="file"
+                                    id="surat_tidak_mampu" name="surat_tidak_mampu"
+                                    onchange="previewImage(this, '#surat_tidak_mampu-preview')">
+                                @error('surat_tidak_mampu')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                <img class="img-preview img-fluid col-sm-5 d-block" id="surat_tidak_mampu-preview"
+                                    src="{{ $data_siswa->surat_tidak_mampu ? asset($data_siswa->surat_tidak_mampu) : '' }}">
                             </div>
                         </div>
 

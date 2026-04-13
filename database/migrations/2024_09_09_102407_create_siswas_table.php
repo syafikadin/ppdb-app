@@ -40,7 +40,8 @@ return new class extends Migration
             $table->string('akta')->nullable();
             $table->string('kk')->nullable();
             $table->string('ktp')->nullable();
-            $table->string('rapor')->nullable();
+            $table->string('skl_ijazah')->nullable();
+            $table->string('surat_tidak_mampu')->nullable();
             $table->string('catatan')->nullable();
             $table->string('asal_sekolah')->nullable();
             $table->string('status')->default('Belum Mendaftar');

@@ -119,7 +119,8 @@ class DatabaseSeeder extends Seeder
             'akta' => 'uploads/files/1726125004_Akta Kelahiran.jpg',
             'kk' => 'uploads/files/1726125004_KK.jpeg',
             'ktp' => 'uploads/files/1726125004_KTP.png',
-            'rapor' => 'uploads/files/1726125004_Rport.jpeg',
+            'skl_ijazah' => 'uploads/files/1726125004_Rport.jpeg',
+            'surat_tidak_mampu' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
             'status' => 'Belum Mendaftar',
         ]);
@@ -151,7 +152,8 @@ class DatabaseSeeder extends Seeder
             'akta' => 'uploads/files/1726125004_Akta Kelahiran.jpg',
             'kk' => 'uploads/files/1726125004_KK.jpeg',
             'ktp' => 'uploads/files/1726125004_KTP.png',
-            'rapor' => 'uploads/files/1726125004_Rport.jpeg',
+            'skl_ijazah' => 'uploads/files/1726125004_Rport.jpeg',
+            'surat_tidak_mampu' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
             'status' => 'Belum Mendaftar',
         ]);
@@ -183,7 +185,8 @@ class DatabaseSeeder extends Seeder
             'akta' => 'uploads/files/1726125004_Akta Kelahiran.jpg',
             'kk' => 'uploads/files/1726125004_KK.jpeg',
             'ktp' => 'uploads/files/1726125004_KTP.png',
-            'rapor' => 'uploads/files/1726125004_Rport.jpeg',
+            'skl_ijazah' => 'uploads/files/1726125004_Rport.jpeg',
+            'surat_tidak_mampu' => 'uploads/files/1726125004_Rport.jpeg',
             'catatan' => '',
             'status' => 'Belum Mendaftar',
         ]);

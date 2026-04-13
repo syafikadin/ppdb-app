@@ -73,7 +73,8 @@ class DashboardSiswaController extends Controller
             $siswa->akta,
             $siswa->kk,
             $siswa->ktp,
-            $siswa->rapor,
+            $siswa->skl_ijazah,
+            $siswa->surat_tidak_mampu,
         ])->every(fn($item) => filled($item));
 
         $kelengkapan = [

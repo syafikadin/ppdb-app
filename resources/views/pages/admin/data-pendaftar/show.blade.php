@@ -168,9 +168,16 @@
                                 style="max-width: 100%;    object-fit: cover;">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Rapor Semester Akhir</label>
+                            <label class="form-label">Surat Keterangan Lulus / Ijazah</label>
                             <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
-                                src="{{ asset($data_pendaftar->siswa->rapor) }}" alt="Rapor Semester Akhir"
+                                src="{{ asset($data_pendaftar->siswa->skl_ijazah) }}" alt="Surat Keterangan Lulus"
+                                style="max-width: 100%;    object-fit: cover;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Surat Keterangan Tidak Mampu dari desa/KIP/KIS/KKS</label>
+                            <img id="img-preview" class="img-fluid d-block mb-3 mx-auto"
+                                src="{{ asset($data_pendaftar->siswa->surat_tidak_mampu) }}"
+                                alt="Surat Keterangan Tidak Mampu dari desa/KIP/KIS/KKS"
                                 style="max-width: 100%;    object-fit: cover;">
                         </div>
                     </div>

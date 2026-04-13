@@ -36,7 +36,8 @@ class Siswa extends Model
         'akta',
         'kk',
         'ktp',
-        'rapor',
+        'skl_ijazah',
+        'surat_tidak_mampu',
         'catatan',
         'status',
     ];

@@ -383,7 +383,7 @@
                                 <div class="check-item">
                                     <div>
                                         <div class="check-title">Data Berkas</div>
-                                        <div class="check-subtitle">Akta, KK, KTP, dan rapor</div>
+                                        <div class="check-subtitle">Akta, KK, KTP, dan Surat Keterangan Lulus / Ijazah</div>
                                     </div>
                                     @if ($kelengkapan['berkas'])
                                         <span class="badge bg-success rounded-pill-custom">Lengkap</span>

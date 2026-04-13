@@ -38,7 +38,8 @@ class PendaftaranController extends Controller
             !empty($data_siswa->akta) &&
             !empty($data_siswa->kk) &&
             !empty($data_siswa->ktp) &&
-            !empty($data_siswa->rapor);
+            !empty($data_siswa->skl_ijazah) &&
+            !empty($data_siswa->surat_tidak_mampu);
 
         $canSubmit = $isProfilComplete && $isOrangtuaComplete && $isBerkasComplete;
 
@@ -130,7 +131,8 @@ class PendaftaranController extends Controller
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-            'rapor' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'skl_ijazah' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'surat_tidak_mampu' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
         // Temukan siswa yang ada
@@ -160,14 +162,15 @@ class PendaftaranController extends Controller
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-            'rapor' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'skl_ijazah' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'surat_tidak_mampu' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
         // Temukan siswa yang ada
         $siswa = Siswa::findOrFail($id);
 
         // Proses unggahan file jika ada
-        $files = ['piagam', 'akta', 'kk', 'ktp', 'rapor'];
+        $files = ['piagam', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
         foreach ($files as $file) {
             if ($request->hasFile($file)) {
                 // Hapus file lama jika ada
