@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gelombang;
+use App\Models\Siswa;
 use App\Models\TimelinePpdb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,27 @@ class DashboardAdminController extends Controller
 
         $timelines = $gelombangAktif ? $gelombangAktif->timelines : collect();
 
-        return view('pages.admin.index', compact('title', 'user', 'gelombangAktif', 'timelines'));
+        $jumlahPendaftar = Siswa::where('status', '!=', 'Belum Mendaftar')->count();
+
+        $totalSiswaPerGelombang = $gelombangAktif
+            ? Siswa::where('gelombang_id', $gelombangAktif->id)->count()
+            : 0;
+
+        $totalSudahDiverifikasi = Siswa::whereIn('status', [
+            'Sudah diverifikasi, menunggu ujian',
+            'Lulus',
+            'Tidak Lulus',
+        ])->count();
+
+        return view('pages.admin.index', compact(
+            'title',
+            'user',
+            'gelombangAktif',
+            'timelines',
+            'jumlahPendaftar',
+            'totalSiswaPerGelombang',
+            'totalSudahDiverifikasi'
+        ));
     }
 
     public function update(Request $request, $id)

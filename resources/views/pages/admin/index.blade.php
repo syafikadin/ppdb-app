@@ -153,6 +153,65 @@
             border-radius: 16px;
             padding: 14px 16px;
         }
+
+        .stats-card {
+            border: 0;
+            border-radius: 22px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+            height: 100%;
+            transition: all 0.25s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .stats-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .stats-icon.teal {
+            background: rgba(20, 184, 166, 0.12);
+            color: #0f766e;
+        }
+
+        .stats-icon.blue {
+            background: rgba(59, 130, 246, 0.12);
+            color: #1d4ed8;
+        }
+
+        .stats-icon.green {
+            background: rgba(34, 197, 94, 0.12);
+            color: #15803d;
+        }
+
+        .stats-label {
+            font-size: 0.92rem;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .stats-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stats-desc {
+            font-size: 0.88rem;
+            color: #94a3b8;
+        }
     </style>
 
     <div class="main-content">
@@ -192,6 +251,61 @@
                         <p class="hero-subtitle mb-0">
                             Kelola timeline PPDB dengan cepat, rapi, dan langsung dari satu halaman dashboard.
                         </p>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card stats-card">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="stats-icon teal">
+                                        <i class="bi bi-people-fill"></i>
+                                    </div>
+                                    <div>
+                                        <div class="stats-label">Jumlah Pendaftar</div>
+                                        <div class="stats-value">{{ $jumlahPendaftar }}</div>
+                                        <div class="stats-desc">Total siswa yang sudah mendaftar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card stats-card">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="stats-icon blue">
+                                        <i class="bi bi-diagram-3-fill"></i>
+                                    </div>
+                                    <div>
+                                        <div class="stats-label">Siswa per Gelombang</div>
+                                        <div class="stats-value">{{ $totalSiswaPerGelombang }}</div>
+                                        <div class="stats-desc">
+                                            {{ $gelombangAktif ? $gelombangAktif->nama_gelombang : 'Belum ada gelombang aktif' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card stats-card">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="stats-icon green">
+                                        <i class="bi bi-patch-check-fill"></i>
+                                    </div>
+                                    <div>
+                                        <div class="stats-label">Sudah Diverifikasi</div>
+                                        <div class="stats-value">{{ $totalSudahDiverifikasi }}</div>
+                                        <div class="stats-desc">Total siswa yang lolos verifikasi</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
