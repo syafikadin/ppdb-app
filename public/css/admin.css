@@ -1,13 +1,18 @@
+/* =========================
+   BASE ADMIN LAYOUT
+   ========================= */
+
 body,
 html {
    margin: 0;
    padding: 0;
-   height: 100%;
+   min-height: 100%;
    width: 100%;
 }
 
 body {
-   overflow: auto;
+   overflow-x: hidden;
+   overflow-y: auto;
    font-family: 'Roboto', sans-serif;
    background-color: var(--app-bg);
    -webkit-font-smoothing: antialiased;
@@ -15,27 +20,23 @@ body {
 }
 
 .main-content {
-   width: 100% !important;
+   flex: 1 1 auto;
+   min-width: 0;
 }
 
 .app-container {
-   border-radius: 4px;
    width: 100%;
-   height: 100%;
-   max-height: 100%;
-   max-width: 1280px;
+   min-height: 100vh;
    display: flex;
+   align-items: stretch;
    overflow: hidden;
-   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-   max-width: 2000px;
    margin: 0 auto;
 }
 
 .app-content {
    background-color: var(--app-bg);
-   height: 100%;
+   min-height: 100vh;
    flex: 1;
-   max-height: 100%;
    display: flex;
    flex-direction: column;
 }
@@ -45,15 +46,15 @@ body {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 0;
    background-color: #fff;
    padding: 16px 24px;
+   border-bottom: 1px solid #e5e7eb;
 }
 
 .content-body {
+   flex: 1 1 auto;
    padding: 16px 24px;
    width: 100%;
-   max-height: 100%;
    overflow: auto;
 }
 
@@ -66,5 +67,332 @@ body {
 
 .card {
    border: none;
-   border-radius: .5rem;
+   border-radius: .75rem;
+}
+
+/* =========================
+   DATA SISWA CUSTOM STYLE
+   ========================= */
+
+:root {
+   --siswa-primary: #0f766e;
+   --siswa-primary-2: #14b8a6;
+   --siswa-dark: #0f172a;
+   --siswa-dark-soft: #1e293b;
+   --siswa-bg: #f8fafc;
+   --siswa-border: #e2e8f0;
+   --siswa-text: #0f172a;
+   --siswa-muted: #64748b;
+   --siswa-white: #ffffff;
+   --siswa-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.data-siswa-page {
+   padding-bottom: 24px;
+}
+
+.data-siswa-header-card {
+   border: 0;
+   border-radius: 24px;
+   overflow: hidden;
+   background:
+      linear-gradient(rgba(15, 23, 42, 0.70), rgba(15, 23, 42, 0.70)),
+      linear-gradient(90deg, rgba(15, 118, 110, 0.45), rgba(20, 184, 166, 0.20));
+   box-shadow: var(--siswa-shadow);
+}
+
+.data-siswa-header-card .card-body {
+   padding: 22px 24px;
+   color: var(--siswa-white);
+}
+
+.data-siswa-badge {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   padding: 8px 14px;
+   border-radius: 999px;
+   background: rgba(255, 255, 255, 0.10);
+   border: 1px solid rgba(255, 255, 255, 0.16);
+   color: #fff;
+   font-size: 13px;
+   font-weight: 600;
+   margin-bottom: 12px;
+}
+
+.data-siswa-header-title {
+   font-size: 1.6rem;
+   font-weight: 800;
+   margin-bottom: 8px;
+}
+
+.data-siswa-header-text {
+   color: rgba(255, 255, 255, 0.88);
+   margin-bottom: 0;
+   line-height: 1.7;
+   max-width: 720px;
+}
+
+.data-siswa-table-card {
+   border: 0;
+   border-radius: 24px;
+   overflow: hidden;
+   background: var(--siswa-white);
+   box-shadow: var(--siswa-shadow);
+}
+
+.data-siswa-table-head {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 14px;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 18px;
+}
+
+.data-siswa-table-title {
+   font-size: 1.1rem;
+   font-weight: 800;
+   color: var(--siswa-text);
+   margin: 0;
+}
+
+.btn-siswa-primary {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   padding: 12px 20px;
+   border: 0;
+   border-radius: 999px;
+   background: linear-gradient(135deg, var(--siswa-primary), var(--siswa-primary-2));
+   color: #fff;
+   font-weight: 700;
+   box-shadow: 0 14px 28px rgba(20, 184, 166, 0.22);
+   transition: all 0.25s ease;
+}
+
+.btn-siswa-primary:hover {
+   color: #fff;
+   transform: translateY(-1px);
+   box-shadow: 0 18px 30px rgba(20, 184, 166, 0.28);
+}
+
+.table-siswa {
+   margin-bottom: 0;
+}
+
+.table-siswa thead th {
+   background: var(--siswa-dark) !important;
+   color: #fff;
+   border-color: rgba(255, 255, 255, 0.08);
+   font-weight: 700;
+   white-space: nowrap;
+}
+
+.table-siswa tbody td {
+   vertical-align: middle;
+   border-color: #eef2f7;
+}
+
+.table-siswa tbody tr:hover {
+   background: #f8fffe;
+}
+
+.status-chip {
+   display: inline-flex;
+   align-items: center;
+   padding: 7px 12px;
+   border-radius: 999px;
+   font-size: 12px;
+   font-weight: 700;
+   background: rgba(20, 184, 166, 0.10);
+   color: var(--siswa-primary);
+   border: 1px solid rgba(20, 184, 166, 0.18);
+}
+
+.siswa-action-stack .btn,
+.siswa-action-stack form .btn {
+   border-radius: 14px;
+   font-weight: 600;
+}
+
+/* Modal */
+.siswa-modal .modal-dialog {
+   margin: 1rem auto;
+}
+
+.siswa-modal .modal-content {
+   border: 0;
+   border-radius: 24px;
+   overflow: hidden;
+   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.24);
+   display: flex;
+   flex-direction: column;
+   max-height: calc(100vh - 2rem);
+}
+
+.siswa-modal .modal-header {
+   border: 0;
+   padding: 18px 22px;
+   background:
+      linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.78)),
+      linear-gradient(90deg, rgba(15, 118, 110, 0.45), rgba(20, 184, 166, 0.20));
+   color: #fff;
+}
+
+.siswa-modal .modal-title {
+   font-weight: 800;
+   letter-spacing: 0.2px;
+}
+
+.siswa-modal .btn-close {
+   filter: invert(1);
+   opacity: 0.95;
+}
+
+.siswa-modal .modal-body {
+   background: var(--siswa-bg);
+   padding: 1.25rem;
+   overflow-y: auto;
+   flex: 1 1 auto;
+}
+
+.siswa-modal .modal-footer {
+   border: 0;
+   background: #fff;
+   padding: 16px 22px 20px;
+   box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.siswa-form-section {
+   background: #fff;
+   border: 1px solid var(--siswa-border);
+   border-radius: 20px;
+   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+   padding: 18px;
+   height: 100%;
+}
+
+.siswa-form-section-title {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-size: 15px;
+   font-weight: 800;
+   color: var(--siswa-text);
+   margin-bottom: 16px;
+}
+
+.siswa-form-section-title i {
+   width: 34px;
+   height: 34px;
+   border-radius: 12px;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   background: rgba(20, 184, 166, 0.10);
+   color: var(--siswa-primary);
+}
+
+.siswa-form-section .form-label {
+   font-weight: 700;
+   color: var(--siswa-dark-soft);
+   margin-bottom: 8px;
+}
+
+.siswa-form-section .form-control,
+.siswa-form-section .form-select,
+.siswa-form-section textarea {
+   border-radius: 14px;
+   border: 1px solid #dbe4ee;
+   padding: 12px 14px;
+   box-shadow: none;
+}
+
+.siswa-form-section .form-control:focus,
+.siswa-form-section .form-select:focus,
+.siswa-form-section textarea:focus {
+   border-color: rgba(20, 184, 166, 0.55);
+   box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.12);
+}
+
+.siswa-detail-grid {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 14px;
+}
+
+.siswa-detail-item {
+   background: #fff;
+   border: 1px solid var(--siswa-border);
+   border-radius: 18px;
+   padding: 14px 16px;
+   min-height: 82px;
+}
+
+.siswa-detail-item.full {
+   grid-column: 1 / -1;
+}
+
+.siswa-detail-label {
+   font-size: 12px;
+   font-weight: 800;
+   color: var(--siswa-muted);
+   text-transform: uppercase;
+   letter-spacing: 0.6px;
+   margin-bottom: 6px;
+}
+
+.siswa-detail-value {
+   color: var(--siswa-text);
+   font-weight: 600;
+   line-height: 1.65;
+   word-break: break-word;
+}
+
+.siswa-modal .modal-content > form {
+   display: flex;
+   flex-direction: column;
+   flex: 1 1 auto;
+   min-height: 0;
+   height: 100%;
+}
+
+.siswa-modal .modal-content > form .modal-body {
+   flex: 1 1 auto;
+   min-height: 0;
+   overflow-y: auto;
+}
+
+.siswa-modal .modal-content > form .modal-footer {
+   flex-shrink: 0;
+}
+
+@media (max-width: 991.98px) {
+   .siswa-detail-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .siswa-modal .modal-body {
+      padding: 1rem;
+   }
+}
+
+@media (max-width: 575.98px) {
+   .data-siswa-table-head {
+      align-items: stretch;
+   }
+
+   .btn-siswa-primary {
+      width: 100%;
+   }
+
+   .siswa-modal .modal-dialog {
+      margin: 0.75rem;
+   }
+
+   .siswa-modal .modal-content {
+      max-height: calc(100vh - 1.5rem);
+   }
 }

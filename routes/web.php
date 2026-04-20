@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardSiswaController;
 use App\Http\Controllers\DataPendaftarController;
 use App\Http\Controllers\DataUjianController;
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\GelombangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiController;
@@ -27,6 +28,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
+    Route::resource('data-siswa', DataSiswaController::class);
     Route::resource('data-pendaftar', DataPendaftarController::class);
     Route::post('data-pendaftar/verifikasi', [PendaftarController::class, 'verifikasi'])->name('data-pendaftar.verifikasi');
     Route::post('data-pendaftar/invalid', [PendaftarController::class, 'invalid'])->name('data-pendaftar.invalid');

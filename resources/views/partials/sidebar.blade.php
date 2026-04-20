@@ -27,6 +27,12 @@
                     <span>Data Ujian</span>
                 </a>
             </li>
+            <li class="sidebar-list-item {{ $title === 'Data Siswa' ? 'active' : '' }}">
+                <a href="/admin/data-siswa">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Data Siswa</span>
+                </a>
+            </li>
         @endif
 
         {{-- For Siswa --}}
