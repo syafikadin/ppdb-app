@@ -8,6 +8,7 @@ use App\Http\Controllers\DataUjianController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\GelombangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanPpdbController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftarController;
@@ -36,6 +37,9 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('data-ujian', DataUjianController::class);
     Route::post('kelulusan/{gelombang}/umumkan', [DataUjianController::class, 'umumkan'])->name('kelulusan.umumkan');
     Route::post('nilai/store-nilai', [NilaiController::class, 'storeNilai'])->name('nilai.store-nilai');
+
+    Route::get('laporan-ppdb', [LaporanPpdbController::class, 'index'])->name('laporan-ppdb.index');
+    Route::get('laporan-ppdb/export', [LaporanPpdbController::class, 'export'])->name('laporan-ppdb.export');
 
     Route::resource('gelombang', GelombangController::class);
     Route::put('gelombang/{id}/close', [GelombangController::class, 'close'])->name('gelombang.close');

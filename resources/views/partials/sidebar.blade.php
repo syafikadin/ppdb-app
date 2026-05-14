@@ -33,6 +33,12 @@
                     <span>Data Siswa</span>
                 </a>
             </li>
+            <li class="sidebar-list-item {{ $title === 'Laporan PPDB' ? 'active' : '' }}">
+                <a href="{{ route('laporan-ppdb.index') }}">
+                    <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                    <span>Laporan PPDB</span>
+                </a>
+            </li>
         @endif
 
         {{-- For Siswa --}}
