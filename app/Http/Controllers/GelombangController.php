@@ -57,12 +57,17 @@ class GelombangController extends Controller
     public function show($id)
     {
         $title = 'Data Ujian';
-        $gelombang = Gelombang::findOrFail($id);
-        // Misalnya, Anda ingin menampilkan pendaftar dari gelombang ini
-        $pendaftars = $gelombang->pendaftars; // Asumsikan relasi gelombang dengan pendaftar
-        $data_siswa = Gelombang::with('siswa')->where('nama_gelombang', 'Gelombang 1')->first();
+        $gelombang = Gelombang::with(['siswa' => function ($query) {
+            $query->verified()->with('nilai');
+        }])->findOrFail($id);
 
-        return view('pages.admin.data-ujian.show', compact('title', 'gelombang', 'pendaftars', 'data_siswa'));
+        $gelombang->setRelation('siswa', $gelombang->siswa->sortByDesc(function ($siswa) {
+            return $siswa->nilai
+                ? ($siswa->nilai->wawancara + $siswa->nilai->baca_alquran + $siswa->nilai->tulis_alquran) / 3
+                : 0;
+        })->values());
+
+        return view('pages.admin.data-ujian.show', compact('title', 'gelombang'));
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use Illuminate\Support\Facades\DB;
 
 class LaporanPpdbController extends Controller
 {
@@ -29,6 +30,11 @@ class LaporanPpdbController extends Controller
          // Tambah BOM supaya file CSV terbaca baik di Excel.
          fwrite($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
+         fputcsv($handle, ['LAPORAN PPDB']);
+         fputcsv($handle, ['Nama Sekolah', config('app.name', 'PPDB App')]);
+         fputcsv($handle, ['Alamat Sekolah', '-']);
+         fputcsv($handle, ['Tanggal Export', now()->format('d F Y')]);
+         fputcsv($handle, []);
          fputcsv($handle, [
             'No',
             'Nama Siswa',
@@ -68,8 +74,11 @@ class LaporanPpdbController extends Controller
    private function laporanQuery()
    {
       return Siswa::with(['gelombang:id,nama_gelombang', 'nilai:siswa_id,wawancara,baca_alquran,tulis_alquran'])
-         ->whereHas('pendaftar')
-         ->latest();
+         ->verified()
+         ->leftJoin('nilais', 'siswas.id', '=', 'nilais.siswa_id')
+         ->select('siswas.*', DB::raw('COALESCE((nilais.wawancara + nilais.baca_alquran + nilais.tulis_alquran) / 3, 0) as rata_rata_nilai'))
+         ->orderByDesc('rata_rata_nilai')
+         ->orderBy('nama_siswa');
    }
 
    private function kelulusanStatus(string $status): string

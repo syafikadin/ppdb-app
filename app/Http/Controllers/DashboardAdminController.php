@@ -34,7 +34,7 @@ class DashboardAdminController extends Controller
         $jumlahPendaftar = Siswa::where('status', '!=', 'Belum Mendaftar')->count();
 
         $totalSiswaPerGelombang = $gelombangAktif
-            ? Siswa::where('gelombang_id', $gelombangAktif->id)->count()
+            ? Siswa::verified()->where('gelombang_id', $gelombangAktif->id)->count()
             : 0;
 
         $totalSudahDiverifikasi = Siswa::whereIn('status', [

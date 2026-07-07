@@ -29,8 +29,8 @@
 
                 <div class="card shadow mt-3">
                     <div class="card-body">
-                        <h5 class="fw-bold">Data pendaftar pada gelombang 1</h5>
-                        <p>Ujian dilaksanakan pada tanggal 10 Maret 2025</p>
+                        <h5 class="fw-bold">Data pendaftar pada {{ $gelombang->nama_gelombang }}</h5>
+                        <p>Ujian dilaksanakan pada tanggal {{ $gelombang->tanggal_ujian ? \Carbon\Carbon::parse($gelombang->tanggal_ujian)->translatedFormat('d F Y') : '-' }}</p>
 
                         <hr>
                         <div class="mb-3">

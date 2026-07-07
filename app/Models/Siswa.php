@@ -65,4 +65,14 @@ class Siswa extends Model
     {
         return $this->hasOne(Nilai::class);
     }
+
+    public function scopeVerified($query)
+    {
+        return $query->whereIn('status', [
+            'Sudah diverifikasi, menunggu ujian',
+            'Menunggu pengumuman',
+            'Lulus',
+            'Tidak Lulus',
+        ]);
+    }
 }
