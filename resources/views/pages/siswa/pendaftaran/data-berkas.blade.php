@@ -7,11 +7,29 @@
                     <button class="btn-sidebar" id="btn-sidebar">
                         <i class="bi bi-layout-sidebar-inset"></i>
                     </button>
-                    Pendaftaran
+                    Formulir Pendaftaran
                 </h1>
             </div>
 
             <div class="content-body">
+                @php
+                    $isLocked = $data_siswa->status !== 'Belum Mendaftar';
+                @endphp
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <form action="{{ route('pendaftaran.updateDataBerkas', $data_siswa->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -21,10 +39,14 @@
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Berkas-Berkas</h5>
                             <hr>
+                            <div class="alert alert-secondary small mb-3" role="alert">
+                                Keterangan: <strong>Wajib</strong> untuk berkas utama, <strong>Opsional</strong> untuk dokumen pendukung.
+                            </div>
                             <div class="mb-3">
-                                <label for="piagam" class="form-label small">Piagam yang dimiliki</label>
+                                <label for="piagam" class="form-label small">Piagam yang dimiliki <span class="text-muted">(Opsional)</span></label>
                                 <input class="form-control @error('piagam') is-invalid @enderror" type="file"
-                                    id="piagam" name="piagam" onchange="previewImage(this, '#piagam-preview')">
+                                    id="piagam" name="piagam" onchange="previewImage(this, '#piagam-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('piagam')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -40,9 +62,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="akta" class="form-label small">Scan Akta Kelahiran</label>
+                                <label for="akta" class="form-label small">Scan Akta Kelahiran <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('akta') is-invalid @enderror" type="file"
-                                    id="akta" name="akta" onchange="previewImage(this, '#akta-preview')">
+                                    id="akta" name="akta" onchange="previewImage(this, '#akta-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('akta')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -53,9 +76,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="kk" class="form-label small">Scan KK</label>
+                                <label for="kk" class="form-label small">Scan KK <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('kk') is-invalid @enderror" type="file" id="kk"
-                                    name="kk" onchange="previewImage(this, '#kk-preview')">
+                                    name="kk" onchange="previewImage(this, '#kk-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('kk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -66,9 +90,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="ktp" class="form-label small">Scan KTP orang tua</label>
+                                <label for="ktp" class="form-label small">Scan KTP orang tua <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp"
-                                    name="ktp" onchange="previewImage(this, '#ktp-preview')">
+                                    name="ktp" onchange="previewImage(this, '#ktp-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('ktp')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -80,9 +105,10 @@
 
                             <div class="mb-2">
                                 <label for="skl_ijazah" class="form-label small">Surat Keterangan Lulus/ ijazah yang sudah
-                                    legalisir</label>
+                                    legalisir <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('skl_ijazah') is-invalid @enderror" type="file"
-                                    id="skl_ijazah" name="skl_ijazah" onchange="previewImage(this, '#skl_ijazah-preview')">
+                                    id="skl_ijazah" name="skl_ijazah" onchange="previewImage(this, '#skl_ijazah-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('skl_ijazah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -93,10 +119,11 @@
                             </div>
                             <div class="mb-2">
                                 <label for="surat_tidak_mampu" class="form-label small">Surat Keterangan Tidak Mampu dari
-                                    desa/KIP/KIS/KKS</label>
+                                    desa/KIP/KIS/KKS <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror" type="file"
                                     id="surat_tidak_mampu" name="surat_tidak_mampu"
-                                    onchange="previewImage(this, '#surat_tidak_mampu-preview')">
+                                    onchange="previewImage(this, '#surat_tidak_mampu-preview')"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('surat_tidak_mampu')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -107,8 +134,12 @@
                             </div>
                         </div>
 
-                        @if ($data_siswa->status === 'Belum Mendaftar')
+                        @if (!$isLocked)
                             <button type="submit" class="btn btn-primary btn-lg my-2 mx-2">Simpan</button>
+                        @else
+                            <div class="alert alert-info m-2" role="alert">
+                                Formulir ini telah terkunci karena data sudah diproses.
+                            </div>
                         @endif
                     </div>
                 </form>

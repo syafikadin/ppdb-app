@@ -33,13 +33,16 @@ class PendaftaranController extends Controller
             !empty($data_siswa->pekerjaan_ibu) &&
             !empty($data_siswa->nomor_wali);
 
-        // Cek kelengkapan data berkas
-        $isBerkasComplete = !empty($data_siswa->piagam) &&
-            !empty($data_siswa->akta) &&
-            !empty($data_siswa->kk) &&
-            !empty($data_siswa->ktp) &&
-            !empty($data_siswa->skl_ijazah) &&
-            !empty($data_siswa->surat_tidak_mampu);
+        // Cek kelengkapan data berkas (hanya berkas wajib yang menentukan lengkap)
+        $requiredFiles = ['akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
+        $isBerkasComplete = true;
+
+        foreach ($requiredFiles as $file) {
+            if (empty($data_siswa->{$file})) {
+                $isBerkasComplete = false;
+                break;
+            }
+        }
 
         $canSubmit = $isProfilComplete && $isOrangtuaComplete && $isBerkasComplete;
 
@@ -156,7 +159,9 @@ class PendaftaranController extends Controller
     }
     public function updateDataBerkas(Request $request, $id)
     {
-        // Validasi input
+        $siswa = Siswa::findOrFail($id);
+
+        // Validasi input file sebelum diproses
         $request->validate([
             'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -166,29 +171,34 @@ class PendaftaranController extends Controller
             'surat_tidak_mampu' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
-        // Temukan siswa yang ada
-        $siswa = Siswa::findOrFail($id);
-
         // Proses unggahan file jika ada
         $files = ['piagam', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
         foreach ($files as $file) {
             if ($request->hasFile($file)) {
-                // Hapus file lama jika ada
                 if ($siswa->{$file} && file_exists(public_path($siswa->{$file}))) {
                     unlink(public_path($siswa->{$file}));
                 }
 
-                // Unggah file baru
                 $uploadedFile = $request->file($file);
                 $filename = time() . '_' . $uploadedFile->getClientOriginalName();
-                $path = $uploadedFile->move(public_path('uploads/files'), $filename);
-
-                // Simpan path relatif di database
+                $uploadedFile->move(public_path('uploads/files'), $filename);
                 $siswa->{$file} = 'uploads/files/' . $filename;
             }
         }
 
+        $requiredFiles = ['akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
+        $missingFiles = [];
+        foreach ($requiredFiles as $file) {
+            if (empty($siswa->{$file})) {
+                $missingFiles[] = $file;
+            }
+        }
+
         $siswa->save();
+
+        if (!empty($missingFiles)) {
+            return redirect()->back()->with('error', 'Ada berkas wajib yang belum diisi: ' . implode(', ', $missingFiles) . '.')->withInput();
+        }
 
         return redirect()->route('pendaftaran.index')->with('success', 'Data Berkas Berhasil Diperbarui.');
     }

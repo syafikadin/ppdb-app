@@ -7,7 +7,7 @@
                     <button class="btn-sidebar" id="btn-sidebar">
                         <i class="bi bi-layout-sidebar-inset"></i>
                     </button>
-                    Pendaftaran
+                    Formulir Pendaftaran
                 </h1>
             </div>
 

@@ -7,11 +7,29 @@
                     <button class="btn-sidebar" id="btn-sidebar">
                         <i class="bi bi-layout-sidebar-inset"></i>
                     </button>
-                    Pendaftaran
+                    Formulir Pendaftaran
                 </h1>
             </div>
 
             <div class="content-body">
+                @php
+                    $isLocked = $data_siswa->status !== 'Belum Mendaftar';
+                @endphp
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <form action="{{ route('pendaftaran.updateDataOrangtua', $data_siswa->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -29,7 +47,8 @@
                                         <label for="nama_ayah" class="form-label small small ">Nama ayah</label>
                                         <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror"
                                             id="nama_ayah" name="nama_ayah" placeholder="Masukan nama ayah" required
-                                            value="{{ $data_siswa->nama_ayah ? $data_siswa->nama_ayah : old('nama_ayah') }}">
+                                            value="{{ $data_siswa->nama_ayah ? $data_siswa->nama_ayah : old('nama_ayah') }}"
+                                            {{ $isLocked ? 'disabled' : '' }}>
                                         @error('nama_ayah')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -39,7 +58,7 @@
                                     <div class="mb-3">
                                         <label for="pekerjaan_ayah" class="form-label small">Pekerjaan ayah</label>
                                         <select name="pekerjaan_ayah" class="form-select" aria-label="Pilih Pekerjaan"
-                                            required>
+                                            required {{ $isLocked ? 'disabled' : '' }}>
                                             <option value="" selected disabled>-- Pilih Pekerjaan --</option>
                                             <option value="Buruh(Tani/Pabrik/Bangunan)"
                                                 {{ $data_siswa->pekerjaan_ayah == 'Buruh(Tani/Pabrik/Bangunan)' ? 'selected' : '' }}>
@@ -111,7 +130,7 @@
                                         <label for="penghasilan_ayah" class="form-label small">Rata-rata penghasilan
                                             ayah</label>
                                         <select name="penghasilan_ayah" class="form-select"
-                                            aria-label="Rata Rata Penghasilan" required>
+                                            aria-label="Rata Rata Penghasilan" required {{ $isLocked ? 'disabled' : '' }}>
                                             <option value="" selected disabled>-- Pilih Rata Penghasilan --</option>
                                             <option value="Tidak Berpenghasilan"
                                                 {{ $data_siswa->penghasilan_ayah == 'Tidak Berpenghasilan' ? 'selected' : '' }}>
@@ -145,7 +164,8 @@
                                         <label for="nama_ibu" class="form-label small">Nama ibu</label>
                                         <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror"
                                             id="nama_ibu" name="nama_ibu" placeholder="Masukan nama ibu" required
-                                            value="{{ $data_siswa->nama_ibu ? $data_siswa->nama_ibu : old('nama_ibu') }}">
+                                            value="{{ $data_siswa->nama_ibu ? $data_siswa->nama_ibu : old('nama_ibu') }}"
+                                            {{ $isLocked ? 'disabled' : '' }}>
                                         @error('nama_ibu')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -156,7 +176,7 @@
                                     <div class="mb-3">
                                         <label for="pekerjaan_ibu" class="form-label small">Pekerjaan ibu</label>
                                         <select name="pekerjaan_ibu" class="form-select" aria-label="Pilih Pekerjaan"
-                                            required>
+                                            required {{ $isLocked ? 'disabled' : '' }}>
                                             <option value="" selected disabled>-- Pilih Pekerjaan --</option>
                                             <option value="Buruh(Tani/Pabrik/Bangunan)"
                                                 {{ $data_siswa->pekerjaan_ibu == 'Buruh(Tani/Pabrik/Bangunan)' ? 'selected' : '' }}>
@@ -229,7 +249,7 @@
                                         <label for="penghasilan_ibu" class="form-label small">Rata-rata penghasilan
                                             ibu</label>
                                         <select name="penghasilan_ibu" class="form-select"
-                                            aria-label="Rata Rata Penghasilan" required>
+                                            aria-label="Rata Rata Penghasilan" required {{ $isLocked ? 'disabled' : '' }}>
                                             <option value="" selected disabled>-- Pilih Rata Penghasilan --</option>
                                             <option value="Tidak Berpenghasilan"
                                                 {{ $data_siswa->penghasilan_ibu == 'Tidak Berpenghasilan' ? 'selected' : '' }}>
@@ -266,7 +286,8 @@
                                 <input type="text" class="form-control @error('nomor_wali') is-invalid @enderror"
                                     id="nomor_wali" name="nomor_wali" required
                                     value="{{ $data_siswa->nomor_wali ? $data_siswa->nomor_wali : old('nomor_wali') }}"
-                                    placeholder="0812XXXXXXXX">
+                                    placeholder="0812XXXXXXXX"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('nomor_wali')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -278,7 +299,8 @@
                                 <label for="alamat_wali" class="form-label small">Alamat wali</label>
                                 <input type="text" class="form-control @error('alamat_wali') is-invalid @enderror"
                                     id="alamat_wali" name="alamat_wali" placeholder="Masukan alamat wali" required
-                                    value="{{ $data_siswa->alamat_wali ? $data_siswa->alamat_wali : old('alamat_wali') }}">
+                                    value="{{ $data_siswa->alamat_wali ? $data_siswa->alamat_wali : old('alamat_wali') }}"
+                                    {{ $isLocked ? 'disabled' : '' }}>
                                 @error('alamat_wali')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -287,8 +309,12 @@
                             </div>
 
                             <hr>
-                            @if ($data_siswa->status === 'Belum Mendaftar')
+                            @if (!$isLocked)
                                 <button type="submit" class="btn btn-primary btn-lg px-5">Simpan</button>
+                            @else
+                                <div class="alert alert-info mb-0" role="alert">
+                                    Formulir ini telah terkunci karena data sudah diproses.
+                                </div>
                             @endif
                         </div>
 
