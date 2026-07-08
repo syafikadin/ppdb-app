@@ -40,10 +40,12 @@
                             <h5 class="card-title fw-bold">Berkas-Berkas</h5>
                             <hr>
                             <div class="alert alert-secondary small mb-3" role="alert">
-                                Keterangan: <strong>Wajib</strong> untuk berkas utama, <strong>Opsional</strong> untuk dokumen pendukung.
+                                Keterangan: <strong>Wajib</strong> untuk berkas utama, <strong>Opsional</strong> untuk
+                                dokumen pendukung.
                             </div>
                             <div class="mb-3">
-                                <label for="piagam" class="form-label small">Piagam yang dimiliki <span class="text-muted">(Opsional)</span></label>
+                                <label for="piagam" class="form-label small">Piagam yang dimiliki <span
+                                        class="text-muted">(Opsional)</span></label>
                                 <input class="form-control @error('piagam') is-invalid @enderror" type="file"
                                     id="piagam" name="piagam" onchange="previewImage(this, '#piagam-preview')"
                                     {{ $isLocked ? 'disabled' : '' }}>
@@ -62,7 +64,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="akta" class="form-label small">Scan Akta Kelahiran <span class="text-muted">(Wajib)</span></label>
+                                <label for="akta" class="form-label small">Scan Akta Kelahiran <span
+                                        class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('akta') is-invalid @enderror" type="file"
                                     id="akta" name="akta" onchange="previewImage(this, '#akta-preview')"
                                     {{ $isLocked ? 'disabled' : '' }}>
@@ -76,7 +79,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="kk" class="form-label small">Scan KK <span class="text-muted">(Wajib)</span></label>
+                                <label for="kk" class="form-label small">Scan KK <span
+                                        class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('kk') is-invalid @enderror" type="file" id="kk"
                                     name="kk" onchange="previewImage(this, '#kk-preview')"
                                     {{ $isLocked ? 'disabled' : '' }}>
@@ -90,7 +94,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="ktp" class="form-label small">Scan KTP orang tua <span class="text-muted">(Wajib)</span></label>
+                                <label for="ktp" class="form-label small">Scan KTP orang tua <span
+                                        class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp"
                                     name="ktp" onchange="previewImage(this, '#ktp-preview')"
                                     {{ $isLocked ? 'disabled' : '' }}>

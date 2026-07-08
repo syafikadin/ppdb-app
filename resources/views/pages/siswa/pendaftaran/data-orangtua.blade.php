@@ -286,8 +286,7 @@
                                 <input type="text" class="form-control @error('nomor_wali') is-invalid @enderror"
                                     id="nomor_wali" name="nomor_wali" required
                                     value="{{ $data_siswa->nomor_wali ? $data_siswa->nomor_wali : old('nomor_wali') }}"
-                                    placeholder="0812XXXXXXXX"
-                                    {{ $isLocked ? 'disabled' : '' }}>
+                                    placeholder="0812XXXXXXXX" {{ $isLocked ? 'disabled' : '' }}>
                                 @error('nomor_wali')
                                     <div class="invalid-feedback">
                                         {{ $message }}
