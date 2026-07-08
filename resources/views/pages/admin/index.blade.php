@@ -280,7 +280,7 @@
                                         <i class="bi bi-diagram-3-fill"></i>
                                     </div>
                                     <div>
-                                        <div class="stats-label">Siswa per Gelombang</div>
+                                        <div class="stats-label">Akun PPDB</div>
                                         <div class="stats-value">{{ $totalSiswaPerGelombang }}</div>
                                         <div class="stats-desc">
                                             {{ $gelombangAktif ? $gelombangAktif->nama_gelombang : 'Belum ada gelombang aktif' }}
