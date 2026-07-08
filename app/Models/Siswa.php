@@ -32,6 +32,7 @@ class Siswa extends Model
         'nomor_wali',
         'alamat_wali',
         'piagam',
+        'foto_3x4',
         'ukuran_seragam',
         'akta',
         'kk',

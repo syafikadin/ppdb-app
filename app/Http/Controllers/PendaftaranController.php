@@ -164,6 +164,7 @@ class PendaftaranController extends Controller
         // Validasi input file sebelum diproses
         $request->validate([
             'piagam' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'foto_3x4' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'akta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'kk' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -172,7 +173,7 @@ class PendaftaranController extends Controller
         ]);
 
         // Proses unggahan file jika ada
-        $files = ['piagam', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
+        $files = ['piagam', 'foto_3x4', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
         foreach ($files as $file) {
             if ($request->hasFile($file)) {
                 if ($siswa->{$file} && file_exists(public_path($siswa->{$file}))) {
@@ -186,7 +187,7 @@ class PendaftaranController extends Controller
             }
         }
 
-        $requiredFiles = ['akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
+        $requiredFiles = ['foto_3x4', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
         $missingFiles = [];
         foreach ($requiredFiles as $file) {
             if (empty($siswa->{$file})) {
