@@ -13,7 +13,7 @@ class DataSiswaController extends Controller
 {
     public function index()
     {
-        $title = 'Data Siswa';
+        $title = 'Data Calon Siswa';
         $data_siswa = Siswa::with(['user', 'gelombang'])->latest()->paginate(10);
         $gelombangs = Gelombang::orderBy('nama_gelombang')->get();
 

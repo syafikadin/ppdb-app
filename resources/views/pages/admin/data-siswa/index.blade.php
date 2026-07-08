@@ -7,7 +7,7 @@
                     <button class="btn-sidebar" id="btn-sidebar">
                         <i class="bi bi-layout-sidebar-inset"></i>
                     </button>
-                    Data Siswa
+                    Data Calon Siswa
                 </h1>
             </div>
 
@@ -42,7 +42,7 @@
                 <div class="card data-siswa-table-card mt-4">
                     <div class="card-body p-4">
                         <div class="data-siswa-table-head">
-                            <h5 class="data-siswa-table-title">Tabel data siswa</h5>
+                            <h5 class="data-siswa-table-title">Tabel data calon siswa</h5>
 
                             <button class="btn btn-siswa-primary" data-bs-toggle="modal" data-bs-target="#modalCreateSiswa">
                                 <i class="bi bi-plus-circle"></i>

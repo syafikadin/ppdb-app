@@ -27,10 +27,10 @@
                     <span>Data Ujian</span>
                 </a>
             </li>
-            <li class="sidebar-list-item {{ $title === 'Data Siswa' ? 'active' : '' }}">
+            <li class="sidebar-list-item {{ $title === 'Data Calon Siswa' ? 'active' : '' }}">
                 <a href="/admin/data-siswa">
                     <i class="bi bi-people-fill"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Calon Siswa</span>
                 </a>
             </li>
             <li class="sidebar-list-item {{ $title === 'Laporan PPDB' ? 'active' : '' }}">

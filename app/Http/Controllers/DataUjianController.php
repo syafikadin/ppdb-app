@@ -16,7 +16,7 @@ class DataUjianController extends Controller
     public function index()
     {
         $title = 'Data Ujian';
-        $data_gelombang = Gelombang::with('siswa')->get();
+        $data_gelombang = Gelombang::with('verifiedSiswa')->get();
 
         return view('pages.admin.data-ujian.index', compact('title', 'data_gelombang'));
     }
