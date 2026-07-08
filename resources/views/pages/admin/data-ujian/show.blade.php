@@ -35,16 +35,24 @@
                         </p>
 
                         <hr>
-                        <div class="mb-3">
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Edit Nilai
-                            </button>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Edit Nilai
+                                </button>
 
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal"
-                                data-bs-target="#confirmUmumkanModal">
-                                Umumkan
-                            </button>
-
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#confirmUmumkanModal">
+                                    Umumkan
+                                </button>
+                            </div>
+                            <form action="{{ route('gelombang.show', $gelombang->id) }}" method="GET"
+                                class="d-flex gap-2">
+                                <x-admin.search-input name="search" placeholder="Cari nama, sekolah, status..."
+                                    :value="$search" />
+                                <button type="submit" class="btn btn-cari-siswa">Cari</button>
+                            </form>
                         </div>
                         {{-- <hr> --}}
 
@@ -80,7 +88,9 @@
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No</th>
                                     <th scope="col" class="align-middle text-center" style="width: 30%">Nama</th>
-                                    <th scope="col" class="align-middle text-center" style="width: 30%">Asal Sekolah
+                                    <th scope="col" class="align-middle text-center" style="width: 20%">Asal Sekolah
+                                    </th>
+                                    <th scope="col" class="text-center align-middle" style="width: 12%">Jenis Kelamin
                                     </th>
                                     <th scope="col" class="text-center align-middle" style="width: 15%">Keterangan</th>
                                     <th scope="col" class="text-center align-middle" style="width: 20%">Status Kelulusan
@@ -93,6 +103,9 @@
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $siswa->nama_siswa }}</td>
                                         <td class="">{{ $siswa->asal_sekolah }}</td>
+                                        <td class="text-center">
+                                            {{ $siswa->jenis_kelamin === 'L' ? 'Laki-laki' : ($siswa->jenis_kelamin === 'P' ? 'Perempuan' : '-') }}
+                                        </td>
                                         <td class="text-center">
                                             {{ $siswa->nilai ? 'Telah dinilai' : 'Belum dinilai' }}
                                         </td>

@@ -41,13 +41,20 @@
 
                 <div class="card data-siswa-table-card mt-4">
                     <div class="card-body p-4">
-                        <div class="data-siswa-table-head">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                             <h5 class="data-siswa-table-title">Tabel data calon siswa</h5>
-
                             <button class="btn btn-siswa-primary" data-bs-toggle="modal" data-bs-target="#modalCreateSiswa">
                                 <i class="bi bi-plus-circle"></i>
                                 Tambah Data
                             </button>
+                        </div>
+                        <div class="d-flex justify-content-end mb-3">
+                            <form action="{{ route('data-siswa.index') }}" method="GET"
+                                class="d-flex gap-2 flex-wrap w-100 justify-content-end">
+                                <x-admin.search-input name="search" placeholder="Cari nama, sekolah, status..."
+                                    :value="$search" />
+                                <button type="submit" class="btn btn-cari-siswa">Cari</button>
+                            </form>
                         </div>
 
                         <div class="table-responsive">
@@ -58,6 +65,7 @@
                                         <th>Nama</th>
                                         <th>NISN</th>
                                         <th>Asal Sekolah</th>
+                                        <th>Jenis Kelamin</th>
                                         <th>No WA</th>
                                         <th>Gelombang</th>
                                         <th>Status</th>
@@ -73,6 +81,8 @@
                                             <td>{{ $item->nama_siswa }}</td>
                                             <td>{{ $item->nisn ?? '-' }}</td>
                                             <td>{{ $item->asal_sekolah ?? '-' }}</td>
+                                            <td>{{ $item->jenis_kelamin === 'L' ? 'Laki-laki' : ($item->jenis_kelamin === 'P' ? 'Perempuan' : '-') }}
+                                            </td>
                                             <td>{{ $item->nomor_wa ?? '-' }}</td>
                                             <td>{{ $item->gelombang->nama_gelombang ?? '-' }}</td>
                                             <td>
@@ -138,7 +148,8 @@
                                                         onsubmit="return confirm('Yakin ingin menghapus data siswa ini?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                                        <button type="submit"
+                                                            class="btn btn-outline-danger btn-sm w-100">
                                                             <i class="bi bi-trash"></i> Hapus
                                                         </button>
                                                     </form>
@@ -147,7 +158,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center align-middle">
+                                            <td colspan="9" class="text-center align-middle">
                                                 Belum ada data siswa.
                                             </td>
                                         </tr>

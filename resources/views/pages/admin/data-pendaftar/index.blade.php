@@ -29,14 +29,22 @@
 
                 <div class="card shadow mt-3">
                     <div class="card-body">
-                        <h5 class="mb-4 fw-bold">Tabel data pendaftar</h5>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                            <h5 class="mb-0 fw-bold">Tabel data pendaftar</h5>
+                            <form action="{{ route('data-pendaftar.index') }}" method="GET" class="d-flex gap-2">
+                                <x-admin.search-input name="search" placeholder="Cari nama, sekolah, status..."
+                                    :value="$search" />
+                                <button type="submit" class="btn btn-cari-siswa">Cari</button>
+                            </form>
+                        </div>
                         <hr>
                         <table class="table table-bordered table-hover">
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="align-middle">No</th>
                                     <th scope="col" class="align-middle" style="width: 30%">Nama</th>
-                                    <th scope="col" class="align-middle" style="width: 25%">Asal Sekolah</th>
+                                    <th scope="col" class="align-middle" style="width: 20%">Asal Sekolah</th>
+                                    <th scope="col" class="align-middle" style="width: 10%">Jenis Kelamin</th>
                                     <th scope="col" class="align-middle" style="width: 20%">Status</th>
                                     <th scope="col" style="width: 20%" class="text-center align-middle">Actions</th>
                                 </tr>
@@ -48,6 +56,10 @@
                                         <td class="align-middle">{{ $item->siswa->nama_siswa }}</td>
                                         <td class="align-middle">
                                             {{ $item->siswa->asal_sekolah }}
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ $item->siswa->jenis_kelamin === 'L' ? 'Laki-laki' : ($item->siswa->jenis_kelamin === 'P' ? 'Perempuan' : '-') }}
+                                        </td>
                                         <td class="align-middle">
                                             {{ $item->siswa->status }}
                                         </td>

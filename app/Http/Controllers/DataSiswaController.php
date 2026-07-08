@@ -11,13 +11,31 @@ use Illuminate\Support\Facades\Hash;
 
 class DataSiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Data Calon Siswa';
-        $data_siswa = Siswa::with(['user', 'gelombang'])->latest()->paginate(10);
+        $search = trim($request->input('search', ''));
+
+        $data_siswa = Siswa::with(['user', 'gelombang'])
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('nama_siswa', 'like', "%{$search}%")
+                        ->orWhere('asal_sekolah', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('nisn', 'like', "%{$search}%")
+                        ->orWhereHas('gelombang', function ($subQuery) use ($search) {
+                            $subQuery->where('nama_gelombang', 'like', "%{$search}%")
+                                ->orWhere('status', 'like', "%{$search}%");
+                        });
+                });
+            })
+            ->latest()
+            ->paginate(10)
+            ->appends(['search' => $search]);
+
         $gelombangs = Gelombang::orderBy('nama_gelombang')->get();
 
-        return view('pages.admin.data-siswa.index', compact('title', 'data_siswa', 'gelombangs'));
+        return view('pages.admin.data-siswa.index', compact('title', 'data_siswa', 'gelombangs', 'search'));
     }
 
     public function store(Request $request)

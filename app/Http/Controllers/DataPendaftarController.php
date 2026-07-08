@@ -13,12 +13,23 @@ class DataPendaftarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Data Pendaftar';
-        $data_pendaftar = Pendaftar::all();
+        $search = trim($request->input('search', ''));
 
-        return view('pages.admin.data-pendaftar.index', compact('title', 'data_pendaftar'));
+        $data_pendaftar = Pendaftar::with('siswa')
+            ->when($search !== '', function ($query) use ($search) {
+                $query->whereHas('siswa', function ($siswaQuery) use ($search) {
+                    $siswaQuery->where('nama_siswa', 'like', "%{$search}%")
+                        ->orWhere('asal_sekolah', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('jenis_kelamin', 'like', "%{$search}%");
+                });
+            })
+            ->get();
+
+        return view('pages.admin.data-pendaftar.index', compact('title', 'data_pendaftar', 'search'));
     }
 
     /**

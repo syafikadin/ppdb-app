@@ -54,11 +54,20 @@ class GelombangController extends Controller
      * @param  \App\Models\Gelombang  $gelombang
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $title = 'Data Ujian';
-        $gelombang = Gelombang::with(['siswa' => function ($query) {
-            $query->verified()->with('nilai');
+        $search = trim($request->input('search', ''));
+
+        $gelombang = Gelombang::with(['siswa' => function ($query) use ($search) {
+            $query->verified()->with('nilai')->when($search !== '', function ($subQuery) use ($search) {
+                $subQuery->where(function ($siswaQuery) use ($search) {
+                    $siswaQuery->where('nama_siswa', 'like', "%{$search}%")
+                        ->orWhere('asal_sekolah', 'like', "%{$search}%")
+                        ->orWhere('status', 'like', "%{$search}%")
+                        ->orWhere('jenis_kelamin', 'like', "%{$search}%");
+                });
+            });
         }])->findOrFail($id);
 
         $gelombang->setRelation('siswa', $gelombang->siswa->sortByDesc(function ($siswa) {
@@ -67,7 +76,7 @@ class GelombangController extends Controller
                 : 0;
         })->values());
 
-        return view('pages.admin.data-ujian.show', compact('title', 'gelombang'));
+        return view('pages.admin.data-ujian.show', compact('title', 'gelombang', 'search'));
     }
 
 
