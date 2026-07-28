@@ -42,9 +42,9 @@
                                 <thead class="table-dark">
                                     <tr>
                                         <th class="align-middle text-center">No</th>
-                                        <th class="align-middle">Nama</th>
-                                        <th class="align-middle">NISN</th>
-                                        <th class="align-middle">Asal Sekolah</th>
+                                        <th class="align-middle text-center">Nama</th>
+                                        <th class="align-middle text-center">NISN</th>
+                                        <th class="align-middle text-center">Asal Sekolah</th>
                                         <th class="align-middle">Gelombang</th>
                                         <th class="align-middle text-center">Status Pendaftaran</th>
                                         <th class="align-middle text-center">Keterangan Kelulusan</th>

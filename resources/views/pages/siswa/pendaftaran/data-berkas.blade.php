@@ -47,7 +47,8 @@
                                 <label for="piagam" class="form-label small">Piagam yang dimiliki <span
                                         class="text-muted">(Opsional)</span></label>
                                 <input class="form-control @error('piagam') is-invalid @enderror" type="file"
-                                    id="piagam" name="piagam" onchange="previewImage(this, '#piagam-preview')"
+                                    id="piagam" name="piagam" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#piagam-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('piagam')
                                     <div class="invalid-feedback">
@@ -56,8 +57,18 @@
                                 @enderror
                                 <label class="text-italic text-danger"><i>Harus piagam asli, bukan milik orang
                                         lain</i></label>
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="piagam-preview"
-                                    src="{{ $data_siswa->piagam ? asset($data_siswa->piagam) : '' }}">
+                                <div class="preview-container mt-2" id="piagam-preview-wrapper">
+                                    @if ($data_siswa->piagam)
+                                        @php $piagamExt = strtolower(pathinfo($data_siswa->piagam, PATHINFO_EXTENSION)); @endphp
+                                        @if ($piagamExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->piagam) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->piagam) }}" alt="Preview piagam">
+                                        @endif
+                                    @endif
+                                </div>
 
                                 {{-- Jika ingin ada defaultnya --}}
                                 {{-- src="{{ $data_siswa->piagam ? asset($data_siswa->piagam) : asset('assets/images/person.jpg') }}"> --}}
@@ -67,91 +78,156 @@
                                 <label for="foto_3x4" class="form-label small">Foto 3x4 <span
                                         class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('foto_3x4') is-invalid @enderror" type="file"
-                                    id="foto_3x4" name="foto_3x4" onchange="previewImage(this, '#foto_3x4-preview')"
+                                    id="foto_3x4" name="foto_3x4" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#foto_3x4-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('foto_3x4')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="foto_3x4-preview"
-                                    src="{{ $data_siswa->foto_3x4 ? asset($data_siswa->foto_3x4) : '' }}">
+                                <div class="preview-container mt-2" id="foto_3x4-preview-wrapper">
+                                    @if ($data_siswa->foto_3x4)
+                                        @php $fotoExt = strtolower(pathinfo($data_siswa->foto_3x4, PATHINFO_EXTENSION)); @endphp
+                                        @if ($fotoExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->foto_3x4) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->foto_3x4) }}" alt="Preview foto 3x4">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="akta" class="form-label small">Scan Akta Kelahiran <span
                                         class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('akta') is-invalid @enderror" type="file"
-                                    id="akta" name="akta" onchange="previewImage(this, '#akta-preview')"
+                                    id="akta" name="akta" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#akta-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('akta')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="akta-preview"
-                                    src="{{ $data_siswa->akta ? asset($data_siswa->akta) : '' }}">
+                                <div class="preview-container mt-2" id="akta-preview-wrapper">
+                                    @if ($data_siswa->akta)
+                                        @php $aktaExt = strtolower(pathinfo($data_siswa->akta, PATHINFO_EXTENSION)); @endphp
+                                        @if ($aktaExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->akta) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->akta) }}" alt="Preview akta">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="kk" class="form-label small">Scan KK <span
                                         class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('kk') is-invalid @enderror" type="file" id="kk"
-                                    name="kk" onchange="previewImage(this, '#kk-preview')"
-                                    {{ $isLocked ? 'disabled' : '' }}>
+                                    name="kk" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#kk-preview-wrapper')" {{ $isLocked ? 'disabled' : '' }}>
                                 @error('kk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="kk-preview"
-                                    src="{{ $data_siswa->kk ? asset($data_siswa->kk) : '' }}">
+                                <div class="preview-container mt-2" id="kk-preview-wrapper">
+                                    @if ($data_siswa->kk)
+                                        @php $kkExt = strtolower(pathinfo($data_siswa->kk, PATHINFO_EXTENSION)); @endphp
+                                        @if ($kkExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->kk) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->kk) }}" alt="Preview KK">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="ktp" class="form-label small">Scan KTP orang tua <span
                                         class="text-muted">(Wajib)</span></label>
-                                <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp"
-                                    name="ktp" onchange="previewImage(this, '#ktp-preview')"
+                                <input class="form-control @error('ktp') is-invalid @enderror" type="file"
+                                    id="ktp" name="ktp" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#ktp-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('ktp')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="ktp-preview"
-                                    src="{{ $data_siswa->ktp ? asset($data_siswa->ktp) : '' }}">
+                                <div class="preview-container mt-2" id="ktp-preview-wrapper">
+                                    @if ($data_siswa->ktp)
+                                        @php $ktpExt = strtolower(pathinfo($data_siswa->ktp, PATHINFO_EXTENSION)); @endphp
+                                        @if ($ktpExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->ktp) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->ktp) }}" alt="Preview KTP">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="mb-2">
                                 <label for="skl_ijazah" class="form-label small">Surat Keterangan Lulus/ ijazah yang sudah
                                     legalisir <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('skl_ijazah') is-invalid @enderror" type="file"
-                                    id="skl_ijazah" name="skl_ijazah"
-                                    onchange="previewImage(this, '#skl_ijazah-preview')"
+                                    id="skl_ijazah" name="skl_ijazah" accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#skl_ijazah-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('skl_ijazah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="skl_ijazah-preview"
-                                    src="{{ $data_siswa->skl_ijazah ? asset($data_siswa->skl_ijazah) : '' }}">
+                                <div class="preview-container mt-2" id="skl_ijazah-preview-wrapper">
+                                    @if ($data_siswa->skl_ijazah)
+                                        @php $sklExt = strtolower(pathinfo($data_siswa->skl_ijazah, PATHINFO_EXTENSION)); @endphp
+                                        @if ($sklExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->skl_ijazah) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->skl_ijazah) }}" alt="Preview ijazah">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="surat_tidak_mampu" class="form-label small">Surat Keterangan Tidak Mampu dari
                                     desa/KIP/KIS/KKS <span class="text-muted">(Wajib)</span></label>
                                 <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror"
                                     type="file" id="surat_tidak_mampu" name="surat_tidak_mampu"
-                                    onchange="previewImage(this, '#surat_tidak_mampu-preview')"
+                                    accept="application/pdf,image/*"
+                                    onchange="previewFile(this, '#surat_tidak_mampu-preview-wrapper')"
                                     {{ $isLocked ? 'disabled' : '' }}>
                                 @error('surat_tidak_mampu')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                <img class="img-preview img-fluid col-sm-5 d-block" id="surat_tidak_mampu-preview"
-                                    src="{{ $data_siswa->surat_tidak_mampu ? asset($data_siswa->surat_tidak_mampu) : '' }}">
+                                <div class="preview-container mt-2" id="surat_tidak_mampu-preview-wrapper">
+                                    @if ($data_siswa->surat_tidak_mampu)
+                                        @php $suratExt = strtolower(pathinfo($data_siswa->surat_tidak_mampu, PATHINFO_EXTENSION)); @endphp
+                                        @if ($suratExt === 'pdf')
+                                            <iframe class="w-100 rounded border" style="min-height: 300px;"
+                                                src="{{ asset($data_siswa->surat_tidak_mampu) }}"></iframe>
+                                        @else
+                                            <img class="img-preview img-fluid col-sm-5 d-block"
+                                                src="{{ asset($data_siswa->surat_tidak_mampu) }}"
+                                                alt="Preview surat tidak mampu">
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
 
@@ -169,21 +245,37 @@
     </div>
 
     <script>
-        function previewImage(input, imgPreviewSelector) {
+        function previewFile(input, previewWrapperSelector) {
             const file = input.files[0];
-            const imgPreview = document.querySelector(imgPreviewSelector);
+            const previewWrapper = document.querySelector(previewWrapperSelector);
 
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    imgPreview.src = e.target.result;
-                }
-
-                reader.readAsDataURL(file);
-            } else {
-                imgPreview.src = ''; // Clear the preview if no file is selected
+            if (!previewWrapper) {
+                return;
             }
+
+            if (!file) {
+                previewWrapper.innerHTML = '';
+                return;
+            }
+
+            const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+
+            if (isPdf) {
+                const objectUrl = URL.createObjectURL(file);
+                previewWrapper.innerHTML =
+                    `<iframe class="w-100 rounded border" style="min-height: 300px;" src="${objectUrl}"></iframe>`;
+                return;
+            }
+
+            if (file.type.startsWith('image/')) {
+                const objectUrl = URL.createObjectURL(file);
+                previewWrapper.innerHTML =
+                    `<img class="img-preview img-fluid col-sm-5 d-block" src="${objectUrl}" alt="Preview berkas">`;
+                return;
+            }
+
+            previewWrapper.innerHTML =
+                '<div class="alert alert-light border mb-0">Preview hanya tersedia untuk gambar atau PDF.</div>';
         }
     </script>
 @endsection

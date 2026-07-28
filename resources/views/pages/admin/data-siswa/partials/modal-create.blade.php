@@ -36,12 +36,13 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control" minlength="8">
                                 </div>
 
                                 <div class="mb-0">
                                     <label class="form-label">Konfirmasi Password</label>
-                                    <input type="password" name="password_confirmation" class="form-control">
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                        minlength="8">
                                 </div>
                             </div>
                         </div>
@@ -62,7 +63,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">NISN</label>
                                     <input type="text" name="nisn" class="form-control"
-                                        value="{{ old('nisn') }}">
+                                        value="{{ old('nisn') }}" maxlength="10" inputmode="numeric" pattern="[0-9]*">
                                 </div>
 
                                 <div class="row g-3">

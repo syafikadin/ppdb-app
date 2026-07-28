@@ -38,14 +38,14 @@
                                 <div class="mb-3">
                                     <label class="form-label">Password Baru</label>
                                     <input type="password" name="password" class="form-control"
-                                        autocomplete="new-password">
+                                        autocomplete="new-password" minlength="8">
                                     <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
                                 </div>
 
                                 <div class="mb-0">
                                     <label class="form-label">Konfirmasi Password Baru</label>
                                     <input type="password" name="password_confirmation" class="form-control"
-                                        autocomplete="new-password">
+                                        autocomplete="new-password" minlength="8">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,8 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">NISN</label>
-                                    <input type="text" name="nisn" id="edit_nisn" class="form-control">
+                                    <input type="text" name="nisn" id="edit_nisn" class="form-control"
+                                        maxlength="10" inputmode="numeric" pattern="[0-9]*">
                                 </div>
 
                                 <div class="row g-3">
@@ -103,7 +104,8 @@
 
                                     <div class="col-md-6">
                                         <label class="form-label">Nomor WA</label>
-                                        <input type="text" name="nomor_wa" id="edit_nomor_wa" class="form-control">
+                                        <input type="text" name="nomor_wa" id="edit_nomor_wa"
+                                            class="form-control">
                                     </div>
 
                                     <div class="col-md-6">

@@ -50,7 +50,7 @@ class ProfilController extends Controller
 
         $validated = $request->validate([
             'nama_siswa' => 'required|string|max:255',
-            'nisn' => 'nullable|string|max:20|unique:siswas,nisn,' . $data_siswa->id,
+            'nisn' => 'nullable|string|digits_between:1,10|unique:siswas,nisn,' . $data_siswa->id,
             'jenis_kelamin' => 'nullable|in:L,P',
             'asal_sekolah' => 'nullable|string|max:255',
             'tempat_lahir' => 'nullable|string|max:255',
@@ -69,6 +69,8 @@ class ProfilController extends Controller
             'nomor_wali' => 'nullable|string|max:20',
             'alamat_wali' => 'nullable|string|max:255',
             'ukuran_seragam' => 'nullable|string|max:10',
+        ], [
+            'nisn.digits_between' => 'NISN maksimal 10 digit.',
         ]);
 
         if ($request->hasFile('foto')) {

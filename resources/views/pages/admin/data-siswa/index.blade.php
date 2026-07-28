@@ -62,9 +62,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th>Nama</th>
-                                        <th>NISN</th>
-                                        <th>Asal Sekolah</th>
+                                        <th class="text-center align-middle">Nama</th>
+                                        <th class="text-center align-middle">NISN</th>
+                                        <th class="text-center align-middle">Asal Sekolah</th>
                                         <th>Jenis Kelamin</th>
                                         <th>No WA</th>
                                         <th>Gelombang</th>

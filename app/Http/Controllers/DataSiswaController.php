@@ -38,19 +38,18 @@ class DataSiswaController extends Controller
         return view('pages.admin.data-siswa.index', compact('title', 'data_siswa', 'gelombangs', 'search'));
     }
 
-    public function store(Request $request)
+    public function getValidationRules($siswaId = null): array
     {
-        $validated = $request->validate([
+        return [
             'nama_siswa'       => 'required|string|max:255',
-            'nisn'             => 'nullable|string|max:255|unique:siswas,nisn',
-            'username'         => 'required|string|max:255|unique:users,username',
-            'password'         => 'required|string|min:6|confirmed',
+            'nisn'             => 'nullable|string|digits_between:1,10|unique:siswas,nisn' . ($siswaId ? ',' . $siswaId : ''),
+            'username'         => 'required|string|max:255|unique:users,username' . ($siswaId ? ',' . $siswaId : ''),
             'gelombang_id'     => 'nullable|exists:gelombangs,id',
             'jenis_kelamin'    => 'nullable|in:L,P',
             'tempat_lahir'     => 'nullable|string|max:255',
             'tanggal_lahir'    => 'nullable|date',
             'alamat'           => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255|unique:siswas,email',
+            'email'            => 'nullable|email|max:255|unique:siswas,email' . ($siswaId ? ',' . $siswaId : ''),
             'nomor_wa'         => 'nullable|string|max:255',
             'asal_sekolah'     => 'nullable|string|max:255',
             'nama_ayah'        => 'nullable|string|max:255',
@@ -63,6 +62,19 @@ class DataSiswaController extends Controller
             'alamat_wali'      => 'nullable|string|max:255',
             'catatan'          => 'nullable|string|max:255',
             'status'           => 'nullable|string|max:255',
+        ];
+    }
+
+    public function store(Request $request)
+    {
+        $rules = $this->getValidationRules();
+        $rules['password'] = 'required|string|min:8|confirmed';
+        $rules['password_confirmation'] = 'required|string|min:8';
+
+        $validated = $request->validate($rules, [
+            'password.min' => 'Password minimal harus 8 karakter.',
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter.',
+            'nisn.digits_between' => 'NISN maksimal 10 digit.',
         ]);
 
         DB::transaction(function () use ($validated) {
@@ -105,36 +117,19 @@ class DataSiswaController extends Controller
     {
         $siswa = Siswa::with('user')->findOrFail($id);
 
-        $rules = [
-            'nama_siswa'       => 'required|string|max:255',
-            'nisn'             => 'nullable|string|max:255|unique:siswas,nisn,' . $siswa->id,
-            'username'         => 'required|string|max:255|unique:users,username,' . $siswa->user->id,
-            'gelombang_id'     => 'nullable|exists:gelombangs,id',
-            'jenis_kelamin'    => 'nullable|in:L,P',
-            'tempat_lahir'     => 'nullable|string|max:255',
-            'tanggal_lahir'    => 'nullable|date',
-            'alamat'           => 'nullable|string|max:255',
-            'email'            => 'nullable|email|max:255|unique:siswas,email,' . $siswa->id,
-            'nomor_wa'         => 'nullable|string|max:255',
-            'asal_sekolah'     => 'nullable|string|max:255',
-            'nama_ayah'        => 'nullable|string|max:255',
-            'pekerjaan_ayah'   => 'nullable|string|max:255',
-            'penghasilan_ayah' => 'nullable|string|max:255',
-            'nama_ibu'         => 'nullable|string|max:255',
-            'pekerjaan_ibu'    => 'nullable|string|max:255',
-            'penghasilan_ibu'  => 'nullable|string|max:255',
-            'nomor_wali'       => 'nullable|string|max:255',
-            'alamat_wali'      => 'nullable|string|max:255',
-            'catatan'          => 'nullable|string|max:255',
-            'status'           => 'nullable|string|max:255',
-        ];
+        $rules = $this->getValidationRules($siswa->id);
+        $rules['username'] = 'required|string|max:255|unique:users,username,' . $siswa->user->id;
 
         if ($request->filled('password')) {
-            $rules['password'] = 'required|string|min:6|same:password_confirmation';
-            $rules['password_confirmation'] = 'required|string|min:6';
+            $rules['password'] = 'required|string|min:8|same:password_confirmation';
+            $rules['password_confirmation'] = 'required|string|min:8';
         }
 
-        $validated = $request->validate($rules);
+        $validated = $request->validate($rules, [
+            'password.min' => 'Password minimal harus 8 karakter.',
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter.',
+            'nisn.digits_between' => 'NISN maksimal 10 digit.',
+        ]);
 
         DB::transaction(function () use ($validated, $siswa, $request) {
             $userData = [

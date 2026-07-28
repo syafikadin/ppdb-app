@@ -97,7 +97,8 @@
                                         <label for="nisn" class="form-label text-muted small fw-semibold">NISN</label>
                                         <input type="text"
                                             class="form-control rounded-3 @error('nisn') is-invalid @enderror"
-                                            id="nisn" name="nisn" value="{{ old('nisn', $data_siswa->nisn) }}">
+                                            id="nisn" name="nisn" value="{{ old('nisn', $data_siswa->nisn) }}"
+                                            maxlength="10" inputmode="numeric" pattern="[0-9]*">
                                         @error('nisn')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

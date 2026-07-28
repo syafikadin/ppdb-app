@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NilaiController extends Controller
 {
@@ -85,12 +86,29 @@ class NilaiController extends Controller
 
     public function storeNilai(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nilai' => 'required|array',
+            'nilai.*.wawancara' => 'required|numeric|min:10|max:100',
+            'nilai.*.baca' => 'required|numeric|min:10|max:100',
+            'nilai.*.tulis' => 'required|numeric|min:10|max:100',
+        ], [
+            'nilai.*.wawancara.min' => 'Nilai wawancara minimal 10.',
+            'nilai.*.wawancara.max' => 'Nilai wawancara maksimal 100.',
+            'nilai.*.baca.min' => 'Nilai baca Al-Qur\'an minimal 10.',
+            'nilai.*.baca.max' => 'Nilai baca Al-Qur\'an maksimal 100.',
+            'nilai.*.tulis.min' => 'Nilai tulis Al-Qur\'an minimal 10.',
+            'nilai.*.tulis.max' => 'Nilai tulis Al-Qur\'an maksimal 100.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $nilaiData = $request->input('nilai');
 
         foreach ($nilaiData as $siswaId => $nilai) {
-            // Cek jika siswa sudah memiliki nilai, lakukan update, jika belum, buat baru
             Nilai::updateOrCreate(
-                ['siswa_id' => $siswaId], // Kunci unik berdasarkan siswa_id
+                ['siswa_id' => $siswaId],
                 [
                     'wawancara' => $nilai['wawancara'],
                     'baca_alquran' => $nilai['baca'],

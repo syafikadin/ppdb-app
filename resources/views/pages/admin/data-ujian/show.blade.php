@@ -156,7 +156,7 @@
                                                     <tr>
                                                         <th scope="col" class="align-middle text-center"
                                                             style="width: 10%">No</th>
-                                                        <th scope="col" class="align-middle">Nama</th>
+                                                        <th scope="col" class="align-middle text-center">Nama</th>
                                                         <th scope="col" class="align-middle text-center"
                                                             style="width: 15%">Wawancara</th>
                                                         <th scope="col" class="text-center align-middle"
@@ -174,19 +174,22 @@
                                                                 <input type="number" class="form-control"
                                                                     name="nilai[{{ $siswa->id }}][wawancara]"
                                                                     value="{{ $siswa->nilai ? $siswa->nilai->wawancara : '' }}"
-                                                                    required>
+                                                                    required min="10" max="100"
+                                                                    step="1">
                                                             </td>
                                                             <td class="align-middle text-center">
                                                                 <input type="number" class="form-control"
                                                                     name="nilai[{{ $siswa->id }}][baca]"
                                                                     value="{{ $siswa->nilai ? $siswa->nilai->baca_alquran : '' }}"
-                                                                    required>
+                                                                    required min="10" max="100"
+                                                                    step="1">
                                                             </td>
                                                             <td class="align-middle text-center">
                                                                 <input type="number" class="form-control"
                                                                     name="nilai[{{ $siswa->id }}][tulis]"
                                                                     value="{{ $siswa->nilai ? $siswa->nilai->tulis_alquran : '' }}"
-                                                                    required>
+                                                                    required min="10" max="100"
+                                                                    step="1">
                                                             </td>
                                                         </tr>
                                                     @endforeach
