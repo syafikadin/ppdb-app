@@ -281,10 +281,8 @@
                                     </div>
                                     <div>
                                         <div class="stats-label">Akun PPDB</div>
-                                        <div class="stats-value">{{ $totalSiswaPerGelombang }}</div>
-                                        <div class="stats-desc">
-                                            {{ $gelombangAktif ? $gelombangAktif->nama_gelombang : 'Belum ada gelombang aktif' }}
-                                        </div>
+                                        <div class="stats-value">{{ $totalAkunPpdb }}</div>
+                                        <div class="stats-desc">Akun yang sudah daftar tetapi belum submit berkas</div>
                                     </div>
                                 </div>
                             </div>

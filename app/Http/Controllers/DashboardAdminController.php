@@ -31,11 +31,22 @@ class DashboardAdminController extends Controller
 
         $timelines = $gelombangAktif ? $gelombangAktif->timelines : collect();
 
-        $jumlahPendaftar = Siswa::where('status', '!=', 'Belum Mendaftar')->count();
+        $jumlahPendaftar = Siswa::whereHas('pendaftar')->where(function ($query) {
+            $query->whereIn('status', [
+                'Sudah diverifikasi, menunggu ujian',
+                'Menunggu pengumuman',
+                'Lulus',
+                'Tidak Lulus',
+            ]);
+        })->count();
 
-        $totalSiswaPerGelombang = $gelombangAktif
-            ? Siswa::verified()->where('gelombang_id', $gelombangAktif->id)->count()
-            : 0;
+        $totalAkunPpdb = Siswa::whereHas('pendaftar')->where(function ($query) {
+            $query->where('status', 'Belum Mendaftar')
+                ->orWhere(function ($subQuery) {
+                    $subQuery->whereNull('status')
+                        ->orWhere('status', '');
+                });
+        })->count();
 
         $totalSudahDiverifikasi = Siswa::whereIn('status', [
             'Sudah diverifikasi, menunggu ujian',
@@ -49,7 +60,7 @@ class DashboardAdminController extends Controller
             'gelombangAktif',
             'timelines',
             'jumlahPendaftar',
-            'totalSiswaPerGelombang',
+            'totalAkunPpdb',
             'totalSudahDiverifikasi'
         ));
     }
