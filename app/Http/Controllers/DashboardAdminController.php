@@ -31,22 +31,15 @@ class DashboardAdminController extends Controller
 
         $timelines = $gelombangAktif ? $gelombangAktif->timelines : collect();
 
-        $jumlahPendaftar = Siswa::whereHas('pendaftar')->where(function ($query) {
-            $query->whereIn('status', [
-                'Sudah diverifikasi, menunggu ujian',
-                'Menunggu pengumuman',
-                'Lulus',
-                'Tidak Lulus',
-            ]);
-        })->count();
+        $jumlahPendaftar = Siswa::whereIn('status', [
+            'Sudah diverifikasi, menunggu ujian',
+            'Menunggu pengumuman',
+            'Lulus',
+            'Tidak Lulus',
+        ])->count();
 
-        $totalAkunPpdb = Siswa::whereHas('pendaftar')->where(function ($query) {
-            $query->where('status', 'Belum Mendaftar')
-                ->orWhere(function ($subQuery) {
-                    $subQuery->whereNull('status')
-                        ->orWhere('status', '');
-                });
-        })->count();
+        $totalAkunPpdb = Siswa::where('status', 'Belum Mendaftar')
+            ->count();
 
         $totalSudahDiverifikasi = Siswa::whereIn('status', [
             'Sudah diverifikasi, menunggu ujian',

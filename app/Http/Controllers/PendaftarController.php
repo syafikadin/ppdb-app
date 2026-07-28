@@ -22,10 +22,12 @@ class PendaftarController extends Controller
             $siswa->status = 'Sudah daftar, belum diverifikasi';
             $siswa->save();
 
-            // Buat objek pendaftar baru
-            $pendaftar = new Pendaftar();
-            $pendaftar->id_siswa = $siswaId;
-            $pendaftar->save();
+            // Buat atau perbarui objek pendaftar untuk siswa ini
+            $pendaftar = Pendaftar::updateOrCreate([
+                'id_siswa' => $siswaId,
+            ], [
+                'status_pendaftaran' => 'Sudah daftar, belum diverifikasi',
+            ]);
 
             return redirect()->back()->with('success', 'Pendaftaran berhasil.');
         } else {
@@ -71,9 +73,15 @@ class PendaftarController extends Controller
 
         // Mengupdate status dan mengaitkan siswa dengan gelombang yang aktif
         $siswa->status = 'Sudah diverifikasi, menunggu ujian';
-        $siswa->catatan = 'Silahkan menunggu ujian, Jangan lupa untuk mencetak kartu ujian yang dapat didownload pada status pendaftaran!';
+        $siswa->catatan = 'Silahkan menunggu ujian, jangan lupa untuk mencetak kartu ujian yang dapat didownload pada status pendaftaran!';
         $siswa->gelombang_id = $gelombangOpen->id; // Mengaitkan siswa dengan gelombang
         $siswa->save();
+
+        Pendaftar::updateOrCreate([
+            'id_siswa' => $siswa->id,
+        ], [
+            'status_pendaftaran' => 'Sudah diverifikasi, menunggu ujian',
+        ]);
 
         return redirect()->back()->with('success', 'Pendaftar berhasil diverifikasi dan masuk ke gelombang.');
     }
