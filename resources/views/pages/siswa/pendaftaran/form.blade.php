@@ -232,7 +232,7 @@
                             </div>
                             <div class="mb-2">
                                 <label for="surat_tidak_mampu" class="form-label">SCAN Surat Keterangan Tidak Mampu dari
-                                    desa/KIP/KIS/KKS</label>
+                                    desa/KIP/KIS/KKS <span class="text-muted">(Opsional)</span></label>
                                 <img class="img-preview img-fluid col-sm-5 d-block">
                                 <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror"
                                     type="file" id="surat_tidak_mampu" name="surat_tidak_mampu"

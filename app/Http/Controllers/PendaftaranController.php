@@ -9,6 +9,24 @@ use Illuminate\Support\Facades\Auth;
 
 class PendaftaranController extends Controller
 {
+    public function getRequiredFiles(): array
+    {
+        return ['foto_3x4', 'akta', 'kk', 'ktp', 'skl_ijazah'];
+    }
+
+    public function getMissingRequiredFiles(Siswa $siswa): array
+    {
+        $missingFiles = [];
+
+        foreach ($this->getRequiredFiles() as $file) {
+            if (empty($siswa->{$file})) {
+                $missingFiles[] = $file;
+            }
+        }
+
+        return $missingFiles;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +52,7 @@ class PendaftaranController extends Controller
             !empty($data_siswa->nomor_wali);
 
         // Cek kelengkapan data berkas (hanya berkas wajib yang menentukan lengkap)
-        $requiredFiles = ['akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
+        $requiredFiles = $this->getRequiredFiles();
         $isBerkasComplete = true;
 
         foreach ($requiredFiles as $file) {
@@ -186,13 +204,7 @@ class PendaftaranController extends Controller
             }
         }
 
-        $requiredFiles = ['foto_3x4', 'akta', 'kk', 'ktp', 'skl_ijazah', 'surat_tidak_mampu'];
-        $missingFiles = [];
-        foreach ($requiredFiles as $file) {
-            if (empty($siswa->{$file})) {
-                $missingFiles[] = $file;
-            }
-        }
+        $missingFiles = $this->getMissingRequiredFiles($siswa);
 
         $siswa->save();
 

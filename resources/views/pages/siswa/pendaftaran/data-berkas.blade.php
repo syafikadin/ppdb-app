@@ -204,7 +204,7 @@
                             </div>
                             <div class="mb-2">
                                 <label for="surat_tidak_mampu" class="form-label small">Surat Keterangan Tidak Mampu dari
-                                    desa/KIP/KIS/KKS <span class="text-muted">(Wajib)</span></label>
+                                    desa/KIP/KIS/KKS <span class="text-muted">(Opsional)</span></label>
                                 <input class="form-control @error('surat_tidak_mampu') is-invalid @enderror"
                                     type="file" id="surat_tidak_mampu" name="surat_tidak_mampu"
                                     accept="application/pdf,image/*"
