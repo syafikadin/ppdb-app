@@ -47,8 +47,7 @@ class PendaftaranController extends Controller
         $canSubmit = $isProfilComplete && $isOrangtuaComplete && $isBerkasComplete;
 
         // Cek status pendaftaran
-        $pendaftar = Pendaftar::where('id_siswa', $data_siswa->id)->first();
-        $isRegistered = $pendaftar && $pendaftar->status_pendaftaran !== 'Belum Mendaftar';
+        $isRegistered = $data_siswa->status !== 'Belum Mendaftar';
 
         // Tentukan apakah tombol bisa diklik
         $canSubmit = $canSubmit && !$isRegistered;
